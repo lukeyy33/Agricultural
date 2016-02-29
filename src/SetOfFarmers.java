@@ -28,7 +28,7 @@ public class SetOfFarmers {
      * @return
      */
     public void addFarmer(String farmerName, String farmerEmail, 
-            String farmerTelephone, Image image, SetOfFarms setofFarms) {
+            String farmerTelephone, Image image, SetOfFarms setOfFarms) {
         // TODO implement here
     }
 
@@ -44,7 +44,10 @@ public class SetOfFarmers {
      * @return
      */
     public Farmer getFarmerByName(String farmerName) {
-        // TODO implement here
+        for (Farmer f: farmers){
+            if (f.getName().equals(farmerName))
+                return f;
+        }
         return null;
     }
 

@@ -42,11 +42,12 @@ public class Field {
 
     public FieldStation getFieldStationByNumber(int fieldStationNo) {
         // TODO implement here
-        return null;
+        return this.getFieldStationByNumber(fieldStationNo);
     }
 
     public void addFieldStation(String currentLocation, String name) {
         // TODO implement here
+        
       
     }
 
