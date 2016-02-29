@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -8,9 +7,6 @@ import java.util.*;
  */
 public class SetOfFarms {
 
-    /**
-     * Default constructor
-     */
     public SetOfFarms() {
         farms = new ArrayList<Farm>();
     }

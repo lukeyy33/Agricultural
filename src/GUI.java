@@ -54,15 +54,7 @@ public class GUI extends javax.swing.JFrame {
         Field[] tmp = theFarms.getAllFarms().get(0).getAllFields();
         for(int i =0; i < theFarms.getAllFarms().get(0).getAllFields().length; i++){
             cmbFields.addItem(tmp[i].getName());
-        }
-        
-          //repopulates the fields box with the currently selected farm
-//        cmbFields.removeAllItems();
-//        String tmpString = cmbFarms.getSelectedItem().toString();
-//        Field[] tmp = theFarms.getFarmByName(tmpString).getAllFields();
-//        for(int i =0; i < tmp.length; i++){
-//            cmbFields.addItem(tmp[i].getName());
-//        }
+        }       
 
     }
 
@@ -290,6 +282,11 @@ public class GUI extends javax.swing.JFrame {
             f.setFields(temp);
         }
 
+    }
+    
+    private void initFarmers() {
+        theFarmers = new SetOfFarmers(); 
+        theFarmers.addFarmer("bob", "bob@bob.com", "123445", /*image,*/ theFarms);
     }
 
     /**
@@ -675,7 +672,4 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblFieldType;
     // End of variables declaration//GEN-END:variables
 
-    private void initFarmers() {
-    theFarmers = new SetOfFarmers(); 
-    }
 }

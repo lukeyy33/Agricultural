@@ -1,4 +1,3 @@
-
 import java.awt.Image;
 import java.util.*;
 
@@ -13,29 +12,16 @@ public class Farmer {
     public Farmer() {
     }
 
-
     private String name;
     private String email;
     private String telephone;
     private Image picture;
-    private SetOfFarms associatedfarms;
+    private SetOfFarms associatedFarms;
 
-    /**
-     * @return
-     */
     public SetOfFarms getAssociatedFarms() {
         // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param String 
-     * @param String 
-     * @param String 
-     * @param Image 
-     * @param SetOfFarms 
-     * @return
-     */
+        return this.associatedFarms;
+    }  
     
     public void updateFarmerInfo(String name,
             String email,
@@ -50,7 +36,7 @@ public class Farmer {
      */
     public String getName() {
         // TODO implement here
-        return "";
+        return this.name;
     }
 
     /**
@@ -58,7 +44,7 @@ public class Farmer {
      */
     public String getEmail() {
         // TODO implement here
-        return "";
+        return this.email;
     }
 
     /**
@@ -66,7 +52,7 @@ public class Farmer {
      */
     public String getTelephone() {
         // TODO implement here
-        return "";
+        return this.telephone;
     }
 
     /**
