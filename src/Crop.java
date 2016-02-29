@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Date;
 
 /**
  * current crop in this field
@@ -13,40 +14,33 @@ public class Crop {
 
     public Crop(String n, float a){
         name = n;
-        arearequired = a;
-        plantedtime = new Date();
+        areaRequired = a;
+        plantedTime = new Date();
     }
 
     private String name;
-    private Date plantedtime;
+    private Date plantedTime;
 
     /**
      * for each individual plant in m^2
      */
-    private float arearequired;
-
-    /*     
-     * @return 
-     */   
+    private float areaRequired;
+ 
     public String getName() {
         // TODO implement here
         return name;
     }
 
-    /**
-     * @return
-     */
-    /*public JTime getPlantedTime() {
-        // TODO implement here
-        return plantedtime;
-    } */
 
-    /**
-     * @return
-     */
+    public Date getPlantedTime() {
+        // TODO implement here
+        return plantedTime;
+    } 
+
+
     public float getAreaRequired() {
         // TODO implement here
-        return arearequired;
+        return areaRequired;
     }
 
     /**
@@ -55,9 +49,9 @@ public class Crop {
      * @param float 
      * @return
      */
-    /*public void updateCropInfo(String, JTime, float) {
+    public void updateCropInfo(String name, Date date, float areaRequired) {
         // TODO implement here
-        return null;
-    } */
+        
+    }
 
 }

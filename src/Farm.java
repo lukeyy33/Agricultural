@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -6,80 +5,48 @@ import java.util.*;
  */
 public class Farm {
 
-    /**
-     * Default constructor
-     */
     public Farm() {
     }
     
-    public Farm(String name, Location location) {
+    public Farm(String name, Location location, int farmNo) {
         this.name = name;
         this.location = location;
+        this.farmNo = farmNo;
     }
 
     private Field[] fields;
-
     private String name;
-
-    private int farmno;
-
+    private int farmNo;
     private Location location;
 
     public Field[] getAllFields() {
-        
         return fields;
     }
 
-    /**
-     * @param int 
-     * @return
-     */
+
     public Field getFieldByNumber(int fieldNumber) {
         // TODO implement here
         return null;
     }
 
-    /**
-     * @param String 
-     * @return
-     */
     public Field getFieldByName(String fieldName) {
         // TODO implement here
         return null;
     }
 
-    /**
-     * params: crop, name, corners[]
-     * 
-     * corners[] is manually recorded by the farmer
-     * @param String 
-     * @param String 
-     * @param Location array 
-     * @return
-     */
     public void addField(String crop, String name, Location corners[]) {
         // TODO implement here
     
     }
 
-    /**
-     * @param Field 
-     * @return
-     */
     public void removeField(Field number) {
         // TODO implement here
         
     }
 
-    /**
-     * params: name, location
-     * @param String 
-     * @param Location 
-     * @return
-     */
     public void updateFarmInfo(String name, Location location) {
         // TODO implement here
-        //return null;
+   
     }
     
     public String getName(){

@@ -27,12 +27,12 @@ public class Data {
     /**
      * Allows you to keep track of which sensor this data came from (for search purposes?)
      */
-    private int sensorno;
+    private int sensorNo;
 
     /**
      * The location at which the reading was taken (because sensors can be moved)
      */
-    private Location readinglocation;
+    private Location readingLocation;
 
     /**
      * returns data in this format: name, number, time, location, reading (or some variant of this order)

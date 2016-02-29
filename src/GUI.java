@@ -28,14 +28,14 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         initLocations();
         theFarms = new SetOfFarms();
-        theFarms.addFarm("Love Factory", locations[0]);
-        theFarms.addFarm("Ganja Factory", locations[1]);
-        theFarms.addFarm("Nandos", locations[2]);
-        theFarms.addFarm("Bee Farm", locations[3]);
-        theFarms.addFarm("Bugs Bunny", locations[4]);
-        theFarms.addFarm("Shreks Skin", locations[5]);
-        theFarms.addFarm("Potato Potatoe", locations[6]);
-        theFarms.addFarm("Tomato Tomatoe", locations[7]);
+        theFarms.addFarm("Love Factory", locations[0], 1);
+        theFarms.addFarm("Ganja Factory", locations[1], 2);
+        theFarms.addFarm("Nandos", locations[2], 3);
+        theFarms.addFarm("Bee Farm", locations[3], 4);
+        theFarms.addFarm("Bugs Bunny", locations[4], 5);
+        theFarms.addFarm("Shreks Skin", locations[5], 6);
+        theFarms.addFarm("Potato Potatoe", locations[6], 6);
+        theFarms.addFarm("Tomato Tomatoe", locations[7], 7);
         cmbFarms.removeAllItems();
         for (Farm f : theFarms.getAllFarms()) {
             cmbFarms.addItem(f.getName());
