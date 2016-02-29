@@ -224,6 +224,21 @@ public class GUI extends javax.swing.JFrame {
         dialogShowField.pack();
 
     }
+        public void showFieldStatusPopup(Field fieldStatusPopup) {
+        // TODO implement here
+        String selectedField = (String) cmbFarms.getSelectedItem();
+        selectedField = selectedFields.toString();
+        
+        Field[] selectedFields = selectedFarm.getAllFields();
+
+        fieldStatusDialog.setVisible(true);
+        comboFields.removeAllItems();
+        for (Field f: selectedFields) {
+            comboFields.addItem(f.getName());
+        }
+        fieldStatusDialog.pack();
+
+    }
 
     public void showFieldStationPopup(FieldStation fieldStation) {
         String fieldStationName = (String) cmbFarms.getSelectedItem();
@@ -304,6 +319,7 @@ public class GUI extends javax.swing.JFrame {
         lblFieldType = new javax.swing.JLabel();
         lblFieldCrop = new javax.swing.JLabel();
         lblFieldPlantings = new javax.swing.JLabel();
+        fieldStatusDialog = new javax.swing.JDialog();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         btnFarmStatus = new javax.swing.JButton();
@@ -313,9 +329,9 @@ public class GUI extends javax.swing.JFrame {
         btnShowFieldStatus = new javax.swing.JButton();
         btnShowFields = new javax.swing.JButton();
         fieldsLbl = new javax.swing.JLabel();
-        cmbFields = new javax.swing.JComboBox<String>();
+        cmbFields = new javax.swing.JComboBox<>();
         farnersLbl = new javax.swing.JLabel();
-        cmbFarmers = new javax.swing.JComboBox<String>();
+        cmbFarmers = new javax.swing.JComboBox<>();
         btnShowFarmers = new javax.swing.JButton();
         btnShowFarmerStatus = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -398,6 +414,17 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(149, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout fieldStatusDialogLayout = new javax.swing.GroupLayout(fieldStatusDialog.getContentPane());
+        fieldStatusDialog.getContentPane().setLayout(fieldStatusDialogLayout);
+        fieldStatusDialogLayout.setHorizontalGroup(
+            fieldStatusDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        fieldStatusDialogLayout.setVerticalGroup(
+            fieldStatusDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cmbFarms.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -413,6 +440,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         btnShowFieldStatus.setText("Show Field Status");
+        btnShowFieldStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowFieldStatusActionPerformed(evt);
+            }
+        });
 
         btnShowFields.setText("Show fields");
         btnShowFields.setMaximumSize(new java.awt.Dimension(101, 23));
@@ -426,7 +458,7 @@ public class GUI extends javax.swing.JFrame {
 
         fieldsLbl.setText("Fields");
 
-        cmbFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFields.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbFieldsActionPerformed(evt);
@@ -435,7 +467,7 @@ public class GUI extends javax.swing.JFrame {
 
         farnersLbl.setText("Farmers");
 
-        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnShowFarmers.setText("Show Farmers");
         btnShowFarmers.addActionListener(new java.awt.event.ActionListener() {
@@ -590,6 +622,11 @@ public class GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnShowFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowFieldStatusActionPerformed
+        // TODO add your handling code here:
+        //showFieldStatusPopup();
+    }//GEN-LAST:event_btnShowFieldStatusActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -638,6 +675,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog farmsDialog;
     private javax.swing.JLabel farmsLbl;
     private javax.swing.JLabel farnersLbl;
+    private javax.swing.JDialog fieldStatusDialog;
     private javax.swing.JLabel fieldsLbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
