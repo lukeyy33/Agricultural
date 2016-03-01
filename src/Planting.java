@@ -1,4 +1,6 @@
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -8,75 +10,52 @@ import java.util.*;
  */
 public class Planting {
 
-    /**
-     * Default constructor
-     */
     public Planting() {
     }
+    
+    public Planting(Crop crop, Date plantDate, Date harvestDate, int yield) {
+        this.crop = crop;
+        this.plantDate = plantDate;
+        this.harvestDate = harvestDate;
+        this.yield = yield;
+    }
 
-    /**
-     * 
-     */
     private Crop crop;
-
-    /**
-     * 
-     */
-    private Date plantdate;
-
-    /**
-     * 
-     */
-    private Date harvestdate;
-
-    /**
-     * 
-     */
+    private Date plantDate;
+    private Date harvestDate;
     private int yield;
-
-    /**
-     * 
-     */
-    //public Field 1;
-
-    /**
-     * @return
-     */
+    
     public String toString() {
         // TODO implement here
-        return "";
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        
+        String summary = getCropName() + " Harvested: " +  "\n" +
+                         df.format(getHarvestDate()) + " Planted: " + "\n" +
+                         df.format(getPlantDate()) + " Yield: " + "\n" +
+                         getYield() + " kg";
+        
+        return summary;
     }
 
-    /**
-     * @return
-     */
-    public String getCropname() {
+    public String getCropName() {
         // TODO implement here
-        return "";
+        return crop.getName();
     }
 
-    /**
-     * @return
-     */
     public Date getPlantDate() {
-        // TODO implement here
-        return null;
+        return plantDate;
     }
 
-    /**
-     * @return
-     */
     public Date getHarvestDate() {
-        // TODO implement here
-        return null;
+       return harvestDate;
     }
 
-    /**
-     * @return
-     */
     public int getYield() {
-        // TODO implement here
-        return 0;
+        return yield;
+    }
+    
+    public void setCrop(Crop crop){
+        this.crop = crop;
     }
 
 }

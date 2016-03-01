@@ -2,31 +2,15 @@
 import java.awt.Image;
 import java.util.*;
 
-/**
- * 
- */
+
 public class SetOfFarmers {
 
-    /**
-     * Default constructor
-     */
     public SetOfFarmers() {
     }
 
-    /**
-     * 
-     */
     private Farmer[] farmers;
+ 
 
-
-    /**
-     * @param String 
-     * @param String 
-     * @param String 
-     * @param Image 
-     * @param SetOfFarms 
-     * @return
-     */
     public void addFarmer(String farmerName, String farmerEmail, 
             String farmerTelephone, Image image, SetOfFarms setOfFarms) {
         // TODO implement here
@@ -38,11 +22,7 @@ public class SetOfFarmers {
     public void removeFarmer() {
         // TODO implement here
     }
-
-    /**
-     * @param String 
-     * @return
-     */
+    
     public Farmer getFarmerByName(String farmerName) {
         for (Farmer f: farmers){
             if (f.getName().equals(farmerName))
@@ -51,27 +31,23 @@ public class SetOfFarmers {
         return null;
     }
 
-    /**
-     * @param String 
-     * @return
-     */
     public Farmer getFarmerByEmail(String farmerEmail) {
-        // TODO implement here
+       for (Farmer f: farmers){
+            if (f.getEmail().equals(farmerEmail))
+                return f;
+        }
         return null;
     }
 
-    /**
-     * @param String 
-     * @return
-     */
+
     public Farmer getFarmerByTelephone(String farmerTelephone) {
-        // TODO implement here
+        for (Farmer f: farmers){
+            if (f.getTelephone().equals(farmerTelephone))
+                return f;
+        }
         return null;
     }
 
-    /**
-     * @return
-     */
     public Farmer[] getAllFarmers() {
         // TODO implement here
         return null;

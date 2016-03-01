@@ -21,7 +21,7 @@ public class Farm {
 
     private String name;
 
-    private int farmno;
+    private int farmNo;
 
     private Location location;
 
@@ -44,8 +44,12 @@ public class Farm {
      * @return
      */
     public Field getFieldByName(String fieldName) {
-        // TODO implement here
-        return null;
+       for (Field f: fields) {
+           if (f.getName().equals(fieldName)){
+               return f;
+           }
+       }
+    return null;
     }
 
     /**

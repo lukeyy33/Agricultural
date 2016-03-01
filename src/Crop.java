@@ -16,7 +16,11 @@ public class Crop {
         arearequired = a;
         plantedtime = new Date();
     }
-
+    public Crop(String n, float a, Date d){
+        name = n;
+        arearequired = a;
+        plantedtime = d;
+    }
     private String name;
     private Date plantedtime;
 
