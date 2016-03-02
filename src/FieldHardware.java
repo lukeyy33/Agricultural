@@ -1,59 +1,30 @@
-
 import java.util.*;
 
 /**
- * e.g. sprinklers
- * 
+ * e.g. sprinklers 
  * (not necessarily part of our design but interesting to note as an abstraction)
  */
 public class FieldHardware {
 
-    /**
-     * Default constructor
-     */
+
     public FieldHardware() {
     }
 
-    /**
-     * 
-     */
+
     private ConnectionHandler handler;
+    private Field field;   
 
-    /**
-     * 
-     */
-   // public ConnectionHandler 1;
-
-    /**
-     * 
-     */
-    //public Field 1;
-
-    /**
-     * 
-     */
-    //public ConnectionHandler 1;
-
-    /**
-     * Turn sprinklers for a field on or off e.g. setSprinklers(Field1, true);
-     * @param boolean
-     */
+     //Turn sprinklers for a field on or off e.g. setSprinklers(Field1, true);   
     public void setSprinklers(boolean field) {
         // TODO implement here
     }
-
-    /**
-     * turn the lights on or off
-     * @param boolean
-     */
+    //turn the lights on or off
     public void setLights(boolean field) {
         // TODO implement here
     }
 
-    /**
-     * Turn a heater on or off
-     * @param boolean
-     */
+     //Turn a heater on or off
+
     public void setHeater(boolean field) {
         // TODO implement here
     }

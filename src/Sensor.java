@@ -8,59 +8,24 @@ import java.util.*;
  */
 public class Sensor {
 
-    /**
-     * Default constructor
-     */
+
     public Sensor() {
     }
 
-    /**
-     * Because a sensor can be moved
-     */
-    private Location currentlocation;
-
-    /**
-     * therefore sensor doesn't need to know the 'current time' etc., just needs to take readings every 'interval' ms
-     */
+    //Because a sensor can be moved
+    private Location currentLocation;
+    //therefore sensor doesn't need to know the 'current time' etc., just needs to take readings every 'interval' ms   
     private int interval;
-
-    /**
-     * Unique identifier for this sensor (like accession number in library system), comes packaged on the sensor
-     */
-    private int serialno;
-
-    /**
-     * Alternative to deleting a sensor? Might want to turn it off temporarily?
-     */
+    //Unique identifier for this sensor (like accession number in library system), comes packaged on the sensor
+    private int serialNo;
+    //Alternative to deleting a sensor? Might want to turn it off temporarily? 
     private boolean active;
+    private FieldStation parentfieldStation;
 
-    /**
-     * 
-     */
-    private FieldStation parentfieldstation;
-
-    /**
-     * 
-     */
-    //public FieldStation 1;
-
-    /**
-     * 
-     */
-    //public Location 1;
-
-
-    /**
-     * 
-     */
-  //  public Location 1;
-
-    /**
-     * @return
-     */
+   
     public String getCurrentLocation() {
         // TODO implement here
-        return "";
+        return this.getCurrentLocation();
     }
 
     /**
@@ -68,8 +33,7 @@ public class Sensor {
      * 
      * This method will be overriden by the sensor sub-classes  which each have specialised sensor reading interfaces
      * @return
-     */
-    
+     */    
     public void takeReading() {
         // TODO implement here
 
@@ -77,20 +41,12 @@ public class Sensor {
         //FieldStation.appendNewData(data);
     }
 
-    /**
-     * @param int 
-     * @return
-     */
     public void setInterval(int interval) {
         // TODO implement here
     }
 
-    /**
-     * @param Location 
-     * @return
-     */
     public void setCurrentLocation(Location location) {
-        // TODO implement here
+        location = this.currentLocation;
    
     }
 
@@ -110,18 +66,12 @@ public class Sensor {
         active = false;
     }
 
-    /**
-     * @return
-     */
     public FieldStation getParentFieldStation() {
-        return  parentfieldstation;
+        return  parentfieldStation;
     }
 
-    /**
-     * @return
-     */
     public int getSerialNo() {
-        return serialno;
+        return serialNo;
     }
 
 }

@@ -3,19 +3,21 @@ import java.util.*;
 
 public class SetOfFarmers {
 
-    public SetOfFarmers() {}
+    public SetOfFarmers() {
+    }
 
     private Farmer[] farmers;
+ 
 
     public void addFarmer(String farmerName, String farmerEmail, 
-            String farmerTelephone, /*Image image,*/ SetOfFarms setOfFarms) {
+            String farmerTelephone, Image image, SetOfFarms setOfFarms) {
         // TODO implement here
     }
 
     public void removeFarmer() {
         // TODO implement here
     }
-
+    
     public Farmer getFarmerByName(String farmerName) {
         for (Farmer f: farmers){
             if (f.getName().equals(farmerName))
@@ -25,7 +27,7 @@ public class SetOfFarmers {
     }
 
     public Farmer getFarmerByEmail(String farmerEmail) {
-        for (Farmer f: farmers) {
+       for (Farmer f: farmers){
             if (f.getEmail().equals(farmerEmail))
                 return f;
         }
@@ -33,8 +35,8 @@ public class SetOfFarmers {
     }
 
 
-    public Farmer getFarmerByTelephone(String farmerTelephone) {       
-        for (Farmer f: farmers) {
+    public Farmer getFarmerByTelephone(String farmerTelephone) {
+        for (Farmer f: farmers){
             if (f.getTelephone().equals(farmerTelephone))
                 return f;
         }
@@ -43,9 +45,6 @@ public class SetOfFarmers {
 
     public Farmer[] getAllFarmers() {
         // TODO implement here
-      /*  for (Farmer f: farmers) {
-            return farmers;
-        }*/
         return null;
     }
 

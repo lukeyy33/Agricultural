@@ -16,12 +16,12 @@ public class Farmer {
     private String email;
     private String telephone;
     private Image picture;
-    private SetOfFarms associatedFarms;
+    private SetOfFarms associatedfarms;
 
     public SetOfFarms getAssociatedFarms() {
         // TODO implement here
-        return this.associatedFarms;
-    }  
+        return this.associatedfarms;
+    }
     
     public void updateFarmerInfo(String name,
             String email,
@@ -31,33 +31,22 @@ public class Farmer {
  
     } 
 
-    /**
-     * @return
-     */
     public String getName() {
-        // TODO implement here
-        return this.name;
+       return this.name;
     }
 
-    /**
-     * @return
-     */
+
     public String getEmail() {
         // TODO implement here
         return this.email;
     }
 
-    /**
-     * @return
-     */
+
     public String getTelephone() {
         // TODO implement here
         return this.telephone;
     }
 
-    /**
-     * @return
-     */
     public Image getPicture() {
         // TODO implement here
         return null;

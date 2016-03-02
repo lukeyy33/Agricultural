@@ -10,15 +10,11 @@ public class SetOfFarms {
     public SetOfFarms() {
         farms = new ArrayList<Farm>();
     }
-
-
     private ArrayList<Farm> farms;
 
-
-    public void addFarm(String name, Location location, int farmNo) {
-        farms.add(new Farm(name, location, farmNo));
+    public void addFarm(String name, Location location) {
+        farms.add(new Farm(name, location));
     }
-
  
     public Farm getFarmByName(String farmName) {
         for(int i = 0; i < farms.size(); i++){
@@ -29,21 +25,16 @@ public class SetOfFarms {
         return null;
     }
 
-   
     public void removeFarm(Farm farm) {
         // TODO implement here
     }
 
-   
     public Farm getFarmByNumber(int farmNumber) {
-        // TODO implement here
         return farms.get(farmNumber);
     }
 
-
     public ArrayList<Farm> getAllFarms() {
-        // TODO implement here
-        return farms;
+        return this.farms;
     }
 
 }
