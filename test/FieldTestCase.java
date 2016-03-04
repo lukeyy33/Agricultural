@@ -10,14 +10,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static sun.org.mozilla.javascript.internal.ScriptRuntime.name;
 
-/**
- *
- * @author 11007
- */
 public class FieldTestCase {
     private Field instance;
     private static FieldStation[] fieldStation;
+    private String currentLocation, name;
     
     public FieldTestCase() {
     }
@@ -39,6 +37,10 @@ public class FieldTestCase {
     
     @Before
     public void setUp() {
+        instance = new Field();
+        for (FieldStation fieldStation1 : fieldStation) {
+            instance.addFieldStation(currentLocation, name);    
+        }
         
     }
     
@@ -47,9 +49,33 @@ public class FieldTestCase {
         
     }
 
-    // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testGetFieldStationByName() {
+        FieldStation result;
+        //Exact match
+        result = instance.getFieldStationByName("Outdoor");
+        assertEquals(1, result.size());
+        assertEquals(fieldStation[0], result.get(0));
+
+        //Partial Match
+        result = instance.getFieldStationByName("ou");
+        assertEquals(1, result.);
+        assertEquals(fieldStation[0], result.getAllSensors());
+
+        //Mixed Case
+        result = instance.getFieldStationByName("OUT");
+        assertEquals(1, result.size());
+        assertEquals(fieldStation[0], result.get(0));
+
+        //Multiple Matches
+        result = instance.getFieldStationByName("door");
+        assertEquals(1, result.size());
+        assertEquals(fieldStation[0], result.get(0));
+
+        //Unknown Field Station
+        result = instance.getFieldStationByName("Random");
+        assertEquals(1, result.size());
+        assertEquals(fieldStation[0], result.get(0));
+    }
 }
