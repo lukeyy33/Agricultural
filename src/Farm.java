@@ -38,12 +38,19 @@ public class Farm {
     return null;
     }
 
-    public void addField(String crop, String name, Location corners[]) {
-        // TODO implement here   
+    public void addField(String name, String type, int fieldNo, String cropName, float cropArea, Location corners[]) {
+        // TODO implement here 
+        fields[this.fields.length+1] = new Field(name, type, fieldNo, cropName, cropArea);
     }
 
     public void removeField(Field number) {
         // TODO implement here
+        for (int i = 0; i <fields.length; i++) {
+            if (fields[i].getFieldStationByNumber(number)) {
+                
+            }
+        }
+        
         
     }
 
