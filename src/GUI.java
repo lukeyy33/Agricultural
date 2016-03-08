@@ -265,7 +265,14 @@ public class GUI extends javax.swing.JFrame {
     
     private void initFarmers() {
         theFarmers = new SetOfFarmers(); 
-        theFarmers.addFarmer("Bob", "Bob@Bob.com", "12", /*image,*/ theFarms);
+        theFarmers.addFarmer("Bob", "Bob@email.com", "12", /*image,*/ theFarmers);
+        theFarmers.addFarmer("Jane", "Jane@email.com", "123", /*image,*/ theFarmers);
+        theFarmers.addFarmer("Geoff", "Geoff@email.com", "1234", /*image,*/ theFarmers);
+        theFarmers.addFarmer("Masturblazer", "Masturblazer@email.com", "12345", /*image,*/ theFarmers);
+        //NULL PTR HERE
+//        for (Farmer farmer: theFarmers.getAllFarmers()) {
+//            farmerCmb.addItem(farmer.getName());
+//        }
     }
     
     
@@ -326,6 +333,8 @@ public class GUI extends javax.swing.JFrame {
         farmerDialog = new javax.swing.JDialog();
         farmerNameLbl = new javax.swing.JLabel();
         farmerEmailLbl = new javax.swing.JLabel();
+        farmerCmb = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         fieldsDialog = new javax.swing.JDialog();
         comboFields = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
@@ -375,6 +384,15 @@ public class GUI extends javax.swing.JFrame {
 
         farmerEmailLbl.setText("Farmer Email:");
 
+        farmerCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        farmerCmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmerCmbActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Select a Farmer:");
+
         javax.swing.GroupLayout farmerDialogLayout = new javax.swing.GroupLayout(farmerDialog.getContentPane());
         farmerDialog.getContentPane().setLayout(farmerDialogLayout);
         farmerDialogLayout.setHorizontalGroup(
@@ -383,17 +401,23 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(farmerNameLbl)
-                    .addComponent(farmerEmailLbl))
-                .addContainerGap(307, Short.MAX_VALUE))
+                    .addComponent(farmerEmailLbl)
+                    .addComponent(farmerCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         farmerDialogLayout.setVerticalGroup(
             farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(farmerDialogLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(7, 7, 7)
+                .addComponent(farmerCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(farmerNameLbl)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(farmerEmailLbl)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         comboFields.addActionListener(new java.awt.event.ActionListener() {
@@ -402,7 +426,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Select Field");
+        jLabel1.setText("Select Farm");
 
         lblFieldType.setText("Type:");
 
@@ -422,7 +446,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(lblFieldType)
                     .addComponent(jLabel1)
                     .addComponent(comboFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
         fieldsDialogLayout.setVerticalGroup(
             fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -645,6 +669,10 @@ public class GUI extends javax.swing.JFrame {
         showFieldView();
     }//GEN-LAST:event_btnShowFieldStatusActionPerformed
 
+    private void farmerCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerCmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_farmerCmbActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -693,6 +721,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbFields;
     private javax.swing.JComboBox comboFields;
     private javax.swing.JComboBox dialogComboFields;
+    private javax.swing.JComboBox<String> farmerCmb;
     private javax.swing.JDialog farmerDialog;
     private javax.swing.JLabel farmerEmailLbl;
     private javax.swing.JLabel farmerNameLbl;
@@ -702,6 +731,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog fieldsDialog;
     private javax.swing.JLabel fieldsLbl;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

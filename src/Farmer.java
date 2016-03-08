@@ -11,12 +11,19 @@ public class Farmer {
      */
     public Farmer() {
     }
+    public Farmer(String name, String email, String telephone, /*Image picture*/ SetOfFarmers farmers) {
+        this.name = name;
+        this.email = email;
+        this.telephone = telephone;
+    }
 
     private String name;
     private String email;
     private String telephone;
     private Image picture;
     private SetOfFarms associatedfarms;
+
+
 
     public SetOfFarms getAssociatedFarms() {
         // TODO implement here

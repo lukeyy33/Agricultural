@@ -6,9 +6,7 @@ import java.util.*;
  */
 public class Farm {
 
-    /**
-     * Default constructor
-     */
+
     public Farm() {
     }
     

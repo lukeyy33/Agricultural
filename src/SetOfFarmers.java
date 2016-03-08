@@ -5,13 +5,15 @@ public class SetOfFarmers {
 
     public SetOfFarmers() {
     }
+    
 
     private Farmer[] farmers;
  
 
-    public void addFarmer(String farmerName, String farmerEmail, 
-            String farmerTelephone, /*Image image,*/ SetOfFarms setOfFarms) {
+    public void addFarmer(String name, String email, 
+            String telephone, /*Image image,*/ SetOfFarmers farmers) {
         // TODO implement here
+        //farmers.addFarmer(new Farmer(name, email, telephone, farmers));
     }
 
     public void removeFarmer() {
@@ -19,7 +21,7 @@ public class SetOfFarmers {
     }
     
     public Farmer getFarmerByName(String farmerName) {
-        for (Farmer f: farmers){
+       for (Farmer f: farmers){
             if (f.getName().equals(farmerName))
                 return f;
         }
@@ -45,7 +47,8 @@ public class SetOfFarmers {
 
     public Farmer[] getAllFarmers() {
         // TODO implement here
-        return null;
+        //return null;
+        return this.farmers;
     }
 
 }

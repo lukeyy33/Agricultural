@@ -47,8 +47,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="farmerNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="farmerEmailLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="farmerCmb" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="307" max="32767" attributes="0"/>
+                  <EmptySpace pref="296" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -56,10 +58,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <Component id="farmerCmb" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="farmerNameLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="farmerEmailLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="244" max="32767" attributes="0"/>
+                  <EmptySpace pref="163" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -73,6 +79,29 @@
         <Component class="javax.swing.JLabel" name="farmerEmailLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Farmer Email:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="farmerCmb">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="farmerCmbActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Select a Farmer:"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -91,7 +120,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="comboFields" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="327" max="32767" attributes="0"/>
+                  <EmptySpace pref="325" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -126,7 +155,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Select Field"/>
+            <Property name="text" type="java.lang.String" value="Select Farm"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFieldType">
