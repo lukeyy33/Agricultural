@@ -10,7 +10,7 @@ public class SetOfFarmers {
  
 
     public void addFarmer(String farmerName, String farmerEmail, 
-            String farmerTelephone, Image image, SetOfFarms setOfFarms) {
+            String farmerTelephone, /*Image image,*/ SetOfFarms setOfFarms) {
         // TODO implement here
     }
 

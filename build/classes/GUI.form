@@ -310,10 +310,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Show Field Status"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowFieldStatusActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnShowFields">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Show fields"/>
+        <Property name="text" type="java.lang.String" value="Show Farms"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[101, 23]"/>
         </Property>

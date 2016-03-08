@@ -1,4 +1,3 @@
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -145,13 +144,9 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void showFarmView() {
-        // TODO implement here
         //MAYBE CLICK A BUTTON TO OPEN A 
         //NEW GUI WITH PICTURES OF FARMS
-    }
-
-    public void showFieldView() {
-         // TODO implement here
+              
         String farmName = (String) cmbFarms.getSelectedItem();
         selectedFarm = theFarms.getFarmByName(farmName);
         
@@ -163,6 +158,17 @@ public class GUI extends javax.swing.JFrame {
             comboFields.addItem(f.getName());
         }
         fieldsDialog.pack();
+    }
+
+    public void showFieldView() {
+        String fieldName = (String) cmbFarms.getSelectedItem();
+        selectedFarm = theFarms.getFarmByName(fieldName);
+        
+        Field[] selectedFields = selectedFarm.getAllFields();
+        
+        farmsDialog.setVisible(true);
+        farmsDialog.pack();
+
     }
     public void showFieldStationView(FieldStation fieldStation) {
          
@@ -259,6 +265,7 @@ public class GUI extends javax.swing.JFrame {
     
     private void initFarmers() {
         theFarmers = new SetOfFarmers(); 
+        theFarmers.addFarmer("Bob", "Bob@Bob.com", "12", /*image,*/ theFarms);
     }
     
     
@@ -334,9 +341,9 @@ public class GUI extends javax.swing.JFrame {
         btnShowFieldStatus = new javax.swing.JButton();
         btnShowFields = new javax.swing.JButton();
         fieldsLbl = new javax.swing.JLabel();
-        cmbFields = new javax.swing.JComboBox<String>();
+        cmbFields = new javax.swing.JComboBox<>();
         farnersLbl = new javax.swing.JLabel();
-        cmbFarmers = new javax.swing.JComboBox<String>();
+        cmbFarmers = new javax.swing.JComboBox<>();
         btnShowFarmers = new javax.swing.JButton();
         btnShowFarmerStatus = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
@@ -448,8 +455,13 @@ public class GUI extends javax.swing.JFrame {
         });
 
         btnShowFieldStatus.setText("Show Field Status");
+        btnShowFieldStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowFieldStatusActionPerformed(evt);
+            }
+        });
 
-        btnShowFields.setText("Show fields");
+        btnShowFields.setText("Show Farms");
         btnShowFields.setMaximumSize(new java.awt.Dimension(101, 23));
         btnShowFields.setMinimumSize(new java.awt.Dimension(101, 23));
         btnShowFields.setPreferredSize(new java.awt.Dimension(101, 23));
@@ -461,7 +473,7 @@ public class GUI extends javax.swing.JFrame {
 
         fieldsLbl.setText("Fields");
 
-        cmbFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFields.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbFieldsActionPerformed(evt);
@@ -470,7 +482,7 @@ public class GUI extends javax.swing.JFrame {
 
         farnersLbl.setText("Farmers");
 
-        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnShowFarmers.setText("Show Farmers");
         btnShowFarmers.addActionListener(new java.awt.event.ActionListener() {
@@ -601,7 +613,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_comboFieldsActionPerformed
 
     private void btnShowFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowFieldsActionPerformed
-        showFieldView();
+        showFarmView();
     }//GEN-LAST:event_btnShowFieldsActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -628,6 +640,10 @@ public class GUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnShowFieldStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowFieldStatusActionPerformed
+        showFieldView();
+    }//GEN-LAST:event_btnShowFieldStatusActionPerformed
 
     /**
      * @param args the command line arguments

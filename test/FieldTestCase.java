@@ -5,12 +5,10 @@
  */
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static sun.org.mozilla.javascript.internal.ScriptRuntime.name;
 
 public class FieldTestCase {
     private Field instance;
@@ -29,12 +27,7 @@ public class FieldTestCase {
         fieldStation[2] = new FieldStation();
         fieldStation[3] = new FieldStation();
     }
-    
-    @AfterClass
-    public static void tearDownClass() {
         
-    }
-    
     @Before
     public void setUp() {
         instance = new Field();
@@ -55,27 +48,27 @@ public class FieldTestCase {
         FieldStation result;
         //Exact match
         result = instance.getFieldStationByName("Outdoor");
-        assertEquals(1, result.size());
-        assertEquals(fieldStation[0], result.get(0));
+        assertEquals(1, result.getName());
+        assertEquals(currentLocation, "Outdoor", 0);
 
         //Partial Match
         result = instance.getFieldStationByName("ou");
-        assertEquals(1, result.);
-        assertEquals(fieldStation[0], result.getAllSensors());
+        assertEquals(1, result.getName());
+//        assertEquals(fieldStation[0], result.getFieldStationNo());
 
         //Mixed Case
         result = instance.getFieldStationByName("OUT");
-        assertEquals(1, result.size());
-        assertEquals(fieldStation[0], result.get(0));
+        assertEquals(1, result.getName());
+//        assertEquals(fieldStation[0], result.get(0));
 
         //Multiple Matches
         result = instance.getFieldStationByName("door");
-        assertEquals(1, result.size());
-        assertEquals(fieldStation[0], result.get(0));
+        assertEquals(1, result.getName());
+//        assertEquals(fieldStation[0], result.get(0));
 
         //Unknown Field Station
         result = instance.getFieldStationByName("Random");
-        assertEquals(1, result.size());
-        assertEquals(fieldStation[0], result.get(0));
+        assertEquals(1, result.getName());
+//        assertEquals(fieldStation[0], result.get(0));
     }
 }
