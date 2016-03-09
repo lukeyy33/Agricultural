@@ -3,24 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class FieldTestCase {
+public class FieldTest {
     private Field instance;
     private static FieldStation[] fieldStation;
-    private String currentLocation, name;
+    private String name;
+    private Location currentLocation;
+    private float cropArea;
     
-    public FieldTestCase() {
+    public FieldTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-        fieldStation = new FieldStation[10];
+        fieldStation = new FieldStation[4];
         
         fieldStation[0] = new FieldStation();
         fieldStation[1] = new FieldStation();
@@ -30,10 +31,10 @@ public class FieldTestCase {
         
     @Before
     public void setUp() {
-        instance = new Field();
-        for (FieldStation fieldStation1 : fieldStation) {
+        /*instance = new Field();
+        for (FieldStation fieldStation : fieldStation) {
             instance.addFieldStation(currentLocation, name);    
-        }
+        }*/
         
     }
     
@@ -49,7 +50,7 @@ public class FieldTestCase {
         //Exact match
         result = instance.getFieldStationByName("Outdoor");
         assertEquals(1, result.getName());
-        assertEquals(currentLocation, "Outdoor", 0);
+        
 
         //Partial Match
         result = instance.getFieldStationByName("ou");

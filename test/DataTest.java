@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,14 +12,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author 11007
- */
-public class DataTestCase {
+public class DataTest {
     
-    public DataTestCase() {
+    public DataTest() {
     }
+          
+    private float reading;
+    private Date time;
+    private int sensorNo;
+    private Location readingLocation;    
+    private String name;
     
     @BeforeClass
     public static void setUpClass() {
@@ -35,9 +39,10 @@ public class DataTestCase {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+
+     @Test
+     public void testToString() {
+         
+         
+     }
 }
