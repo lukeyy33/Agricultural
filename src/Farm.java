@@ -31,9 +31,9 @@ public class Farm {
     }
 
     public Field getFieldByName(String fieldName) {
-        for (Field f : fields) {
-            if (f.getName().equals(fieldName)) {
-                return f;
+        for(int i = 0; i<fields.length; i++){
+            if(fields[i].getName().equalsIgnoreCase(fieldName)){
+                return fields[i];
             }
         }
         return null;

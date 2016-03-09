@@ -15,7 +15,6 @@ import org.junit.Ignore;
 public class FarmTest {
     
     private static Farm farm;
-    private Field fieldName;
     
     public FarmTest() {
     }
@@ -31,8 +30,9 @@ public class FarmTest {
     
     @Before
     public void setUp() {
-        farm = new Farm();
-
+        farm = new Farm("Farm 1", new Location(), 0);
+        farm.addField("Field 1", "", 0, "", 0.0f);
+        farm.addField("Field 2", "", 0, "", 0.0f);
     }
     
     @After
@@ -42,18 +42,15 @@ public class FarmTest {
     public void testGetFieldByName() {
         
         String name = "Field 1";
-        fieldName = farm.getFieldByName(name);
+        Field tmp = farm.getFieldByName(name);
+        String fieldName = tmp.getName();
         //Expected "Field 1", 
         assertEquals(name, fieldName);
     }
 
-    @Ignore
     @Test
     public void testRemoveField() {
-        Farm field = new Farm();
-        int result = field.removeField(0);       
-              
-        assertEquals(field, result);
+
     }
 
 }
