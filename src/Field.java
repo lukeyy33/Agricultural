@@ -11,6 +11,7 @@ public class Field {
         this.type = type;
         this.fieldNo = fieldNo;
         this.crop = new Crop(cropName, cropArea);
+        this.fieldStations = new FieldStation[0];
     }
 
     private FieldStation[] fieldStations;
@@ -47,7 +48,10 @@ public class Field {
     }
 
     public void addFieldStation(Location currentLocation, String name) {
-        FieldStation[] tmp = new FieldStation[fieldStations.length+1];
+        FieldStation tmp[] = new FieldStation[fieldStations.length+1];
+        for(int i = 0; i< fieldStations.length;i++){
+            tmp[i] = fieldStations[i];
+        }
         tmp[fieldStations.length] = new FieldStation(name, currentLocation);
         fieldStations = tmp;
     }
@@ -67,9 +71,11 @@ public class Field {
         fieldStations = tmp;
     }
 
-    public void updateFieldInfo(String crop, String name, float length, float height) {
-        this.crop = new Crop(crop, length*height);
+    public void updateFieldInfo(String name, String type, int fieldNo, String cropName, float cropArea) {
+        this.crop = new Crop(cropName, cropArea);
         this.name = name;
+        this.type = type;
+        this.fieldNo = fieldNo;
     }
 
     // calculates and returns the area of the field using its attributes
@@ -78,23 +84,23 @@ public class Field {
     }
 
     public FieldStation[] getAllFieldStations() {
-        return this.fieldStations;
+        return fieldStations;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public String getType() {
-        return this.type;
+        return type;
     }
 
     public Crop getCrop() {
-        return this.crop;
+        return crop;
     }
 
     public Planting[] getPlantings() {
-        return this.plantings;
+        return plantings;
     }
 
     public void setPlantings(Planting[] plantings) {

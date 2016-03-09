@@ -5,12 +5,16 @@ import java.util.*;
 public class SetOfFarmers {
 
     public SetOfFarmers() {
+        farmers = new Farmer[0];
     }
 
     private Farmer[] farmers;
 
     public void addFarmer(String name, String email, String telephone, int id, /*Image image,*/ SetOfFarms farms) {
-        Farmer[] tmp = new Farmer[farmers.length+1];
+        Farmer tmp[] = new Farmer[farmers.length+1];
+        for(int i = 0; i< farmers.length;i++){
+            tmp[i] = farmers[i];
+        }
         tmp[farmers.length] = new Farmer(name, email, telephone, id, farms);
         farmers = tmp;
     }

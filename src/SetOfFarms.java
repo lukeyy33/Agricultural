@@ -13,7 +13,8 @@ public class SetOfFarms {
     private ArrayList<Farm> farms;
 
     public void addFarm(String name, Location location, int id) {
-        farms.add(new Farm(name, location, id));
+        Farm tmp = new Farm(name, location, id);
+        farms.add(tmp);
     }
  
     public Farm getFarmByName(String farmName) {

@@ -16,6 +16,7 @@ public class Farmer {
         this.email = email;
         this.id = id;
         this.telephone = telephone;
+        this.associatedfarms = farms;
     }
 
     private String name;
