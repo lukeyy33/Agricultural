@@ -286,6 +286,20 @@ public class GUI extends javax.swing.JFrame {
         confirmEditFarmerBtn = new javax.swing.JButton();
         cancelAddFarmerBtn = new javax.swing.JButton();
         addFarmerId = new javax.swing.JSpinner();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        allFarmsTable = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        associatedFarmsTable = new javax.swing.JTable();
+        addToAssociatedBtn = new javax.swing.JButton();
+        removeFromAssociatedBtn = new javax.swing.JButton();
+        deleteFarmerDialog = new javax.swing.JDialog();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        deleteFarmerName = new javax.swing.JLabel();
+        confirmFarmerDelete = new javax.swing.JButton();
+        cancelFarmerDelete = new javax.swing.JButton();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -441,6 +455,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         deleteFarmerBtn.setText("Delete Farmer");
+        deleteFarmerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteFarmerBtnActionPerformed(evt);
+            }
+        });
 
         farmerPhoneLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         farmerPhoneLbl.setText("Farmer Phone: ");
@@ -874,8 +893,62 @@ public class GUI extends javax.swing.JFrame {
         });
 
         confirmEditFarmerBtn.setText("Edit Farmer");
+        confirmEditFarmerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmEditFarmerBtnActionPerformed(evt);
+            }
+        });
 
         cancelAddFarmerBtn.setText("Cancel");
+        cancelAddFarmerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelAddFarmerBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("Associated Farms");
+
+        allFarmsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(allFarmsTable);
+
+        jLabel21.setText("All Farms");
+
+        associatedFarmsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(associatedFarmsTable);
+
+        addToAssociatedBtn.setText("Add");
+
+        removeFromAssociatedBtn.setText("Remove");
 
         javax.swing.GroupLayout addFarmerDialogLayout = new javax.swing.GroupLayout(addFarmerDialog.getContentPane());
         addFarmerDialog.getContentPane().setLayout(addFarmerDialogLayout);
@@ -886,28 +959,39 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(addFarmerDialogLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(addFarmerDialogLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(addFarmerName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel21)
+                                .addGap(36, 36, 36)
+                                .addComponent(addToAssociatedBtn)
+                                .addGap(52, 52, 52)
+                                .addComponent(removeFromAssociatedBtn))
+                            .addComponent(jLabel20)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
                             .addGroup(addFarmerDialogLayout.createSequentialGroup()
                                 .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel17))
-                                .addGap(18, 18, 18)
                                 .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(addFarmerPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                    .addComponent(addFarmerEmail)
-                                    .addComponent(addFarmerId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(addFarmerDialogLayout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(addFarmerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(addFarmerEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(addFarmerName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(addFarmerDialogLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(addFarmerId))))))
                     .addGroup(addFarmerDialogLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(45, 45, 45)
                         .addComponent(confirmEditFarmerBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(45, 45, 45)
                         .addComponent(confirmAddFarmerBtn)
-                        .addGap(34, 34, 34)
+                        .addGap(48, 48, 48)
                         .addComponent(cancelAddFarmerBtn)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         addFarmerDialogLayout.setVerticalGroup(
             addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,12 +1012,89 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(addFarmerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addFarmerDialogLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel21))
+                    .addGroup(addFarmerDialogLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addToAssociatedBtn)
+                            .addComponent(removeFromAssociatedBtn))))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(addFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmAddFarmerBtn)
                     .addComponent(confirmEditFarmerBtn)
+                    .addComponent(confirmAddFarmerBtn)
                     .addComponent(cancelAddFarmerBtn))
-                .addGap(36, 36, 36))
+                .addGap(70, 70, 70))
+        );
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("Are You Sure You Want To Delete");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setText("This Decision Is Irreversable");
+
+        deleteFarmerName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        deleteFarmerName.setText("jLabel20");
+
+        confirmFarmerDelete.setText("Confirm");
+        confirmFarmerDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmFarmerDeleteActionPerformed(evt);
+            }
+        });
+
+        cancelFarmerDelete.setText("Cancel");
+        cancelFarmerDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelFarmerDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deleteFarmerDialogLayout = new javax.swing.GroupLayout(deleteFarmerDialog.getContentPane());
+        deleteFarmerDialog.getContentPane().setLayout(deleteFarmerDialogLayout);
+        deleteFarmerDialogLayout.setHorizontalGroup(
+            deleteFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteFarmerDialogLayout.createSequentialGroup()
+                .addGroup(deleteFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deleteFarmerDialogLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(deleteFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(deleteFarmerDialogLayout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(deleteFarmerDialogLayout.createSequentialGroup()
+                                .addComponent(confirmFarmerDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cancelFarmerDelete)
+                                .addGap(28, 28, 28))))
+                    .addGroup(deleteFarmerDialogLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(deleteFarmerName)))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        deleteFarmerDialogLayout.setVerticalGroup(
+            deleteFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteFarmerDialogLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(deleteFarmerName)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(deleteFarmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmFarmerDelete)
+                    .addComponent(cancelFarmerDelete))
+                .addGap(26, 26, 26))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1305,7 +1466,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmFieldDeleteActionPerformed
 
     private void createFarmerTable(String farmerName) {
-        
+
         SetOfFarms tmp = theFarmers.getFarmerByName(farmerName).getAssociatedFarms();
         Object[] data = new Object[1];
         DefaultTableModel model = (DefaultTableModel) farmerTable.getModel();
@@ -1313,7 +1474,7 @@ public class GUI extends javax.swing.JFrame {
         for (int i = 0; i < tmp.getAllFarms().size(); i++) {
             data[0] = tmp.getAllFarms().get(i).getName();
             model.addRow(data);
-        } 
+        }
     }
 
     private void viewFarmersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFarmersBtnActionPerformed
@@ -1341,13 +1502,42 @@ public class GUI extends javax.swing.JFrame {
         confirmAddFarmerBtn.setVisible(true);
         confirmEditFarmerBtn.setVisible(false);
         addFarmerDialog.pack();
+        Object[] data = new Object[1];
+        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+        model1.setRowCount(0);
+        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
+            data[0] = theFarms.getAllFarms().get(i).getName();
+            model1.addRow(data);
+        }
         addFarmerDialog.setVisible(true);
     }//GEN-LAST:event_addFarmerBtnActionPerformed
 
     private void editFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFarmerBtnActionPerformed
         // TODO add your handling code here:
+        Farmer tmp = theFarmers.getFarmerByName(cmbFarmers.getSelectedItem().toString());
         confirmAddFarmerBtn.setVisible(false);
         confirmEditFarmerBtn.setVisible(true);
+        addFarmerName.setText(tmp.getName());
+        addFarmerEmail.setText(tmp.getEmail());
+        addFarmerPhone.setText(tmp.getTelephone());
+        addFarmerId.setValue(tmp.getId());
+
+        SetOfFarms tmpFarms = theFarmers.getFarmerByName(tmp.getName()).getAssociatedFarms();
+        Object[] data = new Object[1];
+        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < tmpFarms.getAllFarms().size(); i++) {
+            data[0] = tmpFarms.getAllFarms().get(i).getName();
+            model.addRow(data);
+        }
+
+        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+        model1.setRowCount(0);
+        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
+            data[0] = theFarms.getAllFarms().get(i).getName();
+            model1.addRow(data);
+        }
+
         addFarmerDialog.pack();
         addFarmerDialog.setVisible(true);
     }//GEN-LAST:event_editFarmerBtnActionPerformed
@@ -1365,6 +1555,63 @@ public class GUI extends javax.swing.JFrame {
         };
         addFarmerDialog.setVisible(false);
     }//GEN-LAST:event_confirmAddFarmerBtnActionPerformed
+
+    private void confirmEditFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFarmerBtnActionPerformed
+        // TODO add your handling code here:
+        String name = addFarmerName.getText();
+        String email = addFarmerEmail.getText();
+        String phone = addFarmerPhone.getText();
+        int id = (int) addFarmerId.getValue();
+
+        Farmer tmp = theFarmers.getFarmerByName(cmbFarmers.getSelectedItem().toString());
+        tmp.updateFarmerInfo(name, email, phone, id, tmp.getAssociatedFarms());
+        cmbFarmers.removeAllItems();
+        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
+            cmbFarmers.addItem(theFarmers.getAllFarmers()[i].getName());
+        };
+        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+        model.setRowCount(0);
+        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+        model1.setRowCount(0);
+        addFarmerDialog.setVisible(false);
+    }//GEN-LAST:event_confirmEditFarmerBtnActionPerformed
+
+    private void cancelAddFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddFarmerBtnActionPerformed
+        // TODO add your handling code here:
+        addFarmerName.setText("");
+        addFarmerEmail.setText("");
+        addFarmerPhone.setText("");
+        addFarmerId.setValue(0);
+        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+        model.setRowCount(0);
+        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+        model1.setRowCount(0);
+        addFarmerDialog.setVisible(false);
+    }//GEN-LAST:event_cancelAddFarmerBtnActionPerformed
+
+    private void deleteFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFarmerBtnActionPerformed
+        // TODO add your handling code here:
+        deleteFarmerName.setText(cmbFarmers.getSelectedItem().toString());
+        deleteFarmerDialog.pack();
+        deleteFarmerDialog.setVisible(true);
+    }//GEN-LAST:event_deleteFarmerBtnActionPerformed
+
+    private void confirmFarmerDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFarmerDeleteActionPerformed
+        // TODO add your handling code here:
+        Farmer tmp = theFarmers.getFarmerByName(cmbFarmers.getSelectedItem().toString());
+        theFarmers.removeFarmer(tmp.getId());
+        cmbFarmers.removeAllItems();
+        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
+            cmbFarmers.addItem(theFarmers.getAllFarmers()[i].getName());
+        };
+        deleteFarmerDialog.setVisible(false);
+    }//GEN-LAST:event_confirmFarmerDeleteActionPerformed
+
+    private void cancelFarmerDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelFarmerDeleteActionPerformed
+        // TODO add your handling code here:
+        deleteFarmerDialog.setVisible(false);
+        deleteFarmerName.setText("");
+    }//GEN-LAST:event_cancelFarmerDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1419,10 +1666,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField addFieldName;
     private javax.swing.JSpinner addFieldNo;
     private javax.swing.JTextField addFieldType;
+    private javax.swing.JButton addToAssociatedBtn;
+    private javax.swing.JTable allFarmsTable;
+    private javax.swing.JTable associatedFarmsTable;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton cancelAddFarmerBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelDelBtn;
+    private javax.swing.JButton cancelFarmerDelete;
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
@@ -1431,12 +1682,15 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton confirmAddFarmerBtn;
     private javax.swing.JButton confirmEditBtn;
     private javax.swing.JButton confirmEditFarmerBtn;
+    private javax.swing.JButton confirmFarmerDelete;
     private javax.swing.JButton confirmFieldDelete;
     private javax.swing.JButton createFarmBtn;
     private javax.swing.JButton delFarmBtn;
     private javax.swing.JLabel delFarmNameLbl;
     private javax.swing.JDialog deleteFarmDialog;
     private javax.swing.JButton deleteFarmerBtn;
+    private javax.swing.JDialog deleteFarmerDialog;
+    private javax.swing.JLabel deleteFarmerName;
     private javax.swing.JDialog deleteFieldDialog;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton editFarmBtn;
@@ -1464,7 +1718,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1473,6 +1731,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1486,6 +1746,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLblAddFarm;
     private javax.swing.JButton removeFieldBtn;
+    private javax.swing.JButton removeFromAssociatedBtn;
     private javax.swing.JButton showFarmerDetailsBtn;
     private javax.swing.JButton showFarmsBtn;
     private javax.swing.JButton showFieldBtn;

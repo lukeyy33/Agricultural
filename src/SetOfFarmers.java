@@ -22,7 +22,7 @@ public class SetOfFarmers {
     public void removeFarmer(int id) {
         for (int i = 0; i < farmers.length; i++) {
             if (farmers[i].getId() == id) {
-                for (int j = i; j < farmers.length; j++) {
+                for (int j = i; j < farmers.length-1; j++) {
                     farmers[j] = farmers[j + 1];
                 }
             }

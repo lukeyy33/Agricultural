@@ -34,11 +34,12 @@ public class Farmer {
     
     public void updateFarmerInfo(String name,
             String email,
-            String telephone,/*Image picture,*/
+            String telephone, int id,/*Image picture,*/
             SetOfFarms associatedfarms) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
+        this.id = id;
         this.associatedfarms = associatedfarms;
     } 
 
