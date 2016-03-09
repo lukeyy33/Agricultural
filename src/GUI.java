@@ -233,7 +233,13 @@ public class GUI extends javax.swing.JFrame {
         fieldsDialog = new javax.swing.JDialog();
         lblFieldType = new javax.swing.JLabel();
         lblFieldCrop = new javax.swing.JLabel();
-        lblFieldPlantings = new javax.swing.JLabel();
+        lblFieldName = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         addFarmDialog = new javax.swing.JDialog();
         nameInput = new javax.swing.JTextField();
         nameLblAddFarm = new javax.swing.JLabel();
@@ -343,6 +349,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         showFieldBtn.setText("Show Selected Field");
+        showFieldBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showFieldBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout farmViewLayout = new javax.swing.GroupLayout(farmView.getContentPane());
         farmView.getContentPane().setLayout(farmViewLayout);
@@ -520,11 +531,23 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        lblFieldType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFieldType.setText("Type:");
 
+        lblFieldCrop.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFieldCrop.setText("Crop:");
 
-        lblFieldPlantings.setText("Plantings:");
+        lblFieldName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFieldName.setText("Name: ");
+
+        jButton1.setText("Add FieldStation");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel22.setText("Field");
+
+        jButton2.setText("Edit FieldStation");
+
+        jButton3.setText("Remove FieldStation");
 
         javax.swing.GroupLayout fieldsDialogLayout = new javax.swing.GroupLayout(fieldsDialog.getContentPane());
         fieldsDialog.getContentPane().setLayout(fieldsDialogLayout);
@@ -533,21 +556,43 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(fieldsDialogLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFieldPlantings)
-                    .addComponent(lblFieldCrop)
-                    .addComponent(lblFieldType))
-                .addContainerGap(334, Short.MAX_VALUE))
+                    .addComponent(jSeparator6)
+                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3))
+                            .addComponent(lblFieldName)
+                            .addComponent(lblFieldCrop)
+                            .addComponent(lblFieldType))
+                        .addContainerGap(230, Short.MAX_VALUE))
+                    .addComponent(jSeparator7)))
         );
         fieldsDialogLayout.setVerticalGroup(
             fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fieldsDialogLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblFieldName)
+                .addGap(18, 18, 18)
                 .addComponent(lblFieldType)
                 .addGap(18, 18, 18)
                 .addComponent(lblFieldCrop)
                 .addGap(18, 18, 18)
-                .addComponent(lblFieldPlantings)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         nameLblAddFarm.setText("Name");
@@ -1665,6 +1710,17 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeFromAssociatedBtnActionPerformed
 
+    private void showFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFieldBtnActionPerformed
+        // TODO add your handling code here:
+        Farm tmpFarm = theFarms.getFarmByName(cmbFarms.getSelectedItem().toString());
+        Field tmp = tmpFarm.getFieldByName(cmbFields.getSelectedItem().toString());
+        lblFieldName.setText("Name: " + tmp.getName());
+        lblFieldType.setText("Type: " + tmp.getType());
+        lblFieldCrop.setText("Crop: " + tmp.getCrop().getName());
+        fieldsDialog.pack();
+        fieldsDialog.setVisible(true);
+    }//GEN-LAST:event_showFieldBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1761,6 +1817,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel fieldLbl;
     private javax.swing.JLabel fieldNameLbl;
     private javax.swing.JDialog fieldsDialog;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1775,6 +1834,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1790,8 +1850,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lblFieldCrop;
-    private javax.swing.JLabel lblFieldPlantings;
+    private javax.swing.JLabel lblFieldName;
     private javax.swing.JLabel lblFieldType;
     private javax.swing.JLabel menuLbl;
     private javax.swing.JLabel menuLbl1;
