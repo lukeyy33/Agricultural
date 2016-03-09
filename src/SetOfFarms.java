@@ -12,6 +12,10 @@ public class SetOfFarms {
     }
     private ArrayList<Farm> farms;
 
+    public void addFarmAlreadyInSystem(Farm farm){
+        farms.add(farm);
+    }
+    
     public void addFarm(String name, Location location, int id) {
         Farm tmp = new Farm(name, location, id);
         farms.add(tmp);

@@ -947,8 +947,18 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(associatedFarmsTable);
 
         addToAssociatedBtn.setText("Add");
+        addToAssociatedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToAssociatedBtnActionPerformed(evt);
+            }
+        });
 
         removeFromAssociatedBtn.setText("Remove");
+        removeFromAssociatedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFromAssociatedBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addFarmerDialogLayout = new javax.swing.GroupLayout(addFarmerDialog.getContentPane());
         addFarmerDialog.getContentPane().setLayout(addFarmerDialogLayout);
@@ -1548,11 +1558,20 @@ public class GUI extends javax.swing.JFrame {
         String email = addFarmerEmail.getText();
         String phone = addFarmerPhone.getText();
         int id = (int) addFarmerId.getValue();
-        theFarmers.addFarmer(name, email, phone, id, new SetOfFarms());
+        SetOfFarms farms = new SetOfFarms();
+        for(int i = 0; i < associatedFarmsTable.getRowCount();i++){
+            Farm tmp = theFarms.getFarmByName(associatedFarmsTable.getValueAt(i, 0).toString());
+            farms.addFarmAlreadyInSystem(tmp);
+        }
+        theFarmers.addFarmer(name, email, phone, id, farms);
         cmbFarmers.removeAllItems();
         for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
             cmbFarmers.addItem(theFarmers.getAllFarmers()[i].getName());
         };
+        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+        model.setRowCount(0);
+        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+        model1.setRowCount(0);
         addFarmerDialog.setVisible(false);
     }//GEN-LAST:event_confirmAddFarmerBtnActionPerformed
 
@@ -1612,6 +1631,39 @@ public class GUI extends javax.swing.JFrame {
         deleteFarmerDialog.setVisible(false);
         deleteFarmerName.setText("");
     }//GEN-LAST:event_cancelFarmerDeleteActionPerformed
+
+    private void addToAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToAssociatedBtnActionPerformed
+        int row = allFarmsTable.getSelectedRow();
+        Farm tmp = theFarms.getFarmByName(allFarmsTable.getValueAt(row, 0).toString());
+        Farmer tmpFarmer = theFarmers.getFarmerByName(cmbFarmers.getSelectedItem().toString());
+        tmpFarmer.getAssociatedFarms().addFarmAlreadyInSystem(tmp);
+        
+        SetOfFarms tmpFarms = theFarmers.getFarmerByName(tmpFarmer.getName()).getAssociatedFarms();
+        Object[] data = new Object[1];
+        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < tmpFarms.getAllFarms().size(); i++) {
+            data[0] = tmpFarms.getAllFarms().get(i).getName();
+            model.addRow(data);
+        }
+    }//GEN-LAST:event_addToAssociatedBtnActionPerformed
+
+    private void removeFromAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromAssociatedBtnActionPerformed
+        // TODO add your handling code here:
+        int row = associatedFarmsTable.getSelectedRow();
+        Farm tmp = theFarms.getFarmByName(associatedFarmsTable.getValueAt(row, 0).toString());
+        Farmer tmpFarmer = theFarmers.getFarmerByName(cmbFarmers.getSelectedItem().toString());
+        tmpFarmer.getAssociatedFarms().removeFarm(tmp);
+        
+        SetOfFarms tmpFarms = theFarmers.getFarmerByName(tmpFarmer.getName()).getAssociatedFarms();
+        Object[] data = new Object[1];
+        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < tmpFarms.getAllFarms().size(); i++) {
+            data[0] = tmpFarms.getAllFarms().get(i).getName();
+            model.addRow(data);
+        }
+    }//GEN-LAST:event_removeFromAssociatedBtnActionPerformed
 
     /**
      * @param args the command line arguments
