@@ -21,23 +21,21 @@ public class Crop {
     }
 
     public String getName() {
-        // TODO implement here
         return this.name;
     }
 
     public Date getPlantedTime() {
-        // TODO implement here
         return this.plantedTime;
     }
 
     public float getAreaRequired() {
-        // TODO implement here
         return areaRequired;
     }
 
     public void updateCropInfo(String name, Date date, float areaRequired) {
-        // TODO implement here
-        
+        this.name = name;
+        this.plantedTime = date;
+        this.areaRequired = areaRequired;
     }
 
 }

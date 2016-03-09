@@ -14,15 +14,12 @@ import java.util.logging.Logger;
 public class GUI extends javax.swing.JFrame {
 
     public Field[] selectedFields;
-    //public Farm[] selectedFarms;
-    public Farm selectedFarm;
-    //public FieldStation[] selectedFieldStations;
-    public FieldStation selectedFieldStation;
+    public Farm[] selectedFarms;
+    public FieldStation[] selectedFieldStations;
     public SetOfFarms theFarms;
     public Data[] resultData;
     public ConnectionHandler handler;
     public SetOfFarmers theFarmers;
-    //public Farmer theFarmers;
     public Location[] locations = new Location[8];
 
     public GUI() throws ParseException {
@@ -265,10 +262,10 @@ public class GUI extends javax.swing.JFrame {
     
     private void initFarmers() {
         theFarmers = new SetOfFarmers(); 
-        theFarmers.addFarmer("Bob", "Bob@email.com", "12", /*image,*/ theFarmers);
-        theFarmers.addFarmer("Jane", "Jane@email.com", "123", /*image,*/ theFarmers);
-        theFarmers.addFarmer("Geoff", "Geoff@email.com", "1234", /*image,*/ theFarmers);
-        theFarmers.addFarmer("Masturblazer", "Masturblazer@email.com", "12345", /*image,*/ theFarmers);
+//        theFarmers.addFarmer("Bob", "Bob@email.com", "12", /*image,*/ theFarmers);
+//        theFarmers.addFarmer("Jane", "Jane@email.com", "123", /*image,*/ theFarmers);
+//        theFarmers.addFarmer("Geoff", "Geoff@email.com", "1234", /*image,*/ theFarmers);
+//        theFarmers.addFarmer("Masturblazer", "Masturblazer@email.com", "12345", /*image,*/ theFarmers);
         //NULL PTR HERE
 //        for (Farmer farmer: theFarmers.getAllFarmers()) {
 //            farmerCmb.addItem(farmer.getName());

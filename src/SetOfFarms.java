@@ -12,8 +12,8 @@ public class SetOfFarms {
     }
     private ArrayList<Farm> farms;
 
-    public void addFarm(String name, Location location) {
-        farms.add(new Farm(name, location));
+    public void addFarm(String name, Location location, int id) {
+        farms.add(new Farm(name, location, id));
     }
  
     public Farm getFarmByName(String farmName) {
@@ -26,7 +26,7 @@ public class SetOfFarms {
     }
 
     public void removeFarm(Farm farm) {
-        // TODO implement here
+        farms.remove(farm);
     }
 
     public Farm getFarmByNumber(int farmNumber) {

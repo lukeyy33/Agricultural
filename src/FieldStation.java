@@ -11,11 +11,16 @@ public class FieldStation {
 
     public FieldStation() {
     }
-
+    
+    public FieldStation(String nameIn, Location location) {
+        currentLocation = location;
+        name = nameIn;
+    }
+    
     private Location currentLocation;
     private Sensor[] sensors;
     //Looking at a list of numbers for field stations probably isn't very helpful (especially if there are a lot of them), so a name helps to differentiate it
-    private String name = "field 1";
+    private String name;
     private int fieldstationNo; 
     private ConnectionHandler handler;
     /**

@@ -11,9 +11,10 @@ public class Farmer {
      */
     public Farmer() {
     }
-    public Farmer(String name, String email, String telephone, /*Image picture*/ SetOfFarmers farmers) {
+    public Farmer(String name, String email, String telephone, int id, /*Image picture*/ SetOfFarms farms) {
         this.name = name;
         this.email = email;
+        this.id = id;
         this.telephone = telephone;
     }
 
@@ -21,21 +22,23 @@ public class Farmer {
     private String email;
     private String telephone;
     private Image picture;
+    private int id;
     private SetOfFarms associatedfarms;
 
 
 
     public SetOfFarms getAssociatedFarms() {
-        // TODO implement here
         return this.associatedfarms;
     }
     
     public void updateFarmerInfo(String name,
             String email,
-            String telephone,Image picture,
+            String telephone,/*Image picture,*/
             SetOfFarms associatedfarms) {
-        // TODO implement here
- 
+        this.name = name;
+        this.email = email;
+        this.telephone = telephone;
+        this.associatedfarms = associatedfarms;
     } 
 
     public String getName() {
@@ -44,19 +47,20 @@ public class Farmer {
 
 
     public String getEmail() {
-        // TODO implement here
         return this.email;
     }
 
 
     public String getTelephone() {
-        // TODO implement here
         return this.telephone;
     }
 
     public Image getPicture() {
-        // TODO implement here
         return null;
+    }
+    
+    public int getId(){
+        return id;
     }
 
 }
