@@ -51,7 +51,7 @@ public class Field implements Serializable {
     public FieldStation getFieldStationByName(String fieldStationName) {
         FieldStation tmp = new FieldStation();
         for (int i = 0; i < fieldStations.length; i++) {
-            if (fieldStations[i].getName().equals(fieldStationName)) {
+            if (fieldStations[i].getName().equalsIgnoreCase(fieldStationName)) {
                 tmp = fieldStations[i];
             }
         }
@@ -64,13 +64,12 @@ public class Field implements Serializable {
      * @return
      */
     public FieldStation getFieldStationByNumber(int fieldStationNo) {
-        FieldStation tmp = new FieldStation();
         for (int i = 0; i < fieldStations.length; i++) {
             if (fieldStations[i].getFieldStationNo() == fieldStationNo) {
-                tmp = fieldStations[i];
+                return fieldStations[i];
             }
         }
-        return tmp;
+        return null;
     }
 
     /**
@@ -78,12 +77,12 @@ public class Field implements Serializable {
      * @param currentLocation
      * @param name
      */
-    public void addFieldStation(Location currentLocation, String name) {
+    public void addFieldStation(Location currentLocation, String name, int id) {
         FieldStation tmp[] = new FieldStation[fieldStations.length + 1];
         for (int i = 0; i < fieldStations.length; i++) {
             tmp[i] = fieldStations[i];
         }
-        tmp[fieldStations.length] = new FieldStation(name, currentLocation);
+        tmp[fieldStations.length] = new FieldStation(name, currentLocation, id);
         fieldStations = tmp;
     }
 
@@ -91,10 +90,10 @@ public class Field implements Serializable {
      *Removes a field station by using a for loop to iterate through the array to find the field station and remove it
      * @param fieldStation
      */
-    public void removeFieldStation(FieldStation fieldStation) {
+    public void removeFieldStation(int fieldStation) {
         for (int i = 0; i < fieldStations.length; i++) {
-            if (fieldStations[i] == fieldStation) {
-                for (int j = i; j < fieldStations.length; j++) {
+            if (fieldStations[i].getFieldStationNo() == fieldStation) {
+                for (int j = i; j < fieldStations.length-1; j++) {
                     fieldStations[j] = fieldStations[j + 1];
                 }
             }
@@ -128,7 +127,7 @@ public class Field implements Serializable {
      * @return
      */
     public float getArea() {
-        return 0.0f;
+        return crop.getAreaRequired();
     }
 
     /**

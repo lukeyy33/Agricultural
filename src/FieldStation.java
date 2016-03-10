@@ -13,7 +13,7 @@ public class FieldStation {
     private Sensor[] sensors;
     //Looking at a list of numbers for field stations probably isn't very helpful (especially if there are a lot of them), so a name helps to differentiate it
     private String name;
-    private int fieldstationNo; 
+    private int fieldStationNo; 
     private ConnectionHandler handler;
     /**
      * Stores ALL the data from every sensor, then you can differentiate by saying "only get data from sensors of type x" or "at time x" "location x" etc.
@@ -39,9 +39,13 @@ public class FieldStation {
      * @param nameIn
      * @param location
      */
-    public FieldStation(String nameIn, Location location) {
-        currentLocation = location;
+    public FieldStation(String nameIn, Location location, int fieldStationNoIn) {
         name = nameIn;
+        currentLocation = location;
+        fieldStationNo = fieldStationNoIn;
+        sensors = new Sensor[0];
+        data = new Data[0];
+        handler = new ConnectionHandler();
     }
     
 
@@ -144,7 +148,7 @@ public class FieldStation {
      * @return
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -152,7 +156,7 @@ public class FieldStation {
      * @return
      */
     public int getFieldStationNo() {
-        return this.fieldstationNo;
+        return fieldStationNo;
     }
 
 }

@@ -16,8 +16,8 @@ public class FieldTest {
     }       
     @Before
     public void setUp() {
-        instance = new Field("Field Test", "Test Type", 45, "Crop Name", 0);
-        instance.addFieldStation(location, "Field 1");
+        instance = new Field("test", "Test Type", 45, "Crop Name", 0);
+        instance.addFieldStation(location, "Field 1", 10);
         int tmp = instance.getAllFieldStations()[0].getFieldStationNo();       
     }
     @Test
@@ -43,7 +43,7 @@ public class FieldTest {
         //Assert
         assertNull(result);      
         //then Add
-        instance.addFieldStation(location, "Test");            
+        instance.addFieldStation(location, "Test", 202);            
         //Arrange
         FieldStation result1 = instance.getFieldStationByNumber(202);
         //Assert
@@ -52,18 +52,17 @@ public class FieldTest {
     @Test
     public void testRemoveFieldStation() {
         //Arrange
-        instance.addFieldStation(location, "Test"); //Remember to update this
-        //constructor when jonas is done
+        instance.addFieldStation(location, "Test", 101); //Remember to update this
         //Act
+        FieldStation station = instance.getFieldStationByNumber(101);
+        //Assert
+        assertNotNull(station);      
+        //then remove
+        instance.removeFieldStation(101);            
+        //Arrange
         FieldStation result = instance.getFieldStationByNumber(101);
         //Assert
-        assertNotNull(result);      
-        //then remove
-        instance.removeFieldStation(result);            
-        //Arrange
-        FieldStation result1 = instance.getFieldStationByNumber(101);
-        //Assert
-        assertNull(result1);
+        assertNull(result);
     }
     @Test
     public void testUpdateFieldInfo() {
@@ -71,18 +70,20 @@ public class FieldTest {
         String name = "FieldLocation";
         String type = "Crop type";
         String cropName = "Crop name";
-        Float cropArea = 0.5f;
+        Float cropArea = 5.0f;
+        
+        //instance = new Field("test", "Test Type", 45, "Crop Name", 0);
         
         //Get the name       
         assertEquals("test", instance.getName());
         //Get the type
-        assertEquals("testType", instance.getType());
+        assertEquals("Test Type", instance.getType());
         //Get the field number
-        assertEquals("0", Integer.toString((int) instance.getFieldNumber()));
+        assertEquals("45", Integer.toString((int) instance.getFieldNumber()));
         //Get the crop name
-        assertEquals("0", instance.getName());        
+        assertEquals("Crop Name", instance.getCrop().getName());        
         //get the crop area
-        assertEquals(0.5f, 0,instance.getArea());
+        assertEquals("0.0" , Float.toString(instance.getArea()));
       
         instance.updateFieldInfo(name, type, fieldNo, cropName, cropArea);
        //Get the name       
@@ -92,8 +93,8 @@ public class FieldTest {
         //Get the field number
         assertEquals("10101", Integer.toString((int) instance.getFieldNumber()));
         //Get the crop name
-        assertEquals("0", instance.getName());        
+        assertEquals("FieldLocation", instance.getName());        
         //get the crop area
-        assertEquals(0.5f, 0,instance.getArea());  
+        assertEquals("5.0", Float.toString(instance.getArea()));  
     }
 }

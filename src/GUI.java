@@ -96,6 +96,10 @@ public class GUI extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(theFarms == null){
+            theFarms = new SetOfFarms();
+            theFarms.addFarm("Farm 1", new Location(0,0,"Outdoors"), 0);
+        }  
     }
 
     private void save() {
@@ -484,7 +488,7 @@ public class GUI extends javax.swing.JFrame {
         farmerDialog = new javax.swing.JDialog();
         farmerNameLbl = new javax.swing.JLabel();
         farmerEmailLbl = new javax.swing.JLabel();
-        cmbFarmers = new javax.swing.JComboBox<>();
+        cmbFarmers = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         farmerIdLbl = new javax.swing.JLabel();
         showFarmerDetailsBtn = new javax.swing.JButton();
@@ -601,6 +605,8 @@ public class GUI extends javax.swing.JFrame {
         confirmAddFieldstation = new javax.swing.JButton();
         cancelFieldStation1 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        fieldStationId1 = new javax.swing.JSpinner();
         editFarmDialog = new javax.swing.JDialog();
         nameInput1 = new javax.swing.JTextField();
         nameLblAddFarm1 = new javax.swing.JLabel();
@@ -720,7 +726,7 @@ public class GUI extends javax.swing.JFrame {
         farmerEmailLbl.setText("Farmer Email:");
 
         cmbFarmers.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Select a Farmer:");
@@ -1635,10 +1641,18 @@ public class GUI extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel34.setText("Add Field Station");
 
+        jLabel40.setText("ID");
+
         javax.swing.GroupLayout addFieldStationDialogLayout = new javax.swing.GroupLayout(addFieldStationDialog.getContentPane());
         addFieldStationDialog.getContentPane().setLayout(addFieldStationDialogLayout);
         addFieldStationDialogLayout.setHorizontalGroup(
             addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(confirmAddFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(cancelFieldStation1)
+                .addGap(57, 57, 57))
             .addGroup(addFieldStationDialogLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1647,23 +1661,19 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel30)
                             .addComponent(jLabel31)
                             .addComponent(jLabel32)
-                            .addComponent(jLabel33))
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel40))
                         .addGap(18, 18, 18)
                         .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fieldStationType1)
                             .addComponent(fieldStationxCoord1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(fieldStationyCoord1)
-                            .addComponent(fieldStationName1)))
+                            .addComponent(fieldStationName1)
+                            .addComponent(fieldStationId1)))
                     .addGroup(addFieldStationDialogLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel34)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmAddFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addComponent(cancelFieldStation1)
-                .addGap(57, 57, 57))
         );
         addFieldStationDialogLayout.setVerticalGroup(
             addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1686,7 +1696,11 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationType1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(fieldStationId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmAddFieldstation)
                     .addComponent(cancelFieldStation1))
@@ -2246,16 +2260,16 @@ public class GUI extends javax.swing.JFrame {
         int x = (Integer)fieldStationyCoord1.getValue();
         int y = (Integer)fieldStationxCoord1.getValue();
         String name = fieldStationName1.getText();
+        int id = (Integer)fieldStationId1.getValue();
         
         // Create a New Location and FieldStation
         Location location = new Location(x, y, name);
-        FieldStation fieldStation = new FieldStation(name, location);
         
-        // Get the selected Farm and Fieldstation
+        // Get the selected Farm and Field
         Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
-        selectField(tmpFarm, (Integer) cmbFields.getSelectedItem()).addFieldStation(location, name); ;
-        
-        cmbFieldStations.addItem(name);
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        tmpField.addFieldStation(location, name, id);
+        populateCmbFieldStations(tmpField);
         
         addFieldStationDialog.setVisible(false);
     }//GEN-LAST:event_confirmAddFieldstationActionPerformed
@@ -2386,6 +2400,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner fieldIdSpin1;
     private javax.swing.JLabel fieldLbl;
     private javax.swing.JLabel fieldNameLbl;
+    private javax.swing.JSpinner fieldStationId1;
     private javax.swing.JTextField fieldStationName;
     private javax.swing.JTextField fieldStationName1;
     private javax.swing.JTextField fieldStationType;
@@ -2430,6 +2445,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

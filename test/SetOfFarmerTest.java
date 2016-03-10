@@ -57,7 +57,7 @@ public class SetOfFarmerTest {
     @Test
     public void testRemoveFarmer() {
         //Arrange
-        instance.addFarmer("Josh-da-g", "g@gunit.g", "420", 420, farms); //Remember to update this
+        instance.addFarmer("Test", "test@gmail.co.uk", "420", 420, farms); //Remember to update this
         //constructor when jonas is done
         //Act
         Farmer result = instance.getFarmerByNumber(420);

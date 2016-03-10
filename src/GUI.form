@@ -1504,6 +1504,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="confirmAddFieldstation" min="-2" pref="61" max="-2" attributes="0"/>
+                  <EmptySpace pref="122" max="32767" attributes="0"/>
+                  <Component id="cancelFieldStation1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -1512,6 +1519,7 @@
                               <Component id="jLabel31" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel32" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel33" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel40" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1519,6 +1527,7 @@
                               <Component id="fieldStationxCoord1" alignment="0" pref="137" max="32767" attributes="0"/>
                               <Component id="fieldStationyCoord1" alignment="0" max="32767" attributes="0"/>
                               <Component id="fieldStationName1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="fieldStationId1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -1527,13 +1536,6 @@
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="confirmAddFieldstation" min="-2" pref="61" max="-2" attributes="0"/>
-                  <EmptySpace pref="122" max="32767" attributes="0"/>
-                  <Component id="cancelFieldStation1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1562,7 +1564,12 @@
                       <Component id="fieldStationType1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldStationId1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="confirmAddFieldstation" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cancelFieldStation1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1621,6 +1628,13 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Add Field Station"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel40">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="fieldStationId1">
         </Component>
       </SubComponents>
     </Container>
