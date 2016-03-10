@@ -1,11 +1,12 @@
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * "Farm" basically is a "set of fields" because all fields are contained within
  * a farm
  */
-public class Farm {
+public class Farm implements Serializable{
 
     private Field[] fields;
     private String name;

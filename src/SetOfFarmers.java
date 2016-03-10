@@ -1,8 +1,9 @@
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.*;
 
-public class SetOfFarmers {
+public class SetOfFarmers implements Serializable {
 
     private Farmer[] farmers;
 

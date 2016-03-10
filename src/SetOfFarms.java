@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -9,7 +10,7 @@ import java.util.*;
  * SetOfFarms implements a vector (like SetOfBooks in the library example) thus
  * it doesn't need a "farms[]" array as that will be "super" inside the class
  */
-public class SetOfFarms {
+public class SetOfFarms implements Serializable {
 
     private ArrayList<Farm> farms;
 

@@ -1,7 +1,8 @@
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Location {
+public class Location implements Serializable{
 
     private float xcoord;
     private float ycoord;

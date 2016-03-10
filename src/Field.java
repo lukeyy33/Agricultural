@@ -1,7 +1,8 @@
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Field {
+public class Field implements Serializable {
 
     private FieldStation[] fieldStations;
     private String name;

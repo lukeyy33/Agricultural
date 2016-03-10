@@ -1,12 +1,13 @@
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * so that farmers can be contacted by e.g. supermarket people who say "we're
  * going to use your field at 2AM tomorrow"
  */
-public class Farmer {
+public class Farmer implements Serializable {
 
     private String name;
     private String email;

@@ -1,10 +1,13 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,26 +26,74 @@ public class GUI extends javax.swing.JFrame {
 
     public GUI() throws ParseException {
         initComponents();
-        theFarms = new SetOfFarms();
-        initFarms();
-        initFields();
-        theFarmers = new SetOfFarmers();
-        initFarmers();
-    }
-
-    private void initFarms() {
-        theFarms.addFarm("Farm 1", new Location(10, 10, "Outdoors"), 327478233);
+        loadFarms();
+        loadFarmers();
         populateCmbFarms();
     }
 
-    private void initFields() throws ParseException {
-        theFarms.getAllFarms().get(0).addField("Field 1", "Outdoor", 345872665, "Potatoe", 1.0f);
-        theFarms.getAllFarms().get(0).addField("Field 2", "Indoor", 543297856, "Carrot", 1.0f);
+    private void loadFarmers() {
+        try {
+            ObjectInputStream farmersIn = new ObjectInputStream(new FileInputStream("tmp\\farmers.ser"));
+            while (true) {
+                try {
+                    SetOfFarmers farmers = (SetOfFarmers) farmersIn.readObject();
+                    theFarmers = farmers;
+                } catch (EOFException e) {
+                    break;
+                } catch (IOException ex) {
+                    return;
+                } catch (ClassNotFoundException ex) {
+                    System.out.println("SetOfFarmers class not found");
+                    return;
+                }
+            }
+            farmersIn.close();
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private void initFarmers() {
-        theFarmers.addFarmer("Tom Mills", "test@gmail.com", "01234567890", 423874, new SetOfFarms());
-        theFarmers.addFarmer("Luke Waugh", "test@gmail.com", "01234567890", 326874, new SetOfFarms());
+    private void loadFarms() {
+        try {
+            ObjectInputStream farmsIn = new ObjectInputStream(new FileInputStream("tmp\\farms.ser"));
+            while (true) {
+                try {
+                    SetOfFarms farms = (SetOfFarms) farmsIn.readObject();
+                    theFarms = farms;
+                } catch (EOFException e) {
+                    break;
+                } catch (IOException ex) {
+                    return;
+                } catch (ClassNotFoundException ex) {
+                    System.out.println("SetOfFarms class not found");
+                    return;
+                }
+            }
+            farmsIn.close();
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void save() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("tmp\\farmers.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(theFarmers);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        try {
+            FileOutputStream fileOut1 = new FileOutputStream("tmp\\farms.ser");
+            ObjectOutputStream out1 = new ObjectOutputStream(fileOut1);
+            out1.writeObject(theFarms);
+            out1.close();
+            fileOut1.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 
     public Farm selectFarm(int id) {
@@ -1337,27 +1388,7 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        FileOutputStream fOut = null;
-        try {
-            fOut = new FileOutputStream("Farms.ser");
-            ObjectOutputStream objOut = new ObjectOutputStream(fOut);
-
-            objOut.writeObject(objOut);
-
-            objOut.close();
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fOut.close();
-            } catch (IOException ex) {
-                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
+        save();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void showFarmsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFarmsBtnActionPerformed

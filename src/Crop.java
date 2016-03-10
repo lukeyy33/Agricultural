@@ -1,7 +1,8 @@
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Crop {
+public class Crop implements Serializable{
 
     private String name;
     private Date plantedTime;
