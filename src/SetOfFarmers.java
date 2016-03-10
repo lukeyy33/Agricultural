@@ -37,7 +37,7 @@ public class SetOfFarmers implements Serializable {
 
     public Farmer getFarmerByName(String farmerName) {
         for (Farmer f : farmers) {
-            if (f.getName().equals(farmerName)) {
+            if (f.getName().equalsIgnoreCase(farmerName)) {
                 return f;
             }
         }
@@ -55,7 +55,7 @@ public class SetOfFarmers implements Serializable {
 
     public Farmer getFarmerByEmail(String farmerEmail) {
         for (Farmer f : farmers) {
-            if (f.getEmail().equals(farmerEmail)) {
+            if (f.getEmail().equalsIgnoreCase(farmerEmail)) {
                 return f;
             }
         }
@@ -64,7 +64,7 @@ public class SetOfFarmers implements Serializable {
 
     public Farmer getFarmerByTelephone(String farmerTelephone) {
         for (Farmer f : farmers) {
-            if (f.getTelephone().equals(farmerTelephone)) {
+            if (f.getTelephone().equalsIgnoreCase(farmerTelephone)) {
                 return f;
             }
         }

@@ -302,6 +302,52 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    private void populateCmbSearch() {
+        cmbSearch.removeAllItems();
+        cmbSearch.addItem("Name");
+        cmbSearch.addItem("ID");
+        cmbSearch.addItem("Telephone");
+        cmbSearch.addItem("Email");
+    }
+
+    private void populateFarmerDetails(Farmer tmp) {
+        farmerNameLbl.setText("Farmer Name: " + tmp.getName());
+        farmerEmailLbl.setText("Farmer Email: " + tmp.getEmail());
+        farmerIdLbl.setText("Farmer ID: " + tmp.getId());
+        farmerPhoneLbl.setText("Farmer Phone: " + tmp.getTelephone());
+        createFarmerTable(tmp.getId());
+    }
+
+    private void farmerSearch(String type) {
+        String search = "";
+        Farmer farmer = null;
+        if (type.equals("name")) {
+            search = searchField.getText();
+            farmer = theFarmers.getFarmerByName(search);
+        } else {
+            if (type.equals("id")) {
+                search = searchField.getText();
+                farmer = theFarmers.getFarmerByNumber(Integer.parseInt(search));
+            } else {
+                if (type.equals("tel")) {
+                    search = searchField.getText();
+                    farmer = theFarmers.getFarmerByTelephone(search);
+                } else {
+                    if (type.equals("email")) {
+                        search = searchField.getText();
+                        farmer = theFarmers.getFarmerByEmail(search);
+                    }
+                }
+            }
+        }
+        if(farmer == null){
+            searchFailed.pack();
+            searchFailed.setVisible(true);
+        }else{
+            populateFarmerDetails(farmer);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -334,6 +380,9 @@ public class GUI extends javax.swing.JFrame {
         editFarmerBtn = new javax.swing.JButton();
         deleteFarmerBtn = new javax.swing.JButton();
         farmerPhoneLbl = new javax.swing.JLabel();
+        searchField = new javax.swing.JTextField();
+        farmerSearchBtn = new javax.swing.JButton();
+        cmbSearch = new javax.swing.JComboBox();
         fieldsDialog = new javax.swing.JDialog();
         lblFieldType = new javax.swing.JLabel();
         lblFieldCrop = new javax.swing.JLabel();
@@ -410,6 +459,8 @@ public class GUI extends javax.swing.JFrame {
         deleteFarmerName = new javax.swing.JLabel();
         confirmFarmerDelete = new javax.swing.JButton();
         cancelFarmerDelete = new javax.swing.JButton();
+        searchFailed = new javax.swing.JDialog();
+        jLabel23 = new javax.swing.JLabel();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -579,6 +630,17 @@ public class GUI extends javax.swing.JFrame {
         farmerPhoneLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         farmerPhoneLbl.setText("Farmer Phone: ");
 
+        searchField.setText("Search");
+
+        farmerSearchBtn.setText("Search");
+        farmerSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmerSearchBtnActionPerformed(evt);
+            }
+        });
+
+        cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout farmerDialogLayout = new javax.swing.GroupLayout(farmerDialog.getContentPane());
         farmerDialog.getContentPane().setLayout(farmerDialogLayout);
         farmerDialogLayout.setHorizontalGroup(
@@ -591,13 +653,21 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(farmerDialogLayout.createSequentialGroup()
                                 .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(farmerNameLbl)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                                    .addComponent(cmbFarmers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cmbFarmers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, farmerDialogLayout.createSequentialGroup()
+                                        .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(farmerNameLbl)
+                                            .addComponent(farmerEmailLbl))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(searchField)
+                                            .addComponent(cmbSearch, 0, 122, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(showFarmerDetailsBtn))
+                                .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(showFarmerDetailsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(farmerSearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(farmerIdLbl)
-                            .addComponent(farmerEmailLbl)
                             .addComponent(farmerPhoneLbl)
                             .addGroup(farmerDialogLayout.createSequentialGroup()
                                 .addComponent(addFarmerBtn)
@@ -612,27 +682,33 @@ public class GUI extends javax.swing.JFrame {
             farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(farmerDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbFarmers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showFarmerDetailsBtn))
-                .addGap(27, 27, 27)
-                .addComponent(farmerNameLbl)
-                .addGap(18, 18, 18)
-                .addComponent(farmerEmailLbl)
-                .addGap(18, 18, 18)
+                .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(farmerDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbFarmers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(showFarmerDetailsBtn))
+                        .addGap(26, 26, 26)
+                        .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(farmerNameLbl)
+                            .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(farmerSearchBtn))
+                        .addGap(18, 18, 18)
+                        .addComponent(farmerEmailLbl))
+                    .addComponent(cmbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(farmerIdLbl)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(farmerPhoneLbl)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(farmerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addFarmerBtn)
                     .addComponent(editFarmerBtn)
                     .addComponent(deleteFarmerBtn))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblFieldType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1257,6 +1333,26 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel23.setText("Your search returned no results");
+
+        javax.swing.GroupLayout searchFailedLayout = new javax.swing.GroupLayout(searchFailed.getContentPane());
+        searchFailed.getContentPane().setLayout(searchFailedLayout);
+        searchFailedLayout.setHorizontalGroup(
+            searchFailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchFailedLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        searchFailedLayout.setVerticalGroup(
+            searchFailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchFailedLayout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cmbFarms.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1560,18 +1656,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void viewFarmersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFarmersBtnActionPerformed
         populateCmbFarmers();
+        populateCmbSearch();
         showFarmersView();
     }//GEN-LAST:event_viewFarmersBtnActionPerformed
 
     private void showFarmerDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFarmerDetailsBtnActionPerformed
-        // TODO add your handling code here:
         int id = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmp = theFarmers.getFarmerByNumber(id);
-        farmerNameLbl.setText("Farmer Name: " + tmp.getName());
-        farmerEmailLbl.setText("Farmer Email: " + tmp.getEmail());
-        farmerIdLbl.setText("Farmer ID: " + tmp.getId());
-        farmerPhoneLbl.setText("Farmer Phone: " + tmp.getTelephone());
-        createFarmerTable(tmp.getId());
+        populateFarmerDetails(tmp);
     }//GEN-LAST:event_showFarmerDetailsBtnActionPerformed
 
     private void addFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFarmerBtnActionPerformed
@@ -1702,6 +1794,24 @@ public class GUI extends javax.swing.JFrame {
         showFieldView();
     }//GEN-LAST:event_showFieldBtnActionPerformed
 
+    private void farmerSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerSearchBtnActionPerformed
+        if (cmbSearch.getSelectedIndex() == 0) {
+            farmerSearch("name");
+        } else {
+            if (cmbSearch.getSelectedIndex() == 1) {
+                farmerSearch("id");
+            } else {
+                if (cmbSearch.getSelectedIndex() == 2) {
+                    farmerSearch("tel");
+                } else {
+                    if (cmbSearch.getSelectedIndex() == 3) {
+                        farmerSearch("email");
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_farmerSearchBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1767,6 +1877,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
     private javax.swing.JComboBox cmbFields;
+    private javax.swing.JComboBox cmbSearch;
     private javax.swing.JButton confirmAddBtn;
     private javax.swing.JButton confirmAddFarmerBtn;
     private javax.swing.JButton confirmEditBtn;
@@ -1792,6 +1903,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel farmerIdLbl;
     private javax.swing.JLabel farmerNameLbl;
     private javax.swing.JLabel farmerPhoneLbl;
+    private javax.swing.JButton farmerSearchBtn;
     private javax.swing.JTable farmerTable;
     private javax.swing.JLabel farmsLbl;
     private javax.swing.JSpinner fieldIdSpin;
@@ -1816,6 +1928,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1842,6 +1955,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel nameLblAddFarm;
     private javax.swing.JButton removeFieldBtn;
     private javax.swing.JButton removeFromAssociatedBtn;
+    private javax.swing.JDialog searchFailed;
+    private javax.swing.JTextField searchField;
     private javax.swing.JButton showFarmerDetailsBtn;
     private javax.swing.JButton showFarmsBtn;
     private javax.swing.JButton showFieldBtn;
