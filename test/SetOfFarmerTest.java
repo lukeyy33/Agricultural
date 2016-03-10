@@ -17,54 +17,38 @@ public class SetOfFarmerTest {
     
     private SetOfFarmers instance;
     private SetOfFarms farms;
+    private Location location;
 
     public SetOfFarmerTest() {
         
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-        System.out.println("* UtilsJUnit4Test: @BeforeClass method");
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-        System.out.println("* UtilsJUnit4Test: @AfterClass method");
-    }
-    
+
     @Before
     public void setUp() {
-       System.out.println("* UtilsJUnit4Test: @Before method");
+      instance = new SetOfFarmers();
+      farms = new SetOfFarms();
+      location = new Location(10, 20, "Fake Location");
+      instance.addFarmer("name", "email", "1010101", 56, farms);
     }
-    
-    @After
-    public void tearDown() {
-        System.out.println("* UtilsJUnit4Test: @After method");
-    }
-    
-    @Ignore    
+    @Ignore
     @Test
-    public void testAddFarmer() {            
-        //Arrange
-        SetOfFarmers farmer = new SetOfFarmers();
-        instance = new SetOfFarmers();                    
-        //Act
-        farmer.addFarmer("Test", "test@test.test", "1010", 1, farms);      
+    public void testAddFarmer() {    
+        Farmer result = instance.addFarmer("Bob", "email", "3434", 0, farms);
+        instance.addFarmer("name", "email", "01919", 0, farms);
         //Assert
-        assertEquals(farmer,instance);
-        //assertEquals(EXPECTED-RESULT, ACTUAL-RESULT);
-        
+        assertEquals(farms,instance);
+     
     }
-
     
     @Test 
     public void testGetFarmerByName() {
+        String name = "name";
         //Arrange
-        SetOfFarmers farmerName = new SetOfFarmers();
+        Farmer tmp = instance.getFarmerByName(name);
         //Act
-        farmerName.getFarmerByName("Luke");        
+        String farmerName = tmp.getName();
         //Assert
-        assertEquals("Luke", farmerName);
+        assertEquals(name, farmerName);
         
     }
 }

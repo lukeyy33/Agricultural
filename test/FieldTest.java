@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 public class FieldTest {
-    Field instance = new Field("test","testType", 0, "weed", 0.0f);
+    Field instance = new Field("test","testType", 0, "cropname", 0.0f);
     Location location = new Location(10, 20, "Fake Location");
     
     public FieldTest() {
