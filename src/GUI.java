@@ -32,10 +32,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void initFarms() {
         theFarms.addFarm("Farm 1", new Location(10, 10, "Outdoors"), 327478233);
-        cmbFarms.removeAllItems();
-        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
-            cmbFarms.addItem(theFarms.getAllFarms().get(i).getFarmNo());
-        }
+        populateCmbFarms();
     }
 
     private void initFields() throws ParseException {
@@ -48,46 +45,19 @@ public class GUI extends javax.swing.JFrame {
         theFarmers.addFarmer("Luke Waugh", "test@gmail.com", "01234567890", 326874, new SetOfFarms());
     }
 
-    /**
-     * params: farmno
-     *
-     * the user will select a farm from the gui which will then get the farm
-     * from setOfFarms using the farmno
-     *
-     * @param int
-     * @return
-     */
     public Farm selectFarm(int id) {
         Farm tmp = theFarms.getFarmByNumber(id);
         return tmp;
     }
 
-    /**
-     * params: fieldno
-     *
-     * The user will select a field from the gui which will get the field by the
-     * fieldno from the fields within the selected farm
-     *
-     * @param int
-     * @return
-     */
     public Field selectField(Farm farm, int id) {
         Field tmp = farm.getFieldByNumber(id);
         return tmp;
     }
 
-    /**
-     * params: fieldstationno
-     *
-     * user selects a fieldStation from the gui and gets the fieldStation from
-     * the set of fields using the fieldstationno
-     *
-     * @param int
-     * @return
-     */
-    public FieldStation selectFieldStation(int id) {
-        // TODO implement here
-        return null;
+    public FieldStation selectFieldStation(Field field, int id) {
+        FieldStation tmp = field.getFieldStationByNumber(id);
+        return tmp;
     }
 
     /**
@@ -140,94 +110,145 @@ public class GUI extends javax.swing.JFrame {
     public void showDevices() {
     }
 
-    /**
-     * @return
-     */
     public void showFarmView() {
         farmView.pack();
         farmView.setVisible(true);
     }
 
-    /**
-     * @return
-     */
     public void showFieldView() {
         fieldsDialog.pack();
         fieldsDialog.setVisible(true);
     }
 
-    /**
-     * @return
-     */
     public void showFieldStationView() {
     }
 
-    /**
-     * brings up a list of farmers currently registered in the system.
-     *
-     * The user can search for farmers using the various methods displayed in
-     * SetOfFarmers
-     *
-     * @return
-     */
     public void showFarmersView() {
         farmerDialog.pack();
         farmerDialog.setVisible(true);
     }
 
-    /**
-     * popup allowing users to add/edit fields for farmers. this is also the
-     * case for FarmPopup, FieldPopup, etc.
-     *
-     * if it has a param, then edit that param, if not then create a new object
-     * of the relevant type.
-     *
-     * @param Farmer
-     * @return
-     */
     public void showFarmerPopup(Farmer farmer) {
-        addFarmerDialog.pack();
-        addFarmerDialog.setVisible(true);
+        if (farmer == null) {
+            confirmAddFarmerBtn.setVisible(true);
+            confirmEditFarmerBtn.setVisible(false);
+            Object[] data = new Object[1];
+            DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+            model1.setRowCount(0);
+            for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
+                data[0] = theFarms.getAllFarms().get(i).getFarmNo();
+                model1.addRow(data);
+            }
+            addFarmerDialog.pack();
+            addFarmerDialog.setVisible(true);
+        } else {
+            confirmAddFarmerBtn.setVisible(false);
+            confirmEditFarmerBtn.setVisible(true);
+            addFarmerName.setText(farmer.getName());
+            addFarmerEmail.setText(farmer.getEmail());
+            addFarmerPhone.setText(farmer.getTelephone());
+            addFarmerId.setValue(farmer.getId());
+
+            SetOfFarms tmpFarms = theFarmers.getFarmerByNumber(farmer.getId()).getAssociatedFarms();
+            Object[] data = new Object[1];
+            DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
+            model.setRowCount(0);
+            for (int i = 0; i < tmpFarms.getAllFarms().size(); i++) {
+                data[0] = tmpFarms.getAllFarms().get(i).getFarmNo();
+                model.addRow(data);
+            }
+
+            DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
+            model1.setRowCount(0);
+            for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
+                data[0] = theFarms.getAllFarms().get(i).getFarmNo();
+                model1.addRow(data);
+            }
+            addFarmerDialog.pack();
+            addFarmerDialog.setVisible(true);
+        }
     }
 
-    /**
-     * @param Farm
-     * @return
-     */
     public void showFarmPopup(Farm farm) {
-        addFarmDialog.pack();
-        addFarmDialog.setVisible(true);
+        if (farm == null) {
+            confirmEditBtn.setVisible(false);
+            createFarmBtn.setVisible(true);
+            addFarmDialog.pack();
+            addFarmDialog.setVisible(true);
+        } else {
+            confirmEditBtn.setVisible(true);
+            createFarmBtn.setVisible(false);
+            nameInput.setText(farm.getName());
+            xCoordSpin.setValue(farm.getLocation().getXCoord());
+            yCoordSpin.setValue(farm.getLocation().getYCoord());
+            typeInput.setText(farm.getLocation().getType());
+            fieldIdSpin.setValue(farm.getFarmNo());
+            addFarmDialog.pack();
+            addFarmDialog.setVisible(true);
+        }
     }
 
-    /**
-     * @param Field
-     * @return
-     */
     public void showFieldPopup(Field field) {
-        addFieldDialog.pack();
-        addFieldDialog.setVisible(true);
+        if (field == null) {
+            confirmAddBtn.setVisible(true);
+            editBtn.setVisible(false);
+            addFieldDialog.pack();
+            addFieldDialog.setVisible(true);
+        } else {
+            addFieldName.setText(field.getName());
+            addFieldType.setText(field.getType());
+            addFieldNo.setValue(field.getFieldNumber());
+            addFieldCrop.setText(field.getCrop().getName());
+            addFieldArea.setValue(field.getCrop().getAreaRequired());
+            confirmAddBtn.setVisible(false);
+            editBtn.setVisible(true);
+            addFieldDialog.pack();
+            addFieldDialog.setVisible(true);
+        }
     }
 
-    /**
-     * @param FieldStation
-     * @return
-     */
     public void showFieldStationPopup(FieldStation station) {
     }
 
-    /**
-     * @param Sensor
-     * @return
-     */
     public void showSensorPopup(Sensor Sensor) {
 
     }
 
-    /**
-     * @return
-     */
     public void exportToPDF() {
 
+    }
+
+    public void populateCmbFields(Farm farm) {
+        cmbFields.removeAllItems();
+        for (int i = 0; i < farm.getAllFields().length; i++) {
+            cmbFields.addItem(farm.getAllFields()[i].getFieldNumber());
+        }
+    }
+
+    public void populateCmbFarms() {
+        cmbFarms.removeAllItems();
+        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
+            cmbFarms.addItem(theFarms.getAllFarms().get(i).getFarmNo());
+        }
+    }
+
+    public void populateCmbFarmers() {
+        cmbFarmers.removeAllItems();
+        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
+            cmbFarmers.addItem(Integer.toString(theFarmers.getAllFarmers()[i].getId()));
+        }
+    }
+
+    private void createFarmerTable(int farmerID) {
+
+        SetOfFarms tmp = theFarmers.getFarmerByNumber(farmerID).getAssociatedFarms();
+        Object[] data = new Object[1];
+        DefaultTableModel model = (DefaultTableModel) farmerTable.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < tmp.getAllFarms().size(); i++) {
+            data[0] = tmp.getAllFarms().get(i).getName();
+            model.addRow(data);
+        }
     }
 
     /**
@@ -1340,21 +1361,14 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void showFarmsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFarmsBtnActionPerformed
-        cmbFields.removeAllItems();
         int tmp = (Integer) cmbFarms.getSelectedItem();
         Farm tmpFarm = theFarms.getFarmByNumber(tmp);
-        for (int i = 0; i < tmpFarm.getAllFields().length; i++) {
-            cmbFields.addItem(tmpFarm.getAllFields()[i].getFieldNumber());
-        }
+        populateCmbFields(tmpFarm);
         showFarmView();
     }//GEN-LAST:event_showFarmsBtnActionPerformed
 
     private void addFarmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFarmBtnActionPerformed
-        // TODO add your handling code here:
-        confirmEditBtn.setVisible(false);
-        createFarmBtn.setVisible(true);
-        addFarmDialog.pack();
-        addFarmDialog.setVisible(true);
+        showFarmPopup(null);
     }//GEN-LAST:event_addFarmBtnActionPerformed
 
     private void createFarmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createFarmBtnActionPerformed
@@ -1365,10 +1379,7 @@ public class GUI extends javax.swing.JFrame {
         String type = typeInput.getText();
         int id = (int) fieldIdSpin.getValue();
         theFarms.addFarm(name, new Location(x, y, type), id);
-        cmbFarms.removeAllItems();
-        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
-            cmbFarms.addItem(theFarms.getAllFarms().get(i).getFarmNo());
-        }
+        populateCmbFarms();
         addFarmDialog.setVisible(false);
         nameInput.setText("");
         xCoordSpin.setValue(0);
@@ -1379,17 +1390,8 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createFarmBtnActionPerformed
 
     private void editFarmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFarmBtnActionPerformed
-        // TODO add your handling code here:
-        confirmEditBtn.setVisible(true);
-        createFarmBtn.setVisible(false);
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
-        nameInput.setText(tmp.getName());
-        xCoordSpin.setValue(tmp.getLocation().getXCoord());
-        yCoordSpin.setValue(tmp.getLocation().getYCoord());
-        typeInput.setText(tmp.getLocation().getType());
-        fieldIdSpin.setValue(tmp.getFarmNo());
-        addFarmDialog.pack();
-        addFarmDialog.setVisible(true);
+        showFarmPopup(tmp);
     }//GEN-LAST:event_editFarmBtnActionPerformed
 
     private void confirmEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditBtnActionPerformed
@@ -1401,10 +1403,7 @@ public class GUI extends javax.swing.JFrame {
         int id = (int) fieldIdSpin.getValue();
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         tmp.updateFarmInfo(name, new Location(x, y, type), id);
-        cmbFarms.removeAllItems();
-        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
-            cmbFarms.addItem(theFarms.getAllFarms().get(i).getFarmNo());
-        }
+        populateCmbFarms();
         addFarmDialog.setVisible(false);
         nameInput.setText("");
         xCoordSpin.setValue(0);
@@ -1434,10 +1433,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         theFarms.removeFarm(tmp);
-        cmbFarms.removeAllItems();
-        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
-            cmbFarms.addItem(theFarms.getAllFarms().get(i).getFarmNo());
-        }
+        populateCmbFarms();
         deleteFarmDialog.setVisible(false);
     }//GEN-LAST:event_ConfirmDelBtnActionPerformed
 
@@ -1447,11 +1443,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelDelBtnActionPerformed
 
     private void addFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFieldBtnActionPerformed
-        // TODO add your handling code here:
-        confirmAddBtn.setVisible(true);
-        editBtn.setVisible(false);
-        addFieldDialog.pack();
-        addFieldDialog.setVisible(true);
+        showFieldPopup(null);
     }//GEN-LAST:event_addFieldBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
@@ -1471,10 +1463,7 @@ public class GUI extends javax.swing.JFrame {
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         Field tmpField = tmp.getFieldByNumber((Integer) cmbFields.getSelectedItem());
         tmpField.updateFieldInfo(name, type, fieldNo, crop, area);
-        cmbFields.removeAllItems();
-        for (int i = 0; i < tmp.getAllFields().length; i++) {
-            cmbFields.addItem(tmp.getAllFields()[i].getFieldNumber());
-        }
+        populateCmbFields(tmp);
         addFieldDialog.setVisible(false);
         addFieldName.setText("");
         addFieldType.setText("");
@@ -1487,15 +1476,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         Field tmpField = tmp.getFieldByNumber((Integer) cmbFields.getSelectedItem());
-        addFieldName.setText(tmpField.getName());
-        addFieldType.setText(tmpField.getType());
-        addFieldNo.setValue(tmpField.getFieldNumber());
-        addFieldCrop.setText(tmpField.getCrop().getName());
-        addFieldArea.setValue(tmpField.getCrop().getAreaRequired());
-        confirmAddBtn.setVisible(false);
-        editBtn.setVisible(true);
-        addFieldDialog.pack();
-        addFieldDialog.setVisible(true);
+        showFieldPopup(tmpField);
     }//GEN-LAST:event_editFieldBtnActionPerformed
 
     private void confirmAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddBtnActionPerformed
@@ -1507,10 +1488,7 @@ public class GUI extends javax.swing.JFrame {
         float area = ((int) addFieldArea.getValue() / (float) 1);
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         tmp.addField(name, type, fieldNo, crop, area);
-        cmbFields.removeAllItems();
-        for (int i = 0; i < tmp.getAllFields().length; i++) {
-            cmbFields.addItem(tmp.getAllFields()[i].getFieldNumber());
-        }
+        populateCmbFields(tmp);
         addFieldDialog.setVisible(false);
         addFieldName.setText("");
         addFieldType.setText("");
@@ -1537,8 +1515,6 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeFieldBtnActionPerformed
 
     private void cancelFieldDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelFieldDeleteActionPerformed
-        // TODO add your handling code here:
-        fieldNameLbl.setText("No field Selected");
         deleteFieldDialog.setVisible(false);
     }//GEN-LAST:event_cancelFieldDeleteActionPerformed
 
@@ -1547,33 +1523,13 @@ public class GUI extends javax.swing.JFrame {
         Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         int id = (Integer) cmbFields.getSelectedItem();
         tmp.removeField(id);
-        cmbFields.removeAllItems();
-        for (int i = 0; i < tmp.getAllFields().length; i++) {
-            cmbFields.addItem(tmp.getAllFields()[i].getFieldNumber());
-        }
+        populateCmbFields(tmp);
         deleteFieldDialog.setVisible(false);
     }//GEN-LAST:event_confirmFieldDeleteActionPerformed
 
-    private void createFarmerTable(int farmerID) {
-
-        SetOfFarms tmp = theFarmers.getFarmerByNumber(farmerID).getAssociatedFarms();
-        Object[] data = new Object[1];
-        DefaultTableModel model = (DefaultTableModel) farmerTable.getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < tmp.getAllFarms().size(); i++) {
-            data[0] = tmp.getAllFarms().get(i).getName();
-            model.addRow(data);
-        }
-    }
-
     private void viewFarmersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFarmersBtnActionPerformed
-        // TODO add your handling code here:
-        cmbFarmers.removeAllItems();
-        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
-            cmbFarmers.addItem(Integer.toString(theFarmers.getAllFarmers()[i].getId()));
-        };
-        farmerDialog.pack();
-        farmerDialog.setVisible(true);
+        populateCmbFarmers();
+        showFarmersView();
     }//GEN-LAST:event_viewFarmersBtnActionPerformed
 
     private void showFarmerDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFarmerDetailsBtnActionPerformed
@@ -1589,48 +1545,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void addFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFarmerBtnActionPerformed
         // TODO add your handling code here:
-        confirmAddFarmerBtn.setVisible(true);
-        confirmEditFarmerBtn.setVisible(false);
-        addFarmerDialog.pack();
-        Object[] data = new Object[1];
-        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
-        model1.setRowCount(0);
-        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
-            data[0] = theFarms.getAllFarms().get(i).getFarmNo();
-            model1.addRow(data);
-        }
-        addFarmerDialog.setVisible(true);
+        showFarmerPopup(null);
     }//GEN-LAST:event_addFarmerBtnActionPerformed
 
     private void editFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFarmerBtnActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmp = theFarmers.getFarmerByNumber(id);
-        confirmAddFarmerBtn.setVisible(false);
-        confirmEditFarmerBtn.setVisible(true);
-        addFarmerName.setText(tmp.getName());
-        addFarmerEmail.setText(tmp.getEmail());
-        addFarmerPhone.setText(tmp.getTelephone());
-        addFarmerId.setValue(tmp.getId());
-
-        SetOfFarms tmpFarms = theFarmers.getFarmerByNumber(tmp.getId()).getAssociatedFarms();
-        Object[] data = new Object[1];
-        DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < tmpFarms.getAllFarms().size(); i++) {
-            data[0] = tmpFarms.getAllFarms().get(i).getFarmNo();
-            model.addRow(data);
-        }
-
-        DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
-        model1.setRowCount(0);
-        for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
-            data[0] = theFarms.getAllFarms().get(i).getFarmNo();
-            model1.addRow(data);
-        }
-
-        addFarmerDialog.pack();
-        addFarmerDialog.setVisible(true);
+        showFarmerPopup(tmp);
     }//GEN-LAST:event_editFarmerBtnActionPerformed
 
     private void confirmAddFarmerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddFarmerBtnActionPerformed
@@ -1645,10 +1567,7 @@ public class GUI extends javax.swing.JFrame {
             farms.addFarmAlreadyInSystem(tmp);
         }
         theFarmers.addFarmer(name, email, phone, id, farms);
-        cmbFarmers.removeAllItems();
-        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
-            cmbFarmers.addItem(Integer.toString(theFarmers.getAllFarmers()[i].getId()));
-        };
+        populateCmbFarmers();
         DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
         model.setRowCount(0);
         DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
@@ -1666,10 +1585,7 @@ public class GUI extends javax.swing.JFrame {
         int ida = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmp = theFarmers.getFarmerByNumber(ida);
         tmp.updateFarmerInfo(name, email, phone, id, tmp.getAssociatedFarms());
-        cmbFarmers.removeAllItems();
-        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
-            cmbFarmers.addItem(Integer.toString(theFarmers.getAllFarmers()[i].getId()));
-        };
+        populateCmbFarmers();
         DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
         model.setRowCount(0);
         DefaultTableModel model1 = (DefaultTableModel) allFarmsTable.getModel();
@@ -1702,17 +1618,12 @@ public class GUI extends javax.swing.JFrame {
         int id = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmp = theFarmers.getFarmerByNumber(id);
         theFarmers.removeFarmer(tmp.getId());
-        cmbFarmers.removeAllItems();
-        for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
-            cmbFarmers.addItem(Integer.toString(theFarmers.getAllFarmers()[i].getId()));
-        };
+        populateCmbFarmers();
         deleteFarmerDialog.setVisible(false);
     }//GEN-LAST:event_confirmFarmerDeleteActionPerformed
 
     private void cancelFarmerDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelFarmerDeleteActionPerformed
-        // TODO add your handling code here:
         deleteFarmerDialog.setVisible(false);
-        deleteFarmerName.setText("");
     }//GEN-LAST:event_cancelFarmerDeleteActionPerformed
 
     private void addToAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToAssociatedBtnActionPerformed
@@ -1757,8 +1668,7 @@ public class GUI extends javax.swing.JFrame {
         lblFieldName.setText("Name: " + tmp.getName());
         lblFieldType.setText("Type: " + tmp.getType());
         lblFieldCrop.setText("Crop: " + tmp.getCrop().getName());
-        fieldsDialog.pack();
-        fieldsDialog.setVisible(true);
+        showFieldView();
     }//GEN-LAST:event_showFieldBtnActionPerformed
 
     /**
