@@ -476,7 +476,7 @@ public class GUI extends javax.swing.JFrame {
         cancelFarmerDelete = new javax.swing.JButton();
         searchFailed = new javax.swing.JDialog();
         jLabel23 = new javax.swing.JLabel();
-        addFieldStationDialog = new javax.swing.JDialog();
+        editFieldStationDialog = new javax.swing.JDialog();
         jLabel25 = new javax.swing.JLabel();
         fieldStationName = new javax.swing.JTextField();
         fieldStationyCoord = new javax.swing.JSpinner();
@@ -485,10 +485,10 @@ public class GUI extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        confirmAddFieldStation = new javax.swing.JButton();
+        confirmEditFieldstation = new javax.swing.JButton();
         cancelFieldStation = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
-        editFieldStationDialog = new javax.swing.JDialog();
+        addFieldStationDialog = new javax.swing.JDialog();
         jLabel30 = new javax.swing.JLabel();
         fieldStationName1 = new javax.swing.JTextField();
         fieldStationyCoord1 = new javax.swing.JSpinner();
@@ -497,7 +497,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        confirmEditFieldStation = new javax.swing.JButton();
+        confirmAddFieldstation = new javax.swing.JButton();
         cancelFieldStation1 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
         cmbFarms = new javax.swing.JComboBox();
@@ -1426,67 +1426,72 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel28.setText("Type");
 
-        confirmAddFieldStation.setText("Edit");
+        confirmEditFieldstation.setText("Edit");
+        confirmEditFieldstation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmEditFieldstationActionPerformed(evt);
+            }
+        });
 
         cancelFieldStation.setText("Cancel");
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel29.setText("Edit Field Station");
 
-        javax.swing.GroupLayout addFieldStationDialogLayout = new javax.swing.GroupLayout(addFieldStationDialog.getContentPane());
-        addFieldStationDialog.getContentPane().setLayout(addFieldStationDialogLayout);
-        addFieldStationDialogLayout.setHorizontalGroup(
-            addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
+        javax.swing.GroupLayout editFieldStationDialogLayout = new javax.swing.GroupLayout(editFieldStationDialog.getContentPane());
+        editFieldStationDialog.getContentPane().setLayout(editFieldStationDialogLayout);
+        editFieldStationDialogLayout.setHorizontalGroup(
+            editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editFieldStationDialogLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addFieldStationDialogLayout.createSequentialGroup()
-                        .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editFieldStationDialogLayout.createSequentialGroup()
+                        .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel25)
                             .addComponent(jLabel26)
                             .addComponent(jLabel27)
                             .addComponent(jLabel28))
                         .addGap(18, 18, 18)
-                        .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fieldStationType)
                             .addComponent(fieldStationxCoord, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(fieldStationyCoord)
                             .addComponent(fieldStationName)))
-                    .addGroup(addFieldStationDialogLayout.createSequentialGroup()
+                    .addGroup(editFieldStationDialogLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel29)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
+            .addGroup(editFieldStationDialogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmAddFieldStation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmEditFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(cancelFieldStation)
                 .addGap(57, 57, 57))
         );
-        addFieldStationDialogLayout.setVerticalGroup(
-            addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
+        editFieldStationDialogLayout.setVerticalGroup(
+            editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editFieldStationDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel29)
                 .addGap(21, 21, 21)
-                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(fieldStationName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationyCoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26))
                 .addGap(18, 18, 18)
-                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationxCoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27))
                 .addGap(18, 18, 18)
-                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel28))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmAddFieldStation)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmEditFieldstation)
                     .addComponent(cancelFieldStation))
                 .addGap(52, 52, 52))
         );
@@ -1499,10 +1504,10 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel33.setText("Type");
 
-        confirmEditFieldStation.setText("Add");
-        confirmEditFieldStation.addActionListener(new java.awt.event.ActionListener() {
+        confirmAddFieldstation.setText("Add");
+        confirmAddFieldstation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmEditFieldStationActionPerformed(evt);
+                confirmAddFieldstationActionPerformed(evt);
             }
         });
 
@@ -1511,60 +1516,60 @@ public class GUI extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel34.setText("Add Field Station");
 
-        javax.swing.GroupLayout editFieldStationDialogLayout = new javax.swing.GroupLayout(editFieldStationDialog.getContentPane());
-        editFieldStationDialog.getContentPane().setLayout(editFieldStationDialogLayout);
-        editFieldStationDialogLayout.setHorizontalGroup(
-            editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editFieldStationDialogLayout.createSequentialGroup()
+        javax.swing.GroupLayout addFieldStationDialogLayout = new javax.swing.GroupLayout(addFieldStationDialog.getContentPane());
+        addFieldStationDialog.getContentPane().setLayout(addFieldStationDialogLayout);
+        addFieldStationDialogLayout.setHorizontalGroup(
+            addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(editFieldStationDialogLayout.createSequentialGroup()
-                        .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addFieldStationDialogLayout.createSequentialGroup()
+                        .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel30)
                             .addComponent(jLabel31)
                             .addComponent(jLabel32)
                             .addComponent(jLabel33))
                         .addGap(18, 18, 18)
-                        .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fieldStationType1)
                             .addComponent(fieldStationxCoord1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(fieldStationyCoord1)
                             .addComponent(fieldStationName1)))
-                    .addGroup(editFieldStationDialogLayout.createSequentialGroup()
+                    .addGroup(addFieldStationDialogLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel34)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(editFieldStationDialogLayout.createSequentialGroup()
+            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmEditFieldStation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmAddFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(cancelFieldStation1)
                 .addGap(57, 57, 57))
         );
-        editFieldStationDialogLayout.setVerticalGroup(
-            editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(editFieldStationDialogLayout.createSequentialGroup()
+        addFieldStationDialogLayout.setVerticalGroup(
+            addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addFieldStationDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel34)
                 .addGap(21, 21, 21)
-                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(fieldStationName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationyCoord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31))
                 .addGap(18, 18, 18)
-                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationxCoord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32))
                 .addGap(18, 18, 18)
-                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationType1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmEditFieldStation)
+                .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmAddFieldstation)
                     .addComponent(cancelFieldStation1))
                 .addGap(52, 52, 52))
         );
@@ -2032,9 +2037,13 @@ public class GUI extends javax.swing.JFrame {
         showFieldStationPopup(null);
     }//GEN-LAST:event_addFieldStationBtnActionPerformed
 
-    private void confirmEditFieldStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFieldStationActionPerformed
+    private void confirmAddFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddFieldstationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirmEditFieldStationActionPerformed
+    }//GEN-LAST:event_confirmAddFieldstationActionPerformed
+
+    private void confirmEditFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFieldstationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmEditFieldstationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2109,10 +2118,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbSearch;
     private javax.swing.JButton confirmAddBtn;
     private javax.swing.JButton confirmAddFarmerBtn;
-    private javax.swing.JButton confirmAddFieldStation;
+    private javax.swing.JButton confirmAddFieldstation;
     private javax.swing.JButton confirmEditBtn;
     private javax.swing.JButton confirmEditFarmerBtn;
-    private javax.swing.JButton confirmEditFieldStation;
+    private javax.swing.JButton confirmEditFieldstation;
     private javax.swing.JButton confirmFarmerDelete;
     private javax.swing.JButton confirmFieldDelete;
     private javax.swing.JButton createFarmBtn;
