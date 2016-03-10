@@ -16,9 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class GUI extends javax.swing.JFrame {
 
-    public Field[] selectedFields;
-    public Farm[] selectedFarms;
-    public FieldStation[] selectedFieldStations;
     public SetOfFarms theFarms;
     public SetOfFarmers theFarmers;
     public Data[] resultData;
@@ -47,7 +44,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void initFarmers() {
-        theFarmers.addFarmer("Tom Mills", "test@gmail.com", "01234567890", 4238746, new SetOfFarms());
+        theFarmers.addFarmer("Tom Mills", "test@gmail.com", "01234567890", 423874, new SetOfFarms());
         theFarmers.addFarmer("Luke Waugh", "test@gmail.com", "01234567890", 326874, new SetOfFarms());
     }
 
@@ -61,8 +58,8 @@ public class GUI extends javax.swing.JFrame {
      * @return
      */
     public Farm selectFarm(int id) {
-        // TODO implement here
-        return null;
+        Farm tmp = theFarms.getFarmByNumber(id);
+        return tmp;
     }
 
     /**
@@ -74,9 +71,9 @@ public class GUI extends javax.swing.JFrame {
      * @param int
      * @return
      */
-    public Field selectField(int id) {
-        // TODO implement here
-        return null;
+    public Field selectField(Farm farm, int id) {
+        Field tmp = farm.getFieldByNumber(id);
+        return tmp;
     }
 
     /**
@@ -127,28 +124,6 @@ public class GUI extends javax.swing.JFrame {
     }
 
     /**
-     * allows the user to select multiple farms at once by setting the data from
-     * their clicks (i.e. what farms they've selected) into the relevant arrays
-     * e.g. selectedfarms[]
-     *
-     * @return
-     */
-    public void setSelectedFarms() {
-    }
-
-    /**
-     * @return
-     */
-    public void setSelectedFields() {
-    }
-
-    /**
-     * @return
-     */
-    public void setSelectedFieldStations() {
-    }
-
-    /**
      * triggers a "backup" in a real system, but here could just trigger
      * serialization at a specific interval e.g. daily
      *
@@ -166,28 +141,19 @@ public class GUI extends javax.swing.JFrame {
     }
 
     /**
-     * provides a graphical representation of all farms in a scaled view
-     *
-     * The user will be able to interact with the view, i.e. clicking on farms,
-     * which adds that to 'selectedfarms[]' and switches to the showFarmView()
-     * view, which then allows the relevant operations to be done to it (such as
-     * selecting a field, etc.)
-     *
-     * @return
-     */
-    public void showHomeView() {
-    }
-
-    /**
      * @return
      */
     public void showFarmView() {
+        farmView.pack();
+        farmView.setVisible(true);
     }
 
     /**
      * @return
      */
     public void showFieldView() {
+        fieldsDialog.pack();
+        fieldsDialog.setVisible(true);
     }
 
     /**
@@ -205,6 +171,8 @@ public class GUI extends javax.swing.JFrame {
      * @return
      */
     public void showFarmersView() {
+        farmerDialog.pack();
+        farmerDialog.setVisible(true);
     }
 
     /**
@@ -218,6 +186,8 @@ public class GUI extends javax.swing.JFrame {
      * @return
      */
     public void showFarmerPopup(Farmer farmer) {
+        addFarmerDialog.pack();
+        addFarmerDialog.setVisible(true);
     }
 
     /**
@@ -225,6 +195,8 @@ public class GUI extends javax.swing.JFrame {
      * @return
      */
     public void showFarmPopup(Farm farm) {
+        addFarmDialog.pack();
+        addFarmDialog.setVisible(true);
     }
 
     /**
@@ -232,7 +204,8 @@ public class GUI extends javax.swing.JFrame {
      * @return
      */
     public void showFieldPopup(Field field) {
-
+        addFieldDialog.pack();
+        addFieldDialog.setVisible(true);
     }
 
     /**
@@ -247,18 +220,6 @@ public class GUI extends javax.swing.JFrame {
      * @return
      */
     public void showSensorPopup(Sensor Sensor) {
-
-    }
-
-    /**
-     * Takes the user back to the previous view
-     *
-     * e.g. If the user is in the fieldStation view, return to the field view -
-     * i.e., call showFieldView() again with the relevant params from before
-     *
-     * @return
-     */
-    public void goBack() {
 
     }
 
