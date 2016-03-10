@@ -518,7 +518,22 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="typeInput" min="-2" pref="144" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="fieldIdSpin" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -541,38 +556,28 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="typeInput" min="-2" pref="144" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="fieldIdSpin" min="-2" pref="132" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                                  <Component id="confirmEditBtn" min="-2" pref="91" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="createFarmBtn" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="createFarmBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="88" max="32767" attributes="0"/>
                   <Component id="farmCancelBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nameInput" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nameLblAddFarm" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -597,10 +602,9 @@
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fieldIdSpin" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="createFarmBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmEditBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="farmCancelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -652,14 +656,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createFarmBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="confirmEditBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit Farm"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmEditBtnActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="farmCancelBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
@@ -667,6 +663,14 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="farmCancelBtnActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel35">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Add Farm"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -1613,6 +1617,168 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add Field Station"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="editFarmDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="typeInput1" min="-2" pref="144" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="fieldIdSpin1" min="-2" pref="132" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nameLblAddFarm1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="nameInput1" min="-2" pref="147" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="yCoordSpin1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="xLabelAddFarm1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="xCoordSpin1" min="-2" pref="57" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="confirmEditFarmBtn1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="88" max="32767" attributes="0"/>
+                  <Component id="farmCancelBtn1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nameInput1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameLblAddFarm1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="xLabelAddFarm1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="xCoordSpin1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="yCoordSpin1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="typeInput1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldIdSpin1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="confirmEditFarmBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="farmCancelBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="nameInput1">
+        </Component>
+        <Component class="javax.swing.JLabel" name="nameLblAddFarm1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="xLabelAddFarm1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="x Coord"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel36">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="y Coord"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="xCoordSpin1">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="yCoordSpin1">
+        </Component>
+        <Component class="javax.swing.JTextField" name="typeInput1">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel37">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Type"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel38">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Farm ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="fieldIdSpin1">
+        </Component>
+        <Component class="javax.swing.JButton" name="confirmEditFarmBtn1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edit Farm"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmEditFarmBtn1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="farmCancelBtn1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="farmCancelBtn1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel39">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Edit Farm"/>
           </Properties>
         </Component>
       </SubComponents>

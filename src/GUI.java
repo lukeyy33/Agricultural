@@ -420,8 +420,8 @@ public class GUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         fieldIdSpin = new javax.swing.JSpinner();
         createFarmBtn = new javax.swing.JButton();
-        confirmEditBtn = new javax.swing.JButton();
         farmCancelBtn = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
         deleteFarmDialog = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         delFarmNameLbl = new javax.swing.JLabel();
@@ -500,6 +500,20 @@ public class GUI extends javax.swing.JFrame {
         confirmAddFieldstation = new javax.swing.JButton();
         cancelFieldStation1 = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
+        editFarmDialog = new javax.swing.JDialog();
+        nameInput1 = new javax.swing.JTextField();
+        nameLblAddFarm1 = new javax.swing.JLabel();
+        xLabelAddFarm1 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        xCoordSpin1 = new javax.swing.JSpinner();
+        yCoordSpin1 = new javax.swing.JSpinner();
+        typeInput1 = new javax.swing.JTextField();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        fieldIdSpin1 = new javax.swing.JSpinner();
+        confirmEditFarmBtn1 = new javax.swing.JButton();
+        farmCancelBtn1 = new javax.swing.JButton();
+        jLabel39 = new javax.swing.JLabel();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -857,13 +871,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        confirmEditBtn.setText("Edit Farm");
-        confirmEditBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmEditBtnActionPerformed(evt);
-            }
-        });
-
         farmCancelBtn.setText("Cancel");
         farmCancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -871,13 +878,27 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel35.setText("Add Farm");
+
         javax.swing.GroupLayout addFarmDialogLayout = new javax.swing.GroupLayout(addFarmDialog.getContentPane());
         addFarmDialog.getContentPane().setLayout(addFarmDialogLayout);
         addFarmDialogLayout.setHorizontalGroup(
             addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addFarmDialogLayout.createSequentialGroup()
-                .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addFarmDialogLayout.createSequentialGroup()
+                .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addFarmDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addFarmDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(typeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addFarmDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldIdSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(addFarmDialogLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addFarmDialogLayout.createSequentialGroup()
@@ -895,28 +916,21 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(xCoordSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(addFarmDialogLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addFarmDialogLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(typeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addFarmDialogLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldIdSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addFarmDialogLayout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(confirmEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(createFarmBtn)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createFarmBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(farmCancelBtn)
                 .addGap(46, 46, 46))
+            .addGroup(addFarmDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addFarmDialogLayout.setVerticalGroup(
             addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addFarmDialogLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addGap(16, 16, 16)
                 .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLblAddFarm))
@@ -936,10 +950,9 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(fieldIdSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createFarmBtn)
-                    .addComponent(confirmEditBtn)
                     .addComponent(farmCancelBtn))
                 .addGap(24, 24, 24))
         );
@@ -1574,6 +1587,109 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
         );
 
+        nameLblAddFarm1.setText("Name");
+
+        xLabelAddFarm1.setText("x Coord");
+
+        jLabel36.setText("y Coord");
+
+        jLabel37.setText("Type");
+
+        jLabel38.setText("Farm ID");
+
+        confirmEditFarmBtn1.setText("Edit Farm");
+        confirmEditFarmBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmEditFarmBtn1ActionPerformed(evt);
+            }
+        });
+
+        farmCancelBtn1.setText("Cancel");
+        farmCancelBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmCancelBtn1ActionPerformed(evt);
+            }
+        });
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel39.setText("Edit Farm");
+
+        javax.swing.GroupLayout editFarmDialogLayout = new javax.swing.GroupLayout(editFarmDialog.getContentPane());
+        editFarmDialog.getContentPane().setLayout(editFarmDialogLayout);
+        editFarmDialogLayout.setHorizontalGroup(
+            editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editFarmDialogLayout.createSequentialGroup()
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editFarmDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editFarmDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel37)
+                                .addGap(18, 18, 18)
+                                .addComponent(typeInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editFarmDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldIdSpin1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(editFarmDialogLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editFarmDialogLayout.createSequentialGroup()
+                                .addComponent(nameLblAddFarm1)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editFarmDialogLayout.createSequentialGroup()
+                                    .addComponent(jLabel36)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(yCoordSpin1))
+                                .addGroup(editFarmDialogLayout.createSequentialGroup()
+                                    .addComponent(xLabelAddFarm1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(xCoordSpin1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(editFarmDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(confirmEditFarmBtn1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(farmCancelBtn1)
+                .addGap(46, 46, 46))
+            .addGroup(editFarmDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        editFarmDialogLayout.setVerticalGroup(
+            editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editFarmDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel39)
+                .addGap(16, 16, 16)
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameInput1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameLblAddFarm1))
+                .addGap(18, 18, 18)
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(xLabelAddFarm1)
+                    .addComponent(xCoordSpin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(yCoordSpin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeInput1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel37))
+                .addGap(18, 18, 18)
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(fieldIdSpin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(editFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmEditFarmBtn1)
+                    .addComponent(farmCancelBtn1))
+                .addGap(24, 24, 24))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cmbFarms.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1741,24 +1857,6 @@ public class GUI extends javax.swing.JFrame {
         Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
         showFarmPopup(tmp);
     }//GEN-LAST:event_editFarmBtnActionPerformed
-
-    private void confirmEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditBtnActionPerformed
-        // TODO add your handling code here:
-        String name = nameInput.getText();
-        int x = (int) xCoordSpin.getValue();
-        int y = (int) yCoordSpin.getValue();
-        String type = typeInput.getText();
-        int id = (int) fieldIdSpin.getValue();
-        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
-        tmp.updateFarmInfo(name, new Location(x, y, type), id);
-        populateCmbFarms();
-        addFarmDialog.setVisible(false);
-        nameInput.setText("");
-        xCoordSpin.setValue(0);
-        yCoordSpin.setValue(0);
-        typeInput.setText("");
-        fieldIdSpin.setValue(0);
-    }//GEN-LAST:event_confirmEditBtnActionPerformed
 
     private void farmCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmCancelBtnActionPerformed
         // TODO add your handling code here:
@@ -2045,6 +2143,14 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmEditFieldstationActionPerformed
 
+    private void confirmEditFarmBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFarmBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmEditFarmBtn1ActionPerformed
+
+    private void farmCancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmCancelBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_farmCancelBtn1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2119,7 +2225,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton confirmAddBtn;
     private javax.swing.JButton confirmAddFarmerBtn;
     private javax.swing.JButton confirmAddFieldstation;
-    private javax.swing.JButton confirmEditBtn;
+    private javax.swing.JButton confirmEditFarmBtn1;
     private javax.swing.JButton confirmEditFarmerBtn;
     private javax.swing.JButton confirmEditFieldstation;
     private javax.swing.JButton confirmFarmerDelete;
@@ -2134,10 +2240,12 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog deleteFieldDialog;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton editFarmBtn;
+    private javax.swing.JDialog editFarmDialog;
     private javax.swing.JButton editFarmerBtn;
     private javax.swing.JButton editFieldBtn;
     private javax.swing.JDialog editFieldStationDialog;
     private javax.swing.JButton farmCancelBtn;
+    private javax.swing.JButton farmCancelBtn1;
     private javax.swing.JDialog farmView;
     private javax.swing.JDialog farmerDialog;
     private javax.swing.JLabel farmerEmailLbl;
@@ -2148,6 +2256,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTable farmerTable;
     private javax.swing.JLabel farmsLbl;
     private javax.swing.JSpinner fieldIdSpin;
+    private javax.swing.JSpinner fieldIdSpin1;
     private javax.swing.JLabel fieldLbl;
     private javax.swing.JLabel fieldNameLbl;
     private javax.swing.JTextField fieldStationName;
@@ -2189,6 +2298,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2211,7 +2325,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel menuLbl;
     private javax.swing.JLabel menuLbl1;
     private javax.swing.JTextField nameInput;
+    private javax.swing.JTextField nameInput1;
     private javax.swing.JLabel nameLblAddFarm;
+    private javax.swing.JLabel nameLblAddFarm1;
     private javax.swing.JButton removeFieldBtn;
     private javax.swing.JButton removeFromAssociatedBtn;
     private javax.swing.JDialog searchFailed;
@@ -2220,10 +2336,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton showFarmsBtn;
     private javax.swing.JButton showFieldBtn;
     private javax.swing.JTextField typeInput;
+    private javax.swing.JTextField typeInput1;
     private javax.swing.JButton viewFarmersBtn;
     private javax.swing.JSpinner xCoordSpin;
+    private javax.swing.JSpinner xCoordSpin1;
     private javax.swing.JLabel xLabelAddFarm;
+    private javax.swing.JLabel xLabelAddFarm1;
     private javax.swing.JSpinner yCoordSpin;
+    private javax.swing.JSpinner yCoordSpin1;
     // End of variables declaration//GEN-END:variables
 
 }
