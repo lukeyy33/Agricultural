@@ -92,7 +92,6 @@ public class FarmTest {
         assertEquals("1", Integer.toString((int) farm.getLocation().getYCoord()));        
         assertEquals("farmTest", farm.getLocation().getType());
         
-        
     }
 
 }
