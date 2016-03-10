@@ -23,6 +23,7 @@ public class GUI extends javax.swing.JFrame {
     public SetOfFarmers theFarmers;
     public Data[] resultData;
     public ConnectionHandler handler;
+    
 
     public GUI() throws ParseException {
         initComponents();
@@ -222,12 +223,12 @@ public class GUI extends javax.swing.JFrame {
 
     public void showFarmPopup(Farm farm) {
         if (farm == null) {
-            confirmEditBtn.setVisible(false);
+            confirmEditFarmBtn1 .setVisible(false);
             createFarmBtn.setVisible(true);
             addFarmDialog.pack();
             addFarmDialog.setVisible(true);
         } else {
-            confirmEditBtn.setVisible(true);
+            confirmEditFarmBtn1.setVisible(true);
             createFarmBtn.setVisible(false);
             nameInput.setText(farm.getName());
             xCoordSpin.setValue(farm.getLocation().getXCoord());
@@ -404,7 +405,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnEditFieldstation = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         cmbFieldStations = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
@@ -783,7 +784,12 @@ public class GUI extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel22.setText("Field");
 
-        jButton2.setText("Edit FieldStation");
+        btnEditFieldstation.setText("Edit FieldStation");
+        btnEditFieldstation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditFieldstationActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Remove FieldStation");
 
@@ -821,7 +827,7 @@ public class GUI extends javax.swing.JFrame {
                                             .addGroup(fieldsDialogLayout.createSequentialGroup()
                                                 .addComponent(addFieldStationBtn)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jButton2)
+                                                .addComponent(btnEditFieldstation)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton3)))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
@@ -849,7 +855,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addFieldStationBtn)
-                    .addComponent(jButton2)
+                    .addComponent(btnEditFieldstation)
                     .addComponent(jButton3))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -2136,7 +2142,22 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_addFieldStationBtnActionPerformed
 
     private void confirmAddFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddFieldstationActionPerformed
-        // TODO add your handling code here:
+        // Capture variables from the Form
+        int x = (Integer)fieldStationyCoord1.getValue();
+        int y = (Integer)fieldStationxCoord1.getValue();
+        String name = fieldStationName1.getText();
+        
+        // Create a New Location and FieldStation
+        Location location = new Location(x, y, name);
+        FieldStation fieldStation = new FieldStation(name, location);
+        
+        // Get the selected Farm and Fieldstation
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        selectField(tmpFarm, (Integer) cmbFields.getSelectedItem()).addFieldStation(location, name); ;
+        
+        cmbFieldStations.addItem(name);
+        
+        addFieldStationDialog.setVisible(false);
     }//GEN-LAST:event_confirmAddFieldstationActionPerformed
 
     private void confirmEditFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFieldstationActionPerformed
@@ -2150,6 +2171,11 @@ public class GUI extends javax.swing.JFrame {
     private void farmCancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmCancelBtn1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_farmCancelBtn1ActionPerformed
+
+    private void btnEditFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditFieldstationActionPerformed
+        editFieldStationDialog.setVisible(true);
+        editFieldStationDialog.pack();
+    }//GEN-LAST:event_btnEditFieldstationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2209,6 +2235,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton addToAssociatedBtn;
     private javax.swing.JTable allFarmsTable;
     private javax.swing.JTable associatedFarmsTable;
+    private javax.swing.JButton btnEditFieldstation;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton cancelAddFarmerBtn;
     private javax.swing.JButton cancelBtn;
@@ -2268,7 +2295,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner fieldStationyCoord;
     private javax.swing.JSpinner fieldStationyCoord1;
     private javax.swing.JDialog fieldsDialog;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
