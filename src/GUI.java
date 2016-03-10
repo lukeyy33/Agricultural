@@ -23,7 +23,6 @@ public class GUI extends javax.swing.JFrame {
     public SetOfFarmers theFarmers;
     public Data[] resultData;
     public ConnectionHandler handler;
-    public Location[] locations = new Location[8];
 
     public GUI() throws ParseException {
         initComponents();
@@ -32,155 +31,6 @@ public class GUI extends javax.swing.JFrame {
         initFields();
         theFarmers = new SetOfFarmers();
         initFarmers();
-    }
-
-    /**
-     * The user clicks on buttons/images, which then populate the relevant
-     * fields such as 'selectedFarms'. once that object is in scope (i.e.
-     * selected), the user can do various operations on it by clicking
-     * buttons/images on the GUI that perform the functions listed
-     */
-    //the user will select a farm from the gui which will then get the farm from setOfFarms using the farmno
-    /**
-     * The user clicks on buttons/images, which then populate the relevant
-     * fields such as 'selectedFarms'.once that object is in scope (i.e.
-     * selected), the user can do various operations on it by clicking
-     * buttons/images on the GUI that perform the functions listed
-     *
-     * @param farmNo
-     * @return
-     */
-    public Farm selectFarm(int farmNo) {
-        Farm tmp = theFarms.getFarmByNumber(farmNo);
-        return tmp;
-    }
-    //The user will select a field from the gui which will get the field by the fieldno from the fields within the selected farm
-
-    public Field selectField(Farm farm, int fieldNo) {
-        Field tmp = farm.getFieldByNumber(fieldNo);
-        return tmp;
-    }
-    //user selects a fieldStation from the gui and gets the fieldStation from the set of fields using the fieldstationno
-
-    public FieldStation selectFieldStation(int fieldStationNo) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * Output the array of resultData in a formatted way (E.g Table, Graph)
-     * based on the user requested output type type (e.g. Graph, Table, etc)
-     *
-     * @param showResultsPopup
-     */
-    public void showResultsPopup(String showResultsPopup) {
-        // TODO implement here
-
-    }
-
-    /**
-     * calls getSelectedFieldStationData(), if a single field station(s) is not
-     * selected then walk down the tree of farms,fields,fieldStations to
-     * retrieve the fieldSations. Once the data has been retrieved the
-     * selectedFarms/Fields/FieldStations arrays would be cleared If the user
-     * has selected to view rainfall data across the entire farm the method
-     * would iterate over all the fields in that farm and add the fieldStations
-     * within those fields to the selecteFieldStations array. Once all fields
-     * have been iterated over we have a complete list of all the fieldStations
-     * we need to call getFieldStationData() on
-     *
-     * @return
-     */
-    public Data[] selectData() {
-        // TODO implement here
-        return null;
-    }
-
-    //allows the user to select multiple farms at once by setting the data from their clicks (i.e. what farms they've selected) into the relevant arrays e.g. selectedfarms[]
-    public void setSelectedFarms() {
-        // TODO implement here
-    }
-
-    public void setSelectedFields() {
-        // TODO implement here
-    }
-
-    public void setSelectedFieldStations() {
-        // TODO implement here
-    }
-
-    //triggers a "backup" in a real system, but here could just trigger serialization at a specific interval e.g. daily 
-    public void backupData() {
-        // TODO implement here
-    }
-
-    //displays the results in a map view
-    public void showDevices() {
-        // TODO implement here
-    }
-
-    /**
-     * provides a graphical representation of all farms in a scaled view The
-     * user will be able to interact with the view, i.e. clicking on farms,
-     * which adds that to 'selectedfarms[]' and switches to the showFarmView()
-     * view, which then allows the relevant operations to be done to it (such as
-     * selecting a field, etc.)
-     */
-    public void showHomeView() {
-        // TODO implement here
-    }
-
-    public void showFarmView() {
-        farmView.pack();
-        farmView.setVisible(true);
-    }
-
-    public void showFieldView() {
-        fieldsDialog.pack();
-        fieldsDialog.setVisible(true);
-    }
-
-    public void showFieldStationView(FieldStation fieldStation) {
-    }
-
-    /**
-     * brings up a list of farmers currently registered in the system. The user
-     * can search for farmers using the various methods displayed in
-     * SetOfFarmers
-     */
-    public void showFarmersView(Farmer farmerPopup) {
-        farmerDialog.pack();
-        farmerDialog.setVisible(true);
-    }
-
-    public void showFarmStatusPopup(Farm farmPopup) {
-    }
-
-    /**
-     * pop up allowing users to add/edit fields for farmers. this is also the
-     * case for FarmPopup, FieldPopup, etc. if it has a parameter, then edit
-     * that parameter, if not then create a new object of the relevant type.
-     *
-     * @param farmerPopup
-     */
-    public void showSensorPopup(Sensor sensor) {
-        // TODO implement here
-
-    }
-
-    /**
-     * Takes the user back to the previous view e.g. If the user is in the
-     * fieldStation view, return to the field view - i.e., call showFieldView()
-     * again with the relevant params from before
-     */
-    public void goBack() {
-        // TODO implement here
-
-    }
-
-    public void exportToPDF() {
-        // TODO implement here
-
     }
 
     private void initFarms() {
@@ -199,6 +49,224 @@ public class GUI extends javax.swing.JFrame {
     private void initFarmers() {
         theFarmers.addFarmer("Tom Mills", "test@gmail.com", "01234567890", 4238746, new SetOfFarms());
         theFarmers.addFarmer("Luke Waugh", "test@gmail.com", "01234567890", 326874, new SetOfFarms());
+    }
+
+    /**
+     * params: farmno
+     *
+     * the user will select a farm from the gui which will then get the farm
+     * from setOfFarms using the farmno
+     *
+     * @param int
+     * @return
+     */
+    public Farm selectFarm(int id) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * params: fieldno
+     *
+     * The user will select a field from the gui which will get the field by the
+     * fieldno from the fields within the selected farm
+     *
+     * @param int
+     * @return
+     */
+    public Field selectField(int id) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * params: fieldstationno
+     *
+     * user selects a fieldStation from the gui and gets the fieldStation from
+     * the set of fields using the fieldstationno
+     *
+     * @param int
+     * @return
+     */
+    public FieldStation selectFieldStation(int id) {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * Output the array of resultData in a formatted way (E.g Table, Graph)
+     * based on the user requested output type
+     *
+     * Params: type (e.g. Graph, Table, etc)
+     *
+     * @param String
+     * @return
+     */
+    public void showResultsPopup(String in) {
+    }
+
+    /**
+     * calls getSelectedFieldStationData(), if a single field station(s) is not
+     * selected then walk down the tree of farms,fields,fieldStations to
+     * retrieve the fieldSations.
+     *
+     * Once the data has been retrieved the selectedFarms/Fields/FieldStations
+     * arrays would be cleared
+     *
+     * E.g If the user has selected to view rainfall data across the entire farm
+     * the method would iterate over all the fields in that farm and add the
+     * fieldStations within those fields to the selecteFieldStations array. Once
+     * all fields have been iterated over we have a complete list of all the
+     * fieldStations we need to call getFieldStationData() on
+     *
+     * @return
+     */
+    public Data[] selectData() {
+        // TODO implement here
+        return null;
+    }
+
+    /**
+     * allows the user to select multiple farms at once by setting the data from
+     * their clicks (i.e. what farms they've selected) into the relevant arrays
+     * e.g. selectedfarms[]
+     *
+     * @return
+     */
+    public void setSelectedFarms() {
+    }
+
+    /**
+     * @return
+     */
+    public void setSelectedFields() {
+    }
+
+    /**
+     * @return
+     */
+    public void setSelectedFieldStations() {
+    }
+
+    /**
+     * triggers a "backup" in a real system, but here could just trigger
+     * serialization at a specific interval e.g. daily
+     *
+     * @return
+     */
+    public void backupData() {
+    }
+
+    /**
+     * displays the results in a map view
+     *
+     * @return
+     */
+    public void showDevices() {
+    }
+
+    /**
+     * provides a graphical representation of all farms in a scaled view
+     *
+     * The user will be able to interact with the view, i.e. clicking on farms,
+     * which adds that to 'selectedfarms[]' and switches to the showFarmView()
+     * view, which then allows the relevant operations to be done to it (such as
+     * selecting a field, etc.)
+     *
+     * @return
+     */
+    public void showHomeView() {
+    }
+
+    /**
+     * @return
+     */
+    public void showFarmView() {
+    }
+
+    /**
+     * @return
+     */
+    public void showFieldView() {
+    }
+
+    /**
+     * @return
+     */
+    public void showFieldStationView() {
+    }
+
+    /**
+     * brings up a list of farmers currently registered in the system.
+     *
+     * The user can search for farmers using the various methods displayed in
+     * SetOfFarmers
+     *
+     * @return
+     */
+    public void showFarmersView() {
+    }
+
+    /**
+     * popup allowing users to add/edit fields for farmers. this is also the
+     * case for FarmPopup, FieldPopup, etc.
+     *
+     * if it has a param, then edit that param, if not then create a new object
+     * of the relevant type.
+     *
+     * @param Farmer
+     * @return
+     */
+    public void showFarmerPopup(Farmer farmer) {
+    }
+
+    /**
+     * @param Farm
+     * @return
+     */
+    public void showFarmPopup(Farm farm) {
+    }
+
+    /**
+     * @param Field
+     * @return
+     */
+    public void showFieldPopup(Field field) {
+
+    }
+
+    /**
+     * @param FieldStation
+     * @return
+     */
+    public void showFieldStationPopup(FieldStation station) {
+    }
+
+    /**
+     * @param Sensor
+     * @return
+     */
+    public void showSensorPopup(Sensor Sensor) {
+
+    }
+
+    /**
+     * Takes the user back to the previous view
+     *
+     * e.g. If the user is in the fieldStation view, return to the field view -
+     * i.e., call showFieldView() again with the relevant params from before
+     *
+     * @return
+     */
+    public void goBack() {
+
+    }
+
+    /**
+     * @return
+     */
+    public void exportToPDF() {
+
     }
 
     /**
@@ -1353,7 +1421,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         confirmEditBtn.setVisible(true);
         createFarmBtn.setVisible(false);
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         nameInput.setText(tmp.getName());
         xCoordSpin.setValue(tmp.getLocation().getXCoord());
         yCoordSpin.setValue(tmp.getLocation().getYCoord());
@@ -1370,7 +1438,7 @@ public class GUI extends javax.swing.JFrame {
         int y = (int) yCoordSpin.getValue();
         String type = typeInput.getText();
         int id = (int) fieldIdSpin.getValue();
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         tmp.updateFarmInfo(name, new Location(x, y, type), id);
         cmbFarms.removeAllItems();
         for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
@@ -1403,7 +1471,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ConfirmDelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmDelBtnActionPerformed
         // TODO add your handling code here:
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         theFarms.removeFarm(tmp);
         cmbFarms.removeAllItems();
         for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
@@ -1439,8 +1507,8 @@ public class GUI extends javax.swing.JFrame {
             int area1 = (int) addFieldArea.getValue();
             area = (float) area1;
         }
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
-        Field tmpField = tmp.getFieldByNumber((Integer)cmbFields.getSelectedItem());
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = tmp.getFieldByNumber((Integer) cmbFields.getSelectedItem());
         tmpField.updateFieldInfo(name, type, fieldNo, crop, area);
         cmbFields.removeAllItems();
         for (int i = 0; i < tmp.getAllFields().length; i++) {
@@ -1456,8 +1524,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void editFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFieldBtnActionPerformed
         // TODO add your handling code here:
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
-        Field tmpField = tmp.getFieldByNumber((Integer)cmbFields.getSelectedItem());
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = tmp.getFieldByNumber((Integer) cmbFields.getSelectedItem());
         addFieldName.setText(tmpField.getName());
         addFieldType.setText(tmpField.getType());
         addFieldNo.setValue(tmpField.getFieldNumber());
@@ -1476,7 +1544,7 @@ public class GUI extends javax.swing.JFrame {
         int fieldNo = (int) addFieldNo.getValue();
         String crop = addFieldCrop.getText();
         float area = ((int) addFieldArea.getValue() / (float) 1);
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
         tmp.addField(name, type, fieldNo, crop, area);
         cmbFields.removeAllItems();
         for (int i = 0; i < tmp.getAllFields().length; i++) {
@@ -1515,8 +1583,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void confirmFieldDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFieldDeleteActionPerformed
         // TODO add your handling code here:
-        Farm tmp = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
-        int id = (Integer)cmbFields.getSelectedItem();
+        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        int id = (Integer) cmbFields.getSelectedItem();
         tmp.removeField(id);
         cmbFields.removeAllItems();
         for (int i = 0; i < tmp.getAllFields().length; i++) {
@@ -1611,8 +1679,8 @@ public class GUI extends javax.swing.JFrame {
         String phone = addFarmerPhone.getText();
         int id = (int) addFarmerId.getValue();
         SetOfFarms farms = new SetOfFarms();
-        for(int i = 0; i < associatedFarmsTable.getRowCount();i++){
-            Farm tmp = theFarms.getFarmByNumber((Integer)associatedFarmsTable.getValueAt(i, 0));
+        for (int i = 0; i < associatedFarmsTable.getRowCount(); i++) {
+            Farm tmp = theFarms.getFarmByNumber((Integer) associatedFarmsTable.getValueAt(i, 0));
             farms.addFarmAlreadyInSystem(tmp);
         }
         theFarmers.addFarmer(name, email, phone, id, farms);
@@ -1688,11 +1756,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void addToAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToAssociatedBtnActionPerformed
         int row = allFarmsTable.getSelectedRow();
-        Farm tmp = theFarms.getFarmByNumber((Integer)allFarmsTable.getValueAt(row, 0));
+        Farm tmp = theFarms.getFarmByNumber((Integer) allFarmsTable.getValueAt(row, 0));
         int ida = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmpFarmer = theFarmers.getFarmerByNumber(ida);
         tmpFarmer.getAssociatedFarms().addFarmAlreadyInSystem(tmp);
-        
+
         SetOfFarms tmpFarms = theFarmers.getFarmerByNumber(tmpFarmer.getId()).getAssociatedFarms();
         Object[] data = new Object[1];
         DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
@@ -1706,11 +1774,11 @@ public class GUI extends javax.swing.JFrame {
     private void removeFromAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromAssociatedBtnActionPerformed
         // TODO add your handling code here:
         int row = associatedFarmsTable.getSelectedRow();
-        Farm tmp = theFarms.getFarmByNumber((Integer)associatedFarmsTable.getValueAt(row, 0));
+        Farm tmp = theFarms.getFarmByNumber((Integer) associatedFarmsTable.getValueAt(row, 0));
         int ida = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmpFarmer = theFarmers.getFarmerByNumber(ida);
         tmpFarmer.getAssociatedFarms().removeFarm(tmp);
-        
+
         SetOfFarms tmpFarms = tmpFarmer.getAssociatedFarms();
         Object[] data = new Object[1];
         DefaultTableModel model = (DefaultTableModel) associatedFarmsTable.getModel();
@@ -1723,8 +1791,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void showFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFieldBtnActionPerformed
         // TODO add your handling code here:
-        Farm tmpFarm = theFarms.getFarmByNumber((Integer)cmbFarms.getSelectedItem());
-        Field tmp = tmpFarm.getFieldByNumber((Integer)cmbFields.getSelectedItem());
+        Farm tmpFarm = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Field tmp = tmpFarm.getFieldByNumber((Integer) cmbFields.getSelectedItem());
         lblFieldName.setText("Name: " + tmp.getName());
         lblFieldType.setText("Type: " + tmp.getType());
         lblFieldCrop.setText("Crop: " + tmp.getCrop().getName());

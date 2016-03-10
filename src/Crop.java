@@ -1,20 +1,23 @@
+
 import java.util.*;
 
 public class Crop {
 
-    public Crop() {
-    }
     private String name;
     private Date plantedTime;
     //for each individual plant in m^2
     private float areaRequired;
 
-    public Crop(String n, float a){
+    public Crop() {
+    }
+
+    public Crop(String n, float a) {
         name = n;
         areaRequired = a;
         plantedTime = new Date();
     }
-    public Crop(String n, float a, Date d){
+
+    public Crop(String n, float a, Date d) {
         name = n;
         areaRequired = a;
         plantedTime = d;

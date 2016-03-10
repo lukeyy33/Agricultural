@@ -1,7 +1,8 @@
+
 import java.util.*;
 
 /**
- * 
+ *
  */
 public class RainfallSensor extends Sensor {
 

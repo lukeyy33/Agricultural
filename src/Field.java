@@ -3,17 +3,6 @@ import java.util.*;
 
 public class Field {
 
-    public Field() {
-    }
-
-    public Field(String name, String type, int fieldNo, String cropName, float cropArea) {
-        this.name = name;
-        this.type = type;
-        this.fieldNo = fieldNo;
-        this.crop = new Crop(cropName, cropArea);
-        this.fieldStations = new FieldStation[0];
-    }
-
     private FieldStation[] fieldStations;
     private String name;
     private int fieldNo;
@@ -26,6 +15,17 @@ public class Field {
     private Crop crop;
     // list of plantings, i.e. history
     private Planting[] plantings;
+
+    public Field() {
+    }
+
+    public Field(String name, String type, int fieldNo, String cropName, float cropArea) {
+        this.name = name;
+        this.type = type;
+        this.fieldNo = fieldNo;
+        this.crop = new Crop(cropName, cropArea);
+        this.fieldStations = new FieldStation[0];
+    }
 
     public FieldStation getFieldStationByName(String fieldStationName) {
         FieldStation tmp = new FieldStation();
@@ -48,8 +48,8 @@ public class Field {
     }
 
     public void addFieldStation(Location currentLocation, String name) {
-        FieldStation tmp[] = new FieldStation[fieldStations.length+1];
-        for(int i = 0; i< fieldStations.length;i++){
+        FieldStation tmp[] = new FieldStation[fieldStations.length + 1];
+        for (int i = 0; i < fieldStations.length; i++) {
             tmp[i] = fieldStations[i];
         }
         tmp[fieldStations.length] = new FieldStation(name, currentLocation);
@@ -57,15 +57,15 @@ public class Field {
     }
 
     public void removeFieldStation(FieldStation fieldStation) {
-        for(int i = 0; i < fieldStations.length; i++){
-            if(fieldStations[i] == fieldStation){
-                for(int j = i; j < fieldStations.length; j++){
-                    fieldStations[j] = fieldStations[j+1];
+        for (int i = 0; i < fieldStations.length; i++) {
+            if (fieldStations[i] == fieldStation) {
+                for (int j = i; j < fieldStations.length; j++) {
+                    fieldStations[j] = fieldStations[j + 1];
                 }
             }
         }
-        FieldStation tmp[] = new FieldStation[fieldStations.length-1];
-        for(int i=0; i < fieldStations.length-1;i++){
+        FieldStation tmp[] = new FieldStation[fieldStations.length - 1];
+        for (int i = 0; i < fieldStations.length - 1; i++) {
             tmp[i] = fieldStations[i];
         }
         fieldStations = tmp;

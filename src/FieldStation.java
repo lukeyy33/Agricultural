@@ -8,14 +8,6 @@ import java.util.*;
  * - can be moved within a field (hence currentlocation)
  */
 public class FieldStation {
-
-    public FieldStation() {
-    }
-    
-    public FieldStation(String nameIn, Location location) {
-        currentLocation = location;
-        name = nameIn;
-    }
     
     private Location currentLocation;
     private Sensor[] sensors;
@@ -35,6 +27,16 @@ public class FieldStation {
      * "cm/3"
      */
     private Data[] data;
+
+
+    public FieldStation() {
+    }
+    
+    public FieldStation(String nameIn, Location location) {
+        currentLocation = location;
+        name = nameIn;
+    }
+    
 
     /**
      * params: startTime, endTime, sensorTypes[], cropTypes[]

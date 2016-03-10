@@ -7,6 +7,11 @@ import java.util.*;
  */
 public class Farm {
 
+    private Field[] fields;
+    private String name;
+    private int farmNo;
+    private Location location;
+
     public Farm() {
     }
 
@@ -17,18 +22,13 @@ public class Farm {
         fields = new Field[0];
     }
 
-    private Field[] fields;
-    private String name;
-    private int farmNo;
-    private Location location;
-
     public Field[] getAllFields() {
         return this.fields;
     }
 
     public Field getFieldByNumber(int fieldNumber) {
-        for(int i = 0; i<fields.length; i++){
-            if(fields[i].getFieldNumber() == fieldNumber){
+        for (int i = 0; i < fields.length; i++) {
+            if (fields[i].getFieldNumber() == fieldNumber) {
                 return fields[i];
             }
         }
@@ -36,8 +36,8 @@ public class Farm {
     }
 
     public Field getFieldByName(String fieldName) {
-        for(int i = 0; i<fields.length; i++){
-            if(fields[i].getName().equalsIgnoreCase(fieldName)){
+        for (int i = 0; i < fields.length; i++) {
+            if (fields[i].getName().equalsIgnoreCase(fieldName)) {
                 return fields[i];
             }
         }
@@ -45,8 +45,8 @@ public class Farm {
     }
 
     public void addField(String name, String type, int fieldNo, String cropName, float cropArea) {
-        Field tmp[] = new Field[fields.length+1];
-        for(int i = 0; i< fields.length;i++){
+        Field tmp[] = new Field[fields.length + 1];
+        for (int i = 0; i < fields.length; i++) {
             tmp[i] = fields[i];
         }
         tmp[fields.length] = new Field(name, type, fieldNo, cropName, cropArea);
@@ -56,7 +56,7 @@ public class Farm {
     public void removeField(int number) {
         for (int i = 0; i < fields.length; i++) {
             if (fields[i].getFieldNumber() == number) {
-                for (int j = i; j < fields.length-1; j++) {
+                for (int j = i; j < fields.length - 1; j++) {
                     fields[j] = fields[j + 1];
                 }
             }
@@ -78,20 +78,11 @@ public class Farm {
         return this.name;
     }
 
-    public void setFields(Field[] fs) {
-        this.fields = fs;
-    }
-
     public int getFarmNo() {
         return this.farmNo;
     }
-    
-    public Location getLocation(){
+
+    public Location getLocation() {
         return this.location;
     }
-    
-    public String toString(){
-        return name;
-    }
-    
 }
