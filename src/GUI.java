@@ -17,14 +17,36 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author Dan
+ */
 public class GUI extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public SetOfFarms theFarms;
+
+    /**
+     *
+     */
     public SetOfFarmers theFarmers;
+
+    /**
+     *
+     */
     public Data[] resultData;
+
+    /**
+     *
+     */
     public ConnectionHandler handler;
     
-
+    /**
+     *
+     * @throws ParseException
+     */
     public GUI() throws ParseException {
         initComponents();
         loadFarms();
@@ -97,16 +119,33 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Returns a farm by ID
+     * @param id
+     * @return
+     */
     public Farm selectFarm(int id) {
         Farm tmp = theFarms.getFarmByNumber(id);
         return tmp;
     }
 
+    /**
+     *Returns a field by ID
+     * @param farm
+     * @param id
+     * @return
+     */
     public Field selectField(Farm farm, int id) {
         Field tmp = farm.getFieldByNumber(id);
         return tmp;
     }
 
+    /**
+     * Returns a fieldStation by ID
+     * @param field
+     * @param id
+     * @return
+     */
     public FieldStation selectFieldStation(Field field, int id) {
         FieldStation tmp = field.getFieldStationByNumber(id);
         return tmp;
@@ -118,8 +157,7 @@ public class GUI extends javax.swing.JFrame {
      *
      * Params: type (e.g. Graph, Table, etc)
      *
-     * @param String
-     * @return
+     * @param in
      */
     public void showResultsPopup(String in) {
     }
@@ -149,7 +187,6 @@ public class GUI extends javax.swing.JFrame {
      * triggers a "backup" in a real system, but here could just trigger
      * serialization at a specific interval e.g. daily
      *
-     * @return
      */
     public void backupData() {
     }
@@ -157,29 +194,44 @@ public class GUI extends javax.swing.JFrame {
     /**
      * displays the results in a map view
      *
-     * @return
      */
     public void showDevices() {
     }
 
+    /**
+     * Shows the Farm View
+     */
     public void showFarmView() {
         farmView.pack();
         farmView.setVisible(true);
     }
 
+    /**
+     *Shows the Field View
+     */
     public void showFieldView() {
         fieldsDialog.pack();
         fieldsDialog.setVisible(true);
     }
 
+    /**
+     *Shows the FieldStation View
+     */
     public void showFieldStationView() {
     }
 
+    /**
+     *Shows the Farmers View
+     */
     public void showFarmersView() {
         farmerDialog.pack();
         farmerDialog.setVisible(true);
     }
 
+    /**
+     * Shows the Farmer Popup
+     * @param farmer
+     */
     public void showFarmerPopup(Farmer farmer) {
         if (farmer == null) {
             confirmAddFarmerBtn.setVisible(true);
@@ -221,6 +273,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Shows the Farm Popup
+     * @param farm
+     */
     public void showFarmPopup(Farm farm) {
         if (farm == null) {
             confirmEditFarmBtn1 .setVisible(false);
@@ -240,6 +296,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Shows the Field Popup
+     * @param field
+     */
     public void showFieldPopup(Field field) {
         if (field == null) {
             confirmAddBtn.setVisible(true);
@@ -259,6 +319,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Shows the FieldStation Popup
+     * @param station
+     */
     public void showFieldStationPopup(FieldStation station) {
         if (station == null) {
             addFieldStationDialog.pack();
@@ -268,14 +332,25 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Shows the Sensor Popup
+     * @param Sensor
+     */
     public void showSensorPopup(Sensor Sensor) {
 
     }
 
+    /**
+     * Exports to PDF
+     */
     public void exportToPDF() {
 
     }
 
+    /**
+     *Populate ComboBox for Fields
+     * @param farm
+     */
     public void populateCmbFields(Farm farm) {
         cmbFields.removeAllItems();
         for (int i = 0; i < farm.getAllFields().length; i++) {
@@ -283,6 +358,9 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Populate ComboBox for Farms
+     */
     public void populateCmbFarms() {
         cmbFarms.removeAllItems();
         for (int i = 0; i < theFarms.getAllFarms().size(); i++) {
@@ -290,6 +368,9 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Populate ComboBox for Farmers
+     */
     public void populateCmbFarmers() {
         cmbFarmers.removeAllItems();
         for (int i = 0; i < theFarmers.getAllFarmers().length; i++) {
@@ -297,6 +378,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Populate ComboBox for FieldStations
+     * @param field
+     */
     public void populateCmbFieldStations(Field field) {
         cmbFieldStations.removeAllItems();
         for (int i = 0; i < field.getAllFieldStations().length; i++) {
@@ -304,6 +389,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Creates the Farmer Table with farmer ID
+     * @param farmerID
+     */
     public void createFarmerTable(int farmerID) {
 
         SetOfFarms tmp = theFarmers.getFarmerByNumber(farmerID).getAssociatedFarms();
@@ -316,6 +405,9 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *Populates the Search ComboBox
+     */
     public void populateCmbSearch() {
         cmbSearch.removeAllItems();
         cmbSearch.addItem("Name");
@@ -324,6 +416,10 @@ public class GUI extends javax.swing.JFrame {
         cmbSearch.addItem("Email");
     }
 
+    /**
+     *Populate Details of the Farmer
+     * @param tmp
+     */
     public void populateFarmerDetails(Farmer tmp) {
         farmerNameLbl.setText("Farmer Name: " + tmp.getName());
         farmerEmailLbl.setText("Farmer Email: " + tmp.getEmail());
@@ -332,6 +428,10 @@ public class GUI extends javax.swing.JFrame {
         createFarmerTable(tmp.getId());
     }
 
+    /**
+     *Searches for Farmer with Name,ID,Tel or Email
+     * @param type
+     */
     public void farmerSearch(String type) {
         String search = "";
         Farmer farmer = null;

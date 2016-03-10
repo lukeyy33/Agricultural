@@ -3,14 +3,29 @@ import java.awt.Image;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ *
+ * @author Dan
+ */
 public class SetOfFarmers implements Serializable {
 
     private Farmer[] farmers;
 
+    /**
+     *
+     */
     public SetOfFarmers() {
         farmers = new Farmer[0];
     }
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param telephone
+     * @param id
+     * @param farms
+     */
     public void addFarmer(String name, String email, String telephone, int id, /*Image image,*/ SetOfFarms farms) {
         Farmer tmp[] = new Farmer[farmers.length + 1];
         for (int i = 0; i < farmers.length; i++) {
@@ -20,6 +35,10 @@ public class SetOfFarmers implements Serializable {
         farmers = tmp;
     }
 
+    /**
+     *Removes Farmer via ID, iterates through a for loop to find exact match
+     * @param id
+     */
     public void removeFarmer(int id) {
         for (int i = 0; i < farmers.length; i++) {
             if (farmers[i].getId() == id) {
@@ -35,6 +54,11 @@ public class SetOfFarmers implements Serializable {
         farmers = tmp;
     }
 
+    /**
+     *Returns Farmer by specific Name
+     * @param farmerName
+     * @return
+     */
     public Farmer getFarmerByName(String farmerName) {
         for (Farmer f : farmers) {
             if (f.getName().equalsIgnoreCase(farmerName)) {
@@ -44,6 +68,11 @@ public class SetOfFarmers implements Serializable {
         return null;
     }
 
+    /**
+     *Returns Farmer by specific farmerID
+     * @param farmerID
+     * @return
+     */
     public Farmer getFarmerByNumber(int farmerID) {
         for (Farmer f : farmers) {
             if (f.getId() == farmerID) {
@@ -53,6 +82,11 @@ public class SetOfFarmers implements Serializable {
         return null;
     }
 
+    /**
+     *Returns Farmer by FarmerEmail
+     * @param farmerEmail
+     * @return
+     */
     public Farmer getFarmerByEmail(String farmerEmail) {
         for (Farmer f : farmers) {
             if (f.getEmail().equalsIgnoreCase(farmerEmail)) {
@@ -62,6 +96,11 @@ public class SetOfFarmers implements Serializable {
         return null;
     }
 
+    /**
+     *Returns Farmer by specific Telephone
+     * @param farmerTelephone
+     * @return
+     */
     public Farmer getFarmerByTelephone(String farmerTelephone) {
         for (Farmer f : farmers) {
             if (f.getTelephone().equalsIgnoreCase(farmerTelephone)) {
@@ -71,6 +110,10 @@ public class SetOfFarmers implements Serializable {
         return null;
     }
 
+    /**
+     *Returns all Farmers
+     * @return
+     */
     public Farmer[] getAllFarmers() {
         return this.farmers;
     }

@@ -16,9 +16,19 @@ public class Planting {
     private Date harvestDate;
     private int yield;
 
+    /**
+     *
+     */
     public Planting() {
     }
 
+    /**
+     *
+     * @param crop
+     * @param plantDate
+     * @param harvestDate
+     * @param yield
+     */
     public Planting(Crop crop, Date plantDate, Date harvestDate, int yield) {
         this.crop = crop;
         this.plantDate = plantDate;
@@ -38,18 +48,34 @@ public class Planting {
         return summary;
     }
 
+    /**
+     *Returns Crop Name
+     * @return
+     */
     public String getCropName() {
         return crop.getName();
     }
 
+    /**
+     *Returns Plant Date
+     * @return
+     */
     public Date getPlantDate() {
         return plantDate;
     }
 
+    /**
+     *Returns Harvest Date
+     * @return
+     */
     public Date getHarvestDate() {
         return harvestDate;
     }
 
+    /**
+     *Returns Yield
+     * @return
+     */
     public int getYield() {
         return yield;
     }

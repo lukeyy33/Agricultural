@@ -14,19 +14,37 @@ public class SetOfFarms implements Serializable {
 
     private ArrayList<Farm> farms;
 
+    /**
+     *
+     */
     public SetOfFarms() {
         farms = new ArrayList<Farm>();
     }
 
+    /**
+     *Add a farm that is already in the system
+     * @param farm
+     */
     public void addFarmAlreadyInSystem(Farm farm) {
         farms.add(farm);
     }
 
+    /**
+     *
+     * @param name
+     * @param location
+     * @param id
+     */
     public void addFarm(String name, Location location, int id) {
         Farm tmp = new Farm(name, location, id);
         farms.add(tmp);
     }
 
+    /**
+     *Returns Farm by specific farm name
+     * @param farmName
+     * @return
+     */
     public Farm getFarmByName(String farmName) {
         for (int i = 0; i < farms.size(); i++) {
             if (farms.get(i).getName().equalsIgnoreCase(farmName)) {
@@ -36,10 +54,19 @@ public class SetOfFarms implements Serializable {
         return null;
     }
 
+    /**
+     *Removes a farm
+     * @param farm
+     */
     public void removeFarm(Farm farm) {
         farms.remove(farm);
     }
 
+    /**
+     *Returns a farm by specific Farm Number
+     * @param farmNumber
+     * @return
+     */
     public Farm getFarmByNumber(int farmNumber) {
         for (int i = 0; i < farms.size(); i++) {
             if (farms.get(i).getFarmNo() == farmNumber) {
@@ -49,6 +76,10 @@ public class SetOfFarms implements Serializable {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Farm> getAllFarms() {
         return this.farms;
     }
