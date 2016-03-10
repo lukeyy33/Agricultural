@@ -12,7 +12,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 
-
 public class SetOfFarmerTest {
     
     private SetOfFarmers instance;
@@ -27,19 +26,22 @@ public class SetOfFarmerTest {
     public void setUp() {
       instance = new SetOfFarmers();
       farms = new SetOfFarms();
-      location = new Location(10, 20, "Fake Location");
       instance.addFarmer("name", "email", "1010101", 56, farms);
     }
-    @Ignore
+
     @Test
-    public void testAddFarmer() {    
-        Farmer result = instance.addFarmer("Bob", "email", "3434", 0, farms);
-        instance.addFarmer("name", "email", "01919", 0, farms);
-        //Assert
-        assertEquals(farms,instance);
+    public void testAddFarmer() {   
+        //Check the farmer doesn't exist (by id)
+        Farmer result = instance.getFarmerByNumber(45);
+        assertNull(result);
+        //Add the farmer
+        instance.addFarmer("name", "email", "telephone", 45, farms);
+        //Get the recently added farmer by id
+        Farmer result1 = instance.getFarmerByNumber(45);
+        //Check it's added
+        assertNotNull(result1);
      
-    }
-    
+    }    
     @Test 
     public void testGetFarmerByName() {
         String name = "name";
@@ -50,5 +52,22 @@ public class SetOfFarmerTest {
         //Assert
         assertEquals(name, farmerName);
         
+    }
+    
+    @Test
+    public void testRemoveFarmer() {
+        //Arrange
+        instance.addFarmer("Josh-da-g", "g@gunit.g", "420", 420, farms); //Remember to update this
+        //constructor when jonas is done
+        //Act
+        Farmer result = instance.getFarmerByNumber(420);
+        //Assert
+        assertNotNull(result);      
+        //then remove
+        instance.removeFarmer(420);
+        //Arrange
+        Farmer result1 = instance.getFarmerByNumber(420);
+        //Assert
+        assertNull(result1);
     }
 }
