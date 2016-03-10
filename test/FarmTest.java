@@ -41,15 +41,29 @@ public class FarmTest {
     @Test
     public void testGetFieldByName() {
         
-        String name = "Field 1";
+        /*String name = "Field 1";
         Field tmp = farm.getFieldByName(name);
         String fieldName = tmp.getName();
         //Expected "Field 1", 
-        assertEquals(name, fieldName);
+        assertEquals(name, fieldName); */
+        
+        
+        String name = "Field 2";
+        Field tmp = farm.getFieldByName(name);
+        String fieldName = tmp.getName();
+        assertEquals(name,fieldName);
     }
 
     @Test
     public void testRemoveField() {
+        int result;
+        //test it's there
+        //then remove
+        //then test it's there
+        
+        //result = farm.removeField(0);
+        
+        
 
     }
 

@@ -383,7 +383,7 @@ public class GUI extends javax.swing.JFrame {
         farmerDialog = new javax.swing.JDialog();
         farmerNameLbl = new javax.swing.JLabel();
         farmerEmailLbl = new javax.swing.JLabel();
-        cmbFarmers = new javax.swing.JComboBox<String>();
+        cmbFarmers = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         farmerIdLbl = new javax.swing.JLabel();
         showFarmerDetailsBtn = new javax.swing.JButton();
@@ -582,7 +582,7 @@ public class GUI extends javax.swing.JFrame {
         farmerEmailLbl.setText("Farmer Email:");
 
         cmbFarmers.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Select a Farmer:");
