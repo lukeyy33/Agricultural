@@ -1362,7 +1362,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void showFarmsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFarmsBtnActionPerformed
         int tmp = (Integer) cmbFarms.getSelectedItem();
-        Farm tmpFarm = theFarms.getFarmByNumber(tmp);
+        Farm tmpFarm = selectFarm(tmp);
         populateCmbFields(tmpFarm);
         showFarmView();
     }//GEN-LAST:event_showFarmsBtnActionPerformed
@@ -1390,7 +1390,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createFarmBtnActionPerformed
 
     private void editFarmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFarmBtnActionPerformed
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
         showFarmPopup(tmp);
     }//GEN-LAST:event_editFarmBtnActionPerformed
 
@@ -1401,7 +1401,7 @@ public class GUI extends javax.swing.JFrame {
         int y = (int) yCoordSpin.getValue();
         String type = typeInput.getText();
         int id = (int) fieldIdSpin.getValue();
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
         tmp.updateFarmInfo(name, new Location(x, y, type), id);
         populateCmbFarms();
         addFarmDialog.setVisible(false);
@@ -1431,7 +1431,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ConfirmDelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmDelBtnActionPerformed
         // TODO add your handling code here:
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
         theFarms.removeFarm(tmp);
         populateCmbFarms();
         deleteFarmDialog.setVisible(false);
@@ -1460,8 +1460,8 @@ public class GUI extends javax.swing.JFrame {
             int area1 = (int) addFieldArea.getValue();
             area = (float) area1;
         }
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
-        Field tmpField = tmp.getFieldByNumber((Integer) cmbFields.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmp, (Integer) cmbFields.getSelectedItem());
         tmpField.updateFieldInfo(name, type, fieldNo, crop, area);
         populateCmbFields(tmp);
         addFieldDialog.setVisible(false);
@@ -1474,8 +1474,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void editFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFieldBtnActionPerformed
         // TODO add your handling code here:
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
-        Field tmpField = tmp.getFieldByNumber((Integer) cmbFields.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmp, (Integer) cmbFields.getSelectedItem());
         showFieldPopup(tmpField);
     }//GEN-LAST:event_editFieldBtnActionPerformed
 
@@ -1486,7 +1486,7 @@ public class GUI extends javax.swing.JFrame {
         int fieldNo = (int) addFieldNo.getValue();
         String crop = addFieldCrop.getText();
         float area = ((int) addFieldArea.getValue() / (float) 1);
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
         tmp.addField(name, type, fieldNo, crop, area);
         populateCmbFields(tmp);
         addFieldDialog.setVisible(false);
@@ -1520,7 +1520,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void confirmFieldDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmFieldDeleteActionPerformed
         // TODO add your handling code here:
-        Farm tmp = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
+        Farm tmp = selectFarm((Integer) cmbFarms.getSelectedItem());
         int id = (Integer) cmbFields.getSelectedItem();
         tmp.removeField(id);
         populateCmbFields(tmp);
@@ -1563,7 +1563,7 @@ public class GUI extends javax.swing.JFrame {
         int id = (int) addFarmerId.getValue();
         SetOfFarms farms = new SetOfFarms();
         for (int i = 0; i < associatedFarmsTable.getRowCount(); i++) {
-            Farm tmp = theFarms.getFarmByNumber((Integer) associatedFarmsTable.getValueAt(i, 0));
+            Farm tmp = selectFarm((Integer) associatedFarmsTable.getValueAt(i, 0));
             farms.addFarmAlreadyInSystem(tmp);
         }
         theFarmers.addFarmer(name, email, phone, id, farms);
@@ -1628,7 +1628,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void addToAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToAssociatedBtnActionPerformed
         int row = allFarmsTable.getSelectedRow();
-        Farm tmp = theFarms.getFarmByNumber((Integer) allFarmsTable.getValueAt(row, 0));
+        Farm tmp = selectFarm((Integer) allFarmsTable.getValueAt(row, 0));
         int ida = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmpFarmer = theFarmers.getFarmerByNumber(ida);
         tmpFarmer.getAssociatedFarms().addFarmAlreadyInSystem(tmp);
@@ -1646,7 +1646,7 @@ public class GUI extends javax.swing.JFrame {
     private void removeFromAssociatedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromAssociatedBtnActionPerformed
         // TODO add your handling code here:
         int row = associatedFarmsTable.getSelectedRow();
-        Farm tmp = theFarms.getFarmByNumber((Integer) associatedFarmsTable.getValueAt(row, 0));
+        Farm tmp = selectFarm((Integer) associatedFarmsTable.getValueAt(row, 0));
         int ida = Integer.parseInt(cmbFarmers.getSelectedItem().toString());
         Farmer tmpFarmer = theFarmers.getFarmerByNumber(ida);
         tmpFarmer.getAssociatedFarms().removeFarm(tmp);
@@ -1663,8 +1663,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void showFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFieldBtnActionPerformed
         // TODO add your handling code here:
-        Farm tmpFarm = theFarms.getFarmByNumber((Integer) cmbFarms.getSelectedItem());
-        Field tmp = tmpFarm.getFieldByNumber((Integer) cmbFields.getSelectedItem());
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmp = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
         lblFieldName.setText("Name: " + tmp.getName());
         lblFieldType.setText("Type: " + tmp.getType());
         lblFieldCrop.setText("Crop: " + tmp.getCrop().getName());
