@@ -18,23 +18,15 @@ public class FieldTest {
     
     public FieldTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
+       
+    @Before
+    public void setUp() {
         fieldStation = new FieldStation[4];
         
         fieldStation[0] = new FieldStation();
         fieldStation[1] = new FieldStation();
         fieldStation[2] = new FieldStation();
         fieldStation[3] = new FieldStation();
-    }
-        
-    @Before
-    public void setUp() {
-        /*instance = new Field();
-        for (FieldStation fieldStation : fieldStation) {
-            instance.addFieldStation(currentLocation, name);    
-        }*/
         
     }
     
