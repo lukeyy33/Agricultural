@@ -259,6 +259,12 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void showFieldStationPopup(FieldStation station) {
+        if (station == null) {
+            addFieldStationDialog.pack();
+            addFieldStationDialog.setVisible(true);
+        } else {
+
+        }
     }
 
     public void showSensorPopup(Sensor Sensor) {
@@ -290,7 +296,14 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    private void createFarmerTable(int farmerID) {
+    public void populateCmbFieldStations(Field field) {
+        cmbFieldStations.removeAllItems();
+        for (int i = 0; i < field.getAllFieldStations().length; i++) {
+            cmbFieldStations.addItem(Integer.toString(field.getAllFieldStations()[i].getFieldStationNo()));
+        }
+    }
+
+    public void createFarmerTable(int farmerID) {
 
         SetOfFarms tmp = theFarmers.getFarmerByNumber(farmerID).getAssociatedFarms();
         Object[] data = new Object[1];
@@ -302,7 +315,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    private void populateCmbSearch() {
+    public void populateCmbSearch() {
         cmbSearch.removeAllItems();
         cmbSearch.addItem("Name");
         cmbSearch.addItem("ID");
@@ -310,7 +323,7 @@ public class GUI extends javax.swing.JFrame {
         cmbSearch.addItem("Email");
     }
 
-    private void populateFarmerDetails(Farmer tmp) {
+    public void populateFarmerDetails(Farmer tmp) {
         farmerNameLbl.setText("Farmer Name: " + tmp.getName());
         farmerEmailLbl.setText("Farmer Email: " + tmp.getEmail());
         farmerIdLbl.setText("Farmer ID: " + tmp.getId());
@@ -318,7 +331,7 @@ public class GUI extends javax.swing.JFrame {
         createFarmerTable(tmp.getId());
     }
 
-    private void farmerSearch(String type) {
+    public void farmerSearch(String type) {
         String search = "";
         Farmer farmer = null;
         if (type.equals("name")) {
@@ -340,10 +353,10 @@ public class GUI extends javax.swing.JFrame {
                 }
             }
         }
-        if(farmer == null){
+        if (farmer == null) {
             searchFailed.pack();
             searchFailed.setVisible(true);
-        }else{
+        } else {
             populateFarmerDetails(farmer);
         }
     }
@@ -387,12 +400,14 @@ public class GUI extends javax.swing.JFrame {
         lblFieldType = new javax.swing.JLabel();
         lblFieldCrop = new javax.swing.JLabel();
         lblFieldName = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addFieldStationBtn = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        cmbFieldStations = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
         addFarmDialog = new javax.swing.JDialog();
         nameInput = new javax.swing.JTextField();
         nameLblAddFarm = new javax.swing.JLabel();
@@ -461,6 +476,7 @@ public class GUI extends javax.swing.JFrame {
         cancelFarmerDelete = new javax.swing.JButton();
         searchFailed = new javax.swing.JDialog();
         jLabel23 = new javax.swing.JLabel();
+        addFieldStationDialog = new javax.swing.JDialog();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -533,7 +549,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(showFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(editFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(removeFieldBtn))
-                        .addGap(0, 462, Short.MAX_VALUE))))
+                        .addGap(0, 506, Short.MAX_VALUE))))
         );
         farmViewLayout.setVerticalGroup(
             farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,7 +572,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(editFieldBtn)
                 .addGap(18, 18, 18)
                 .addComponent(removeFieldBtn)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         farmerNameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -720,7 +736,12 @@ public class GUI extends javax.swing.JFrame {
         lblFieldName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFieldName.setText("Name: ");
 
-        jButton1.setText("Add FieldStation");
+        addFieldStationBtn.setText("Add FieldStation");
+        addFieldStationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFieldStationBtnActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel22.setText("Field");
@@ -728,6 +749,11 @@ public class GUI extends javax.swing.JFrame {
         jButton2.setText("Edit FieldStation");
 
         jButton3.setText("Remove FieldStation");
+
+        cmbFieldStations.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel24.setText("Field Stations");
 
         javax.swing.GroupLayout fieldsDialogLayout = new javax.swing.GroupLayout(fieldsDialog.getContentPane());
         fieldsDialog.getContentPane().setLayout(fieldsDialogLayout);
@@ -739,27 +765,39 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jSeparator6)
                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                         .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
                             .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3))
-                            .addComponent(lblFieldName)
-                            .addComponent(lblFieldCrop)
-                            .addComponent(lblFieldType))
-                        .addContainerGap(230, Short.MAX_VALUE))
-                    .addComponent(jSeparator7)))
+                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFieldName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblFieldCrop)
+                                        .addComponent(lblFieldType)))
+                                .addGap(0, 558, Short.MAX_VALUE))
+                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator7)
+                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel24)
+                                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                                .addComponent(addFieldStationBtn)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton2)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton3)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap())))
         );
         fieldsDialogLayout.setVerticalGroup(
             fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fieldsDialogLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(lblFieldName)
                 .addGap(18, 18, 18)
                 .addComponent(lblFieldType)
@@ -768,11 +806,15 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel24)
+                .addGap(18, 18, 18)
+                .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(addFieldStationBtn)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         nameLblAddFarm.setText("Name");
@@ -1353,6 +1395,17 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout addFieldStationDialogLayout = new javax.swing.GroupLayout(addFieldStationDialog.getContentPane());
+        addFieldStationDialog.getContentPane().setLayout(addFieldStationDialogLayout);
+        addFieldStationDialogLayout.setHorizontalGroup(
+            addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        addFieldStationDialogLayout.setVerticalGroup(
+            addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cmbFarms.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1785,12 +1838,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeFromAssociatedBtnActionPerformed
 
     private void showFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFieldBtnActionPerformed
-        // TODO add your handling code here:
         Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
         Field tmp = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
         lblFieldName.setText("Name: " + tmp.getName());
         lblFieldType.setText("Type: " + tmp.getType());
         lblFieldCrop.setText("Crop: " + tmp.getCrop().getName());
+        populateCmbFieldStations(tmp);
         showFieldView();
     }//GEN-LAST:event_showFieldBtnActionPerformed
 
@@ -1811,6 +1864,10 @@ public class GUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_farmerSearchBtnActionPerformed
+
+    private void addFieldStationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFieldStationBtnActionPerformed
+        showFieldStationPopup(null);
+    }//GEN-LAST:event_addFieldStationBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1864,6 +1921,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog addFieldDialog;
     private javax.swing.JTextField addFieldName;
     private javax.swing.JSpinner addFieldNo;
+    private javax.swing.JButton addFieldStationBtn;
+    private javax.swing.JDialog addFieldStationDialog;
     private javax.swing.JTextField addFieldType;
     private javax.swing.JButton addToAssociatedBtn;
     private javax.swing.JTable allFarmsTable;
@@ -1876,6 +1935,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
+    private javax.swing.JComboBox cmbFieldStations;
     private javax.swing.JComboBox cmbFields;
     private javax.swing.JComboBox cmbSearch;
     private javax.swing.JButton confirmAddBtn;
@@ -1910,7 +1970,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel fieldLbl;
     private javax.swing.JLabel fieldNameLbl;
     private javax.swing.JDialog fieldsDialog;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -1929,6 +1988,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
