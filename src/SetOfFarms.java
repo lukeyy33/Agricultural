@@ -35,7 +35,12 @@ public class SetOfFarms {
     }
 
     public Farm getFarmByNumber(int farmNumber) {
-        return farms.get(farmNumber);
+        for(int i = 0; i < farms.size(); i++){
+            if(farms.get(i).getFarmNo() == farmNumber){
+                return farms.get(i);
+            }
+        }
+        return null;
     }
 
     public ArrayList<Farm> getAllFarms() {

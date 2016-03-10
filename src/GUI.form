@@ -20,17 +20,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cmbFields" min="-2" pref="88" max="-2" attributes="0"/>
                                       <Component id="menuLbl1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="addFieldBtn" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Component id="cmbFields" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="showFieldBtn" min="-2" pref="145" max="-2" attributes="0"/>
                               </Group>
                               <Component id="editFieldBtn" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                               <Component id="removeFieldBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="494" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="462" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -547,7 +547,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Field ID"/>
+            <Property name="text" type="java.lang.String" value="Farm ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="fieldIdSpin">
@@ -693,17 +693,19 @@
                                       <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="addFieldNo" min="-2" max="-2" attributes="0"/>
-                                              <Component id="addFieldName" alignment="0" pref="79" max="32767" attributes="0"/>
-                                              <Component id="addFieldType" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                           <Component id="addFieldCrop" min="-2" pref="80" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="addFieldName" alignment="0" pref="79" max="32767" attributes="0"/>
+                                                  <Component id="addFieldType" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="addFieldNo" alignment="1" min="-2" pref="79" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1282,8 +1284,8 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="cmbFarms" min="-2" pref="97" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cmbFarms" min="-2" pref="117" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="showFarmsBtn" min="-2" pref="185" max="-2" attributes="0"/>
                           </Group>
                           <Component id="menuLbl" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1297,7 +1299,7 @@
                               <Component id="viewFarmersBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="418" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="389" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -1317,9 +1319,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cmbFarms" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="showFarmsBtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="showFarmsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="menuLbl" min="-2" max="-2" attributes="0"/>
@@ -1334,7 +1336,7 @@
               <Component id="editFarmBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="delFarmBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

@@ -27,7 +27,12 @@ public class Farm {
     }
 
     public Field getFieldByNumber(int fieldNumber) {
-        return this.getFieldByNumber(fieldNumber);
+        for(int i = 0; i<fields.length; i++){
+            if(fields[i].getFieldNumber() == fieldNumber){
+                return fields[i];
+            }
+        }
+        return null;
     }
 
     public Field getFieldByName(String fieldName) {
@@ -84,5 +89,9 @@ public class Farm {
     public Location getLocation(){
         return this.location;
     }
-
+    
+    public String toString(){
+        return name;
+    }
+    
 }

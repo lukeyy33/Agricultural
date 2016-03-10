@@ -42,6 +42,15 @@ public class SetOfFarmers {
         }
         return null;
     }
+    
+    public Farmer getFarmerByNumber(int farmerID) {
+        for (Farmer f : farmers) {
+            if (f.getId()==farmerID) {
+                return f;
+            }
+        }
+        return null;
+    }
 
     public Farmer getFarmerByEmail(String farmerEmail) {
         for (Farmer f : farmers) {
