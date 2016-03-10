@@ -22,6 +22,14 @@ public class Farmer implements Serializable {
     public Farmer() {
     }
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param telephone
+     * @param id
+     * @param farms
+     */
     public Farmer(String name, String email, String telephone, int id, /*Image picture*/ SetOfFarms farms) {
         this.name = name;
         this.email = email;
@@ -30,10 +38,22 @@ public class Farmer implements Serializable {
         this.associatedfarms = farms;
     }
 
+    /**
+     *Returns associated Farms
+     * @return
+     */
     public SetOfFarms getAssociatedFarms() {
         return this.associatedfarms;
     }
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param telephone
+     * @param id
+     * @param associatedfarms
+     */
     public void updateFarmerInfo(String name, String email, String telephone, int id,/*Image picture,*/SetOfFarms associatedfarms) {
         this.name = name;
         this.email = email;
@@ -42,22 +62,42 @@ public class Farmer implements Serializable {
         this.associatedfarms = associatedfarms;
     }
 
+    /**
+     *Returns Name
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     *Returns Email
+     * @return
+     */
     public String getEmail() {
         return this.email;
     }
 
+    /**
+     *Returns Telephone
+     * @return
+     */
     public String getTelephone() {
         return this.telephone;
     }
 
+    /**
+     *
+     * @return
+     */
     public Image getPicture() {
         return null;
     }
 
+    /**
+     *Returns ID
+     * @return
+     */
     public int getId() {
         return id;
     }

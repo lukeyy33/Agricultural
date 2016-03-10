@@ -1,20 +1,38 @@
 
+
 import java.util.*;
 
+/**
+ *Connection Handler Class
+ * @author Dan
+ */
 public class ConnectionHandler {
 
     private String type;
     private String[] results;
 
+    /**
+     *
+     */
     public ConnectionHandler() {
     }
 
-    //connect takes the unique id the sensor or field station transmits and creates the connection to the physical device
+    
+
+    /**
+     *connect takes the unique id the sensor or field station transmits and creates the connection to the physical device
+     * @param uniqueID
+     */
     public void connect(String uniqueID) {
         // TODO implement here
     }
 
-    //similar to connect, but removes the connection to the physical device  
+   
+
+    /**
+     *similar to connect, but removes the connection to the physical device  
+     * @param uniqueID
+     */
     public void disconnect(String uniqueID) {
         // TODO implement here
     }
@@ -32,16 +50,28 @@ public class ConnectionHandler {
         // TODO implement here
     }
 
-    //updates results held in connection handler of a particular field station with a list of devices currently in range
+    
+
+    /**
+     *updates results held in connection handler of a particular field station with a list of devices currently in range
+     */
     public void scanSensors() {
         // TODO implement here
     }
 
+    /**
+     *Return the type
+     * @return
+     */
     public String getType() {
         // TODO implement here
         return this.type;
     }
 
+    /**
+     *Return the results
+     * @return
+     */
     public String[] getResults() {
         // TODO implement here
         return this.results;
