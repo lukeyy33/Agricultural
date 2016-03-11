@@ -38,7 +38,6 @@ public class SetOfFarmsTest {
      */
     @Test
     public void testAddFarm() {
-        System.out.println("addFarm");
         String name = "Add Test";
         Location location = new Location(22, 22, "Taylor Swift");
         int id = 22;
