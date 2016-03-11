@@ -106,9 +106,10 @@ public class FieldStation implements Serializable {
      * @param name
      * @param currentLocation
      */
-    public void updateFieldStationInfo(String name, Location currentLocation) {
-        this.name = name;
-        this.currentLocation = this.currentLocation;
+    public void updateFieldStationInfo(String nameIn, Location currentLocationIn, int fieldStationNoIn) {
+        name = nameIn;
+        currentLocation = currentLocationIn;
+        fieldStationNo = fieldStationNoIn;
     }
 
     //The FieldStation passes its location (from its on board GPS) to this method, and stores it in the currentlocation parameter

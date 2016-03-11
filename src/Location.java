@@ -24,7 +24,7 @@ public class Location implements Serializable{
      * @param y
      * @param t
      */
-    public Location(int x, int y, String t) {
+    public Location(float x, float y, String t) {
         this.xcoord = x;
         this.ycoord = y;
         this.type = t;

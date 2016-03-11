@@ -391,7 +391,7 @@
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="btnEditFieldstation" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="deleteFieldStationBtn" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -428,7 +428,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="addFieldStationBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEditFieldstation" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteFieldStationBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
@@ -488,10 +488,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditFieldstationActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="deleteFieldStationBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove FieldStation"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteFieldStationBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbFieldStations">
           <Properties>
@@ -1394,11 +1397,11 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="fieldStationxCoord" pref="137" max="32767" attributes="0"/>
-                              <Component id="fieldStationyCoord" max="32767" attributes="0"/>
+                              <Component id="fieldStationYCoord" pref="137" max="32767" attributes="0"/>
+                              <Component id="fieldStationXCoord" max="32767" attributes="0"/>
                               <Component id="fieldStationName" max="32767" attributes="0"/>
                               <Component id="fieldStationType" alignment="1" max="32767" attributes="0"/>
-                              <Component id="fieldStationId" alignment="1" max="32767" attributes="0"/>
+                              <Component id="fieldStationId" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1425,12 +1428,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="fieldStationyCoord" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldStationXCoord" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="fieldStationxCoord" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldStationYCoord" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1461,9 +1464,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="fieldStationName">
         </Component>
-        <Component class="javax.swing.JSpinner" name="fieldStationyCoord">
+        <Component class="javax.swing.JSpinner" name="fieldStationXCoord">
         </Component>
-        <Component class="javax.swing.JSpinner" name="fieldStationxCoord">
+        <Component class="javax.swing.JSpinner" name="fieldStationYCoord">
         </Component>
         <Component class="javax.swing.JTextField" name="fieldStationType">
         </Component>
@@ -1506,15 +1509,12 @@
             <Property name="text" type="java.lang.String" value="Edit Field Station"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="fieldStationId">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel41">
           <Properties>
             <Property name="text" type="java.lang.String" value="ID"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="fieldStationId">
         </Component>
       </SubComponents>
     </Container>
@@ -1525,8 +1525,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="confirmAddFieldstation" min="-2" pref="61" max="-2" attributes="0"/>
-                  <EmptySpace pref="122" max="32767" attributes="0"/>
                   <Component id="cancelFieldStation1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
@@ -1544,8 +1542,8 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="fieldStationType1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="fieldStationxCoord1" alignment="0" pref="137" max="32767" attributes="0"/>
-                              <Component id="fieldStationyCoord1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="fieldStationYCoord1" alignment="0" pref="137" max="32767" attributes="0"/>
+                              <Component id="fieldStationXCoord1" alignment="0" max="32767" attributes="0"/>
                               <Component id="fieldStationName1" alignment="0" max="32767" attributes="0"/>
                               <Component id="fieldStationId1" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -1554,8 +1552,12 @@
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="confirmAddFieldstation" min="-2" pref="61" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="109" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1571,12 +1573,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="fieldStationyCoord1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldStationXCoord1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="fieldStationxCoord1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldStationYCoord1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1607,9 +1609,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="fieldStationName1">
         </Component>
-        <Component class="javax.swing.JSpinner" name="fieldStationyCoord1">
+        <Component class="javax.swing.JSpinner" name="fieldStationXCoord1">
         </Component>
-        <Component class="javax.swing.JSpinner" name="fieldStationxCoord1">
+        <Component class="javax.swing.JSpinner" name="fieldStationYCoord1">
         </Component>
         <Component class="javax.swing.JTextField" name="fieldStationType1">
         </Component>
@@ -1640,6 +1642,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelFieldStation1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel34">
           <Properties>
@@ -1703,7 +1708,7 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="confirmEditFarmBtn1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1819,6 +1824,21 @@
           </Properties>
         </Component>
       </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="deleteFieldStationDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
     </Container>
   </NonVisualComponents>
   <Properties>
