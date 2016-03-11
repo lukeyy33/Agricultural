@@ -488,7 +488,7 @@ public class GUI extends javax.swing.JFrame {
         farmerDialog = new javax.swing.JDialog();
         farmerNameLbl = new javax.swing.JLabel();
         farmerEmailLbl = new javax.swing.JLabel();
-        cmbFarmers = new javax.swing.JComboBox<String>();
+        cmbFarmers = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         farmerIdLbl = new javax.swing.JLabel();
         showFarmerDetailsBtn = new javax.swing.JButton();
@@ -593,6 +593,8 @@ public class GUI extends javax.swing.JFrame {
         confirmEditFieldstation = new javax.swing.JButton();
         cancelFieldStation = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
+        fieldStationId = new javax.swing.JSpinner();
+        jLabel41 = new javax.swing.JLabel();
         addFieldStationDialog = new javax.swing.JDialog();
         jLabel30 = new javax.swing.JLabel();
         fieldStationName1 = new javax.swing.JTextField();
@@ -726,7 +728,7 @@ public class GUI extends javax.swing.JFrame {
         farmerEmailLbl.setText("Farmer Email:");
 
         cmbFarmers.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Select a Farmer:");
@@ -1559,9 +1561,18 @@ public class GUI extends javax.swing.JFrame {
         });
 
         cancelFieldStation.setText("Cancel");
+        cancelFieldStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelFieldStationActionPerformed(evt);
+            }
+        });
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel29.setText("Edit Field Station");
+
+        fieldStationId.setEnabled(false);
+
+        jLabel41.setText("ID");
 
         javax.swing.GroupLayout editFieldStationDialogLayout = new javax.swing.GroupLayout(editFieldStationDialog.getContentPane());
         editFieldStationDialog.getContentPane().setLayout(editFieldStationDialogLayout);
@@ -1571,20 +1582,22 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(editFieldStationDialogLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel29))
+                    .addGroup(editFieldStationDialogLayout.createSequentialGroup()
                         .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel25)
                             .addComponent(jLabel26)
                             .addComponent(jLabel27)
-                            .addComponent(jLabel28))
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel41))
                         .addGap(18, 18, 18)
                         .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fieldStationType)
                             .addComponent(fieldStationxCoord, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(fieldStationyCoord)
-                            .addComponent(fieldStationName)))
-                    .addGroup(editFieldStationDialogLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel29)))
+                            .addComponent(fieldStationName)
+                            .addComponent(fieldStationType, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fieldStationId, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(editFieldStationDialogLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1614,7 +1627,11 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldStationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel28))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(fieldStationId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(editFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmEditFieldstation)
                     .addComponent(cancelFieldStation))
@@ -2263,7 +2280,7 @@ public class GUI extends javax.swing.JFrame {
         int id = (Integer)fieldStationId1.getValue();
         
         // Create a New Location and FieldStation
-        Location location = new Location(x, y, name);
+        Location location = new Location(x, y, fieldStationType1.getText());
         
         // Get the selected Farm and Field
         Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
@@ -2275,7 +2292,27 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmAddFieldstationActionPerformed
 
     private void confirmEditFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFieldstationActionPerformed
-       
+        // Capture variables from the Form
+        int x = (int)fieldStationyCoord.getValue();
+        // This looks weird but the jSpinner value is actually a float for y
+        int y = Math.round((float)fieldStationxCoord.getValue());
+        String name = fieldStationName.getText();
+        int id = (Integer)fieldStationId.getValue();
+        
+        // Create a New Location and FieldStation
+        Location location = new Location(x, y, fieldStationType1.getText());
+        
+        // Get the selected Farm and Field
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        
+        // Finally set the new name and lcoation
+        tmpField.getFieldStationByNumber(id).updateFieldStationInfo(name, location);
+        
+        // Refresh The Combo Box
+        populateCmbFieldStations(tmpField);
+        
+        editFieldStationDialog.setVisible(false);
     }//GEN-LAST:event_confirmEditFieldstationActionPerformed
 
     private void confirmEditFarmBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditFarmBtn1ActionPerformed
@@ -2287,9 +2324,28 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_farmCancelBtn1ActionPerformed
 
     private void btnEditFieldstationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditFieldstationActionPerformed
+        // Get the Currently selected Farm, Field and Fieldstation
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        
+        // Second parameter is Integer conversion of a String casted from an Object 
+        FieldStation fieldStation = selectFieldStation(tmpField, Integer.valueOf((String)cmbFieldStations.getSelectedItem()));
+        
+        // Fill in the Form with Field Station's data
+        fieldStationName.setText(fieldStation.getName());
+        fieldStationyCoord.setValue(fieldStation.getLocation().getYCoord());
+        fieldStationxCoord.setValue(fieldStation.getLocation().getXCoord());
+        fieldStationType.setText(fieldStation.getLocation().getType());
+        fieldStationId.setValue(fieldStation.getFieldStationNo());
+
+        // Show Dialog for editing
         editFieldStationDialog.setVisible(true);
         editFieldStationDialog.pack();
     }//GEN-LAST:event_btnEditFieldstationActionPerformed
+
+    private void cancelFieldStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelFieldStationActionPerformed
+       editFieldStationDialog.setVisible(false);
+    }//GEN-LAST:event_cancelFieldStationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2400,6 +2456,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner fieldIdSpin1;
     private javax.swing.JLabel fieldLbl;
     private javax.swing.JLabel fieldNameLbl;
+    private javax.swing.JSpinner fieldStationId;
     private javax.swing.JSpinner fieldStationId1;
     private javax.swing.JTextField fieldStationName;
     private javax.swing.JTextField fieldStationName1;
@@ -2446,6 +2503,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
