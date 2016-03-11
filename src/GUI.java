@@ -418,8 +418,12 @@ public class GUI extends javax.swing.JFrame {
 
     public void populateCmbSensors(FieldStation fieldStation) {
         cmbSensors.removeAllItems();
-        for (int i = 0; i < fieldStation.getAllSensors().length; i++) {
-            cmbSensors.addItem(Integer.toString(fieldStation.getAllSensors()[i].getSerialNo()));
+        if (fieldStation.getAllSensors().length == 0) {
+
+        } else {
+            for (int i = 0; i < fieldStation.getAllSensors().length; i++) {
+                cmbSensors.addItem(Integer.toString(fieldStation.getAllSensors()[i].getSerialNo()));
+            }
         }
     }
 

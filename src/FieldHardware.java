@@ -13,6 +13,7 @@ public class FieldHardware {
      *
      */
     public FieldHardware() {
+        
     }
 
      
