@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -7,7 +8,7 @@ import java.util.*;
  * - stores data from sensors
  * - can be moved within a field (hence currentlocation)
  */
-public class FieldStation {
+public class FieldStation implements Serializable {
     
     private Location currentLocation;
     private Sensor[] sensors;
@@ -15,6 +16,8 @@ public class FieldStation {
     private String name;
     private int fieldStationNo; 
     private ConnectionHandler handler;
+
+
     /**
      * Stores ALL the data from every sensor, then you can differentiate by saying "only get data from sensors of type x" or "at time x" "location x" etc.
      * 
@@ -73,8 +76,11 @@ public class FieldStation {
     public void addSensor(int sensorType, int interval, boolean active) {
         // TODO implement here
     }
-
     
+
+    public Location getLocation(){
+        return currentLocation;
+    }
 
     /**
      *Removes Sensor, Does NOT remove the type of sensor from sensor types
@@ -100,8 +106,9 @@ public class FieldStation {
      * @param name
      * @param currentLocation
      */
-    public void updateFieldStationInfo(String name, String currentLocation) {
-        // TODO implement here
+    public void updateFieldStationInfo(String name, Location currentLocation) {
+        this.name = name;
+        this.currentLocation = this.currentLocation;
     }
 
     //The FieldStation passes its location (from its on board GPS) to this method, and stores it in the currentlocation parameter

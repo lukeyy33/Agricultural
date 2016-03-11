@@ -1,12 +1,13 @@
 
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *Connection Handler Class
  * @author Dan
  */
-public class ConnectionHandler {
+public class ConnectionHandler implements Serializable {
 
     private String type;
     private String[] results;

@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -11,7 +12,7 @@ import java.util.*;
  * support parallelism since there will be multiple sensors all doing things
  * concurrently
  */
-public class Sensor {
+public class Sensor implements Serializable{
 
     //Because a sensor can be moved
     private Location currentLocation;
