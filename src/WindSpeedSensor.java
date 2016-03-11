@@ -6,8 +6,8 @@ public class WindSpeedSensor extends Sensor {
     public WindSpeedSensor() {
     }
 
-    public void takeReading() {
-        // TODO implement here
+    public Data takeReading() {
+        return super.takeReading();
     }
 
 }

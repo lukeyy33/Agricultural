@@ -23,6 +23,14 @@ public class Data {
 
     public Data() {
     }
+    public Data(float reading, Date time, int sensorNo, Location readingLocation, String name) {
+        this.reading = reading;
+        this.name = name;
+        this.time = time;
+        this.sensorNo = sensorNo;
+        this.readingLocation = readingLocation;
+        this.name = name;
+    }
 
     //returns data in this format: name, number, time, location, reading (or some variant of this order)
     @Override

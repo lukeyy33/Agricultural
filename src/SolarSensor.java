@@ -6,8 +6,9 @@ public class SolarSensor extends Sensor {
     public SolarSensor() {
     }
 
-    public void takeReading() {
-        //TODO
+    @Override
+    public Data takeReading() {
+        return super.takeReading();
     }
 
 }

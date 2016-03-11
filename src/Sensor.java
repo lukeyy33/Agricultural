@@ -48,7 +48,9 @@ public class Sensor implements Serializable{
      *
      * @return
      */
-    public void takeReading() {
+    public Data takeReading() {
+        // Create a Data object
+        return new Data(1.0f, new Date(), serialNo, currentLocation, "Reading");
     }
 
     public void setInterval(int intervalIn) {
@@ -66,7 +68,7 @@ public class Sensor implements Serializable{
      */
     public void run() {
         while (active) {
-            takeReading();
+            parentFieldStation.appendNewData(takeReading());
         }
     }
 
