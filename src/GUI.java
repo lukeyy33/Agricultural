@@ -47,6 +47,8 @@ public class GUI extends javax.swing.JFrame {
      *
      */
     public ConnectionHandler handler;
+    
+    public Sensor sensor;
 
     /**
      *
@@ -565,7 +567,6 @@ public class GUI extends javax.swing.JFrame {
         plantCropBtn = new javax.swing.JButton();
         harvestCropBtn = new javax.swing.JButton();
         showCropHistoryBtn = new javax.swing.JButton();
-        showSensorDeatailsBtn = new javax.swing.JButton();
         addSensorBtn = new javax.swing.JButton();
         editSensorBtn = new javax.swing.JButton();
         removeSensorBtn = new javax.swing.JButton();
@@ -706,7 +707,24 @@ public class GUI extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         sensorDialogLocationType = new javax.swing.JTextField();
         editSensorDialog = new javax.swing.JDialog();
+        sensorType = new javax.swing.JTextField();
+        sensorID = new javax.swing.JSpinner();
+        sensorYcord = new javax.swing.JSpinner();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        sensorXcord = new javax.swing.JSpinner();
+        jLabel56 = new javax.swing.JLabel();
+        sensorName = new javax.swing.JTextField();
+        jLabel57 = new javax.swing.JLabel();
+        confirmEditSensor = new javax.swing.JButton();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        cancelSensor = new javax.swing.JButton();
         removeSensorDialog = new javax.swing.JDialog();
+        jLabel53 = new javax.swing.JLabel();
+        deleteSensorName = new javax.swing.JLabel();
+        sensorDeleteConfirm = new javax.swing.JButton();
+        sensorDeleteCancel = new javax.swing.JButton();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -1029,13 +1047,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        showSensorDeatailsBtn.setText("Show Details");
-        showSensorDeatailsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showSensorDeatailsBtnActionPerformed(evt);
-            }
-        });
-
         addSensorBtn.setText("Add Sensor");
         addSensorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1110,9 +1121,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(updateFieldStationDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(addFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(updateFieldStationDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(fieldsDialogLayout.createSequentialGroup()
                                     .addComponent(addSensorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1129,9 +1138,7 @@ public class GUI extends javax.swing.JFrame {
                                         .addGroup(fieldsDialogLayout.createSequentialGroup()
                                             .addComponent(jLabel45)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(showSensorDeatailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(fieldsDialogLayout.createSequentialGroup()
                                             .addComponent(jLabel46)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1140,13 +1147,16 @@ public class GUI extends javax.swing.JFrame {
                                             .addComponent(yLocationLbl)
                                             .addGap(18, 18, 18)
                                             .addComponent(typeLocationLbl)))
+                                    .addGap(179, 179, 179)
                                     .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                            .addGap(17, 17, 17)
-                                            .addComponent(btnEditFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(fieldsDialogLayout.createSequentialGroup()
                                             .addGap(18, 18, 18)
-                                            .addComponent(deleteFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(deleteFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                            .addGap(17, 17, 17)
+                                            .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(addFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnEditFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                         .addContainerGap()
@@ -1200,8 +1210,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteFieldStationBtn)
                     .addComponent(jLabel45)
-                    .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showSensorDeatailsBtn))
+                    .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46)
@@ -1932,7 +1941,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addFieldStationDialogLayout.createSequentialGroup()
                             .addGap(24, 24, 24)
                             .addComponent(confirmAddFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                             .addComponent(cancelFieldStation1))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addFieldStationDialogLayout.createSequentialGroup()
                             .addGroup(addFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2282,26 +2291,147 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel54.setText("yCoord");
+
+        jLabel55.setText("xCoord");
+
+        jLabel56.setText("ID");
+
+        jLabel57.setText("Name");
+
+        confirmEditSensor.setText("Edit");
+        confirmEditSensor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmEditSensorActionPerformed(evt);
+            }
+        });
+
+        jLabel58.setText("Type");
+
+        jLabel59.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel59.setText("Edit Sensor");
+
+        cancelSensor.setText("Cancel");
+        cancelSensor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelSensorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout editSensorDialogLayout = new javax.swing.GroupLayout(editSensorDialog.getContentPane());
         editSensorDialog.getContentPane().setLayout(editSensorDialogLayout);
         editSensorDialogLayout.setHorizontalGroup(
             editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(editSensorDialogLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editSensorDialogLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel59))
+                    .addGroup(editSensorDialogLayout.createSequentialGroup()
+                        .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel57)
+                            .addComponent(jLabel55)
+                            .addComponent(jLabel54)
+                            .addComponent(jLabel58)
+                            .addComponent(jLabel56))
+                        .addGap(18, 18, 18)
+                        .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sensorYcord, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(sensorXcord)
+                            .addComponent(sensorName)
+                            .addComponent(sensorType, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(sensorID))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(editSensorDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(confirmEditSensor, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addComponent(cancelSensor)
+                .addGap(57, 57, 57))
         );
         editSensorDialogLayout.setVerticalGroup(
             editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(editSensorDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel59)
+                .addGap(21, 21, 21)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel57)
+                    .addComponent(sensorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorXcord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel55))
+                .addGap(18, 18, 18)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorYcord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel54))
+                .addGap(18, 18, 18)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel58))
+                .addGap(18, 18, 18)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel56)
+                    .addComponent(sensorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmEditSensor)
+                    .addComponent(cancelSensor))
+                .addGap(52, 52, 52))
         );
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel53.setText("Are You Sure You Want To Delete");
+
+        deleteSensorName.setText("jLabel54");
+
+        sensorDeleteConfirm.setText("Confirm");
+        sensorDeleteConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sensorDeleteConfirmActionPerformed(evt);
+            }
+        });
+
+        sensorDeleteCancel.setText("Cancel");
+        sensorDeleteCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sensorDeleteCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout removeSensorDialogLayout = new javax.swing.GroupLayout(removeSensorDialog.getContentPane());
         removeSensorDialog.getContentPane().setLayout(removeSensorDialogLayout);
         removeSensorDialogLayout.setHorizontalGroup(
             removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(removeSensorDialogLayout.createSequentialGroup()
+                .addGroup(removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeSensorDialogLayout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(deleteSensorName))
+                    .addGroup(removeSensorDialogLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(removeSensorDialogLayout.createSequentialGroup()
+                                .addComponent(sensorDeleteConfirm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sensorDeleteCancel))
+                            .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         removeSensorDialogLayout.setVerticalGroup(
             removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(removeSensorDialogLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(deleteSensorName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addGroup(removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorDeleteConfirm)
+                    .addComponent(sensorDeleteCancel))
+                .addGap(29, 29, 29))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2979,10 +3109,21 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editSensorBtnActionPerformed
 
     private void removeSensorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeSensorBtnActionPerformed
-        removeSensorDialog.pack();
-        removeSensorDialog.setVisible(true);
+       removeSensorDialog.pack();
+       removeSensorDialog.setVisible(true);
+       removeSensor();
     }//GEN-LAST:event_removeSensorBtnActionPerformed
+    private void removeSensor() {
+        FieldStation fieldStation = new FieldStation();
+        if (fieldStation.getAllSensors().length == 0) {
+            JOptionPane.showMessageDialog(this, "There is no Sensor to delete");
+        } else {
+            deleteSensorName.setText(cmbSensors.getSelectedItem().toString());
+            removeSensorDialog.pack();
+            removeSensorDialog.setVisible(true);
+        }
 
+    }
     private void closeHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeHistoryBtnActionPerformed
         showFieldHistory.setVisible(false);
     }//GEN-LAST:event_closeHistoryBtnActionPerformed
@@ -3002,16 +3143,8 @@ public class GUI extends javax.swing.JFrame {
         farmView.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void showSensorDeatailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSensorDeatailsBtnActionPerformed
-        if (true) {
-
-        } else {
-            JOptionPane.showMessageDialog(fieldsDialog, "There are no Sensors in the System");
-        }
-    }//GEN-LAST:event_showSensorDeatailsBtnActionPerformed
-
     private void sensorDialogAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDialogAddBtnActionPerformed
-        // TODO add your handling code here:
+        
         int xspinner = (int) sensorDialogLocationXSpinner.getValue();
         int yspinner = (int) sensorDialogLocationYSpinner.getValue();
         int serialNo = Integer.parseInt(sensorDialogSerialNumber.getText());
@@ -3019,8 +3152,8 @@ public class GUI extends javax.swing.JFrame {
         String locType = sensorDialogLocationType.getText();
         
         Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
-        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
-        FieldStation tmpFS =  selectFieldStation(tmpField,(Integer) cmbFieldStations.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbSensors.getSelectedItem());
+        FieldStation tmpFS =  selectFieldStation(tmpField,(Integer) cmbSensors.getSelectedItem());
         tmpFS.addSensor(new Location(xspinner, yspinner, locType), interval, serialNo, tmpFS);
     }//GEN-LAST:event_sensorDialogAddBtnActionPerformed
 
@@ -3036,6 +3169,34 @@ public class GUI extends javax.swing.JFrame {
     private void sensorDialogLocationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDialogLocationTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sensorDialogLocationTypeActionPerformed
+
+    private void sensorDeleteConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDeleteConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sensorDeleteConfirmActionPerformed
+
+    private void sensorDeleteCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDeleteCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sensorDeleteCancelActionPerformed
+
+    private void confirmEditSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmEditSensorActionPerformed
+        // TODO add your handling code here:
+        String snsrName = sensorName.getText();
+        int sensorXcoord = (int)sensorXcord.getValue();
+        int sensorYcoord = (int)sensorYcord.getValue();
+        String snsrType = sensorType.getText();
+        int sensorId = (int) sensorID.getValue();
+        
+    }//GEN-LAST:event_confirmEditSensorActionPerformed
+
+    private void cancelSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSensorActionPerformed
+        // TODO add your handling code here:
+        sensorName.setText("");
+        sensorXcord.setValue(0);
+        sensorYcord.setValue(0);
+        sensorType.setText("");
+        sensorID.setValue(0);
+        editSensorDialog.setVisible(false);
+    }//GEN-LAST:event_cancelSensorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3108,6 +3269,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JButton cancelFieldStation;
     private javax.swing.JButton cancelFieldStation1;
+    private javax.swing.JButton cancelSensor;
     private javax.swing.JButton closeHistoryBtn;
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
@@ -3121,6 +3283,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton confirmEditFarmBtn1;
     private javax.swing.JButton confirmEditFarmerBtn;
     private javax.swing.JButton confirmEditFieldstation;
+    private javax.swing.JButton confirmEditSensor;
     private javax.swing.JButton confirmFarmerDelete;
     private javax.swing.JButton confirmFieldDelete;
     private javax.swing.JButton createFarmBtn;
@@ -3135,6 +3298,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton deleteFieldStationBtn;
     private javax.swing.JDialog deleteFieldStationDialog;
     private javax.swing.JLabel deleteFieldStationLbl;
+    private javax.swing.JLabel deleteSensorName;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton editFarmBtn;
     private javax.swing.JDialog editFarmDialog;
@@ -3223,6 +3387,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -3249,6 +3420,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog removeSensorDialog;
     private javax.swing.JDialog searchFailed;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton sensorDeleteCancel;
+    private javax.swing.JButton sensorDeleteConfirm;
     private javax.swing.JButton sensorDialogAddBtn;
     private javax.swing.JButton sensorDialogCancelBtn;
     private javax.swing.JTextField sensorDialogInterval;
@@ -3260,12 +3433,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner sensorDialogLocationYSpinner;
     private javax.swing.JTextField sensorDialogSerialNumber;
     private javax.swing.JLabel sensorDialogSerialNumberLbl;
+    private javax.swing.JSpinner sensorID;
+    private javax.swing.JTextField sensorName;
+    private javax.swing.JTextField sensorType;
+    private javax.swing.JSpinner sensorXcord;
+    private javax.swing.JSpinner sensorYcord;
     private javax.swing.JButton showCropHistoryBtn;
     private javax.swing.JButton showFarmerDetailsBtn;
     private javax.swing.JButton showFarmsBtn;
     private javax.swing.JButton showFieldBtn;
     private javax.swing.JDialog showFieldHistory;
-    private javax.swing.JButton showSensorDeatailsBtn;
     private javax.swing.JTextField typeInput;
     private javax.swing.JTextField typeInput1;
     private javax.swing.JLabel typeLocationLbl;
