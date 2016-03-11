@@ -25,13 +25,13 @@ public class Sensor implements Serializable{
     private FieldStation parentfieldStation;
 
     public Sensor() {
+        
     }
 
-    public String getCurrentLocation() {
-        // TODO implement here
-        return this.getCurrentLocation();
+    public Location getCurrentLocation() {
+        return currentLocation;
+    
     }
-
     /**
      * Once a sensor is started this method is called by run(), a data object is
      * created, the data object will be appended to the parent fielsStation
@@ -42,19 +42,14 @@ public class Sensor implements Serializable{
      * @return
      */
     public void takeReading() {
-        // TODO implement here
-
-        Data data = new Data();
-        //FieldStation.appendNewData(data);
     }
 
-    public void setInterval(int interval) {
-        // TODO implement here
+    public void setInterval(int intervalIn) {
+        interval = intervalIn;
     }
 
     public void setCurrentLocation(Location location) {
-        location = this.currentLocation;
-
+        currentLocation = location;
     }
 
     /**

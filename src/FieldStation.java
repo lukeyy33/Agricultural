@@ -137,9 +137,7 @@ public class FieldStation implements Serializable {
      * @param data
      * @return
      */
-    public String appendNewData(Data data) {
-        // TODO implement here
-        return null;
+    public void appendNewData(Data data) {
     }
 
     /**

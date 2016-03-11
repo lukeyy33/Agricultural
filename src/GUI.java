@@ -57,7 +57,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void loadFarmers() {
         try {
-            ObjectInputStream farmersIn = new ObjectInputStream(new FileInputStream("tmp/farmers.ser"));
+            ObjectInputStream farmersIn = new ObjectInputStream(new FileInputStream("tmp\\farmers.ser"));
             while (true) {
                 try {
                     SetOfFarmers farmers = (SetOfFarmers) farmersIn.readObject();
@@ -79,7 +79,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void loadFarms() {
         try {
-            ObjectInputStream farmsIn = new ObjectInputStream(new FileInputStream("tmp/farms.ser"));
+            ObjectInputStream farmsIn = new ObjectInputStream(new FileInputStream("tmp\\farms.ser"));
             while (true) {
                 try {
                     SetOfFarms farms = (SetOfFarms) farmsIn.readObject();
@@ -105,7 +105,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void save() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("tmp/farmers.ser");
+            FileOutputStream fileOut = new FileOutputStream("tmp\\farmers.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(theFarmers);
             out.close();
@@ -114,7 +114,7 @@ public class GUI extends javax.swing.JFrame {
             i.printStackTrace();
         }
         try {
-            FileOutputStream fileOut1 = new FileOutputStream("tmp/farms.ser");
+            FileOutputStream fileOut1 = new FileOutputStream("tmp\\farms.ser");
             ObjectOutputStream out1 = new ObjectOutputStream(fileOut1);
             out1.writeObject(theFarms);
             out1.close();
@@ -349,8 +349,9 @@ public class GUI extends javax.swing.JFrame {
      *
      * @param Sensor
      */
-    public void showSensorPopup(Sensor Sensor) {
-
+    public void showSensorPopup() {
+        addSensorDialog.pack();
+        addSensorDialog.setVisible(true);
     }
 
     /**
@@ -668,6 +669,10 @@ public class GUI extends javax.swing.JFrame {
         showFieldHistory = new javax.swing.JDialog();
         jScrollPane4 = new javax.swing.JScrollPane();
         fieldHistoryTable = new javax.swing.JTable();
+        closeHistoryBtn = new javax.swing.JButton();
+        addSensorDialog = new javax.swing.JDialog();
+        editSensorDialog = new javax.swing.JDialog();
+        removeSensorDialog = new javax.swing.JDialog();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -1006,10 +1011,25 @@ public class GUI extends javax.swing.JFrame {
         showSensorDeatailsBtn.setText("Show Details");
 
         addSensorBtn.setText("Add Sensor");
+        addSensorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSensorBtnActionPerformed(evt);
+            }
+        });
 
         editSensorBtn.setText("Edit Sensor");
+        editSensorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editSensorBtnActionPerformed(evt);
+            }
+        });
 
         removeSensorBtn.setText("Remove Sensor");
+        removeSensorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeSensorBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout fieldsDialogLayout = new javax.swing.GroupLayout(fieldsDialog.getContentPane());
         fieldsDialog.getContentPane().setLayout(fieldsDialogLayout);
@@ -2081,21 +2101,67 @@ public class GUI extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(fieldHistoryTable);
 
+        closeHistoryBtn.setText("Close");
+        closeHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeHistoryBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout showFieldHistoryLayout = new javax.swing.GroupLayout(showFieldHistory.getContentPane());
         showFieldHistory.getContentPane().setLayout(showFieldHistoryLayout);
         showFieldHistoryLayout.setHorizontalGroup(
             showFieldHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(showFieldHistoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                .addComponent(jScrollPane4)
                 .addContainerGap())
+            .addGroup(showFieldHistoryLayout.createSequentialGroup()
+                .addGap(405, 405, 405)
+                .addComponent(closeHistoryBtn)
+                .addContainerGap(433, Short.MAX_VALUE))
         );
         showFieldHistoryLayout.setVerticalGroup(
             showFieldHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, showFieldHistoryLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+            .addGroup(showFieldHistoryLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(closeHistoryBtn)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout addSensorDialogLayout = new javax.swing.GroupLayout(addSensorDialog.getContentPane());
+        addSensorDialog.getContentPane().setLayout(addSensorDialogLayout);
+        addSensorDialogLayout.setHorizontalGroup(
+            addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        addSensorDialogLayout.setVerticalGroup(
+            addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout editSensorDialogLayout = new javax.swing.GroupLayout(editSensorDialog.getContentPane());
+        editSensorDialog.getContentPane().setLayout(editSensorDialogLayout);
+        editSensorDialogLayout.setHorizontalGroup(
+            editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        editSensorDialogLayout.setVerticalGroup(
+            editSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout removeSensorDialogLayout = new javax.swing.GroupLayout(removeSensorDialog.getContentPane());
+        removeSensorDialog.getContentPane().setLayout(removeSensorDialogLayout);
+        removeSensorDialogLayout.setHorizontalGroup(
+            removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        removeSensorDialogLayout.setVerticalGroup(
+            removeSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2754,6 +2820,24 @@ public class GUI extends javax.swing.JFrame {
         populateCmbSensors(fieldStation);
     }//GEN-LAST:event_updateFieldStationDetailsActionPerformed
 
+    private void addSensorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSensorBtnActionPerformed
+        showSensorPopup();
+    }//GEN-LAST:event_addSensorBtnActionPerformed
+
+    private void editSensorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSensorBtnActionPerformed
+        editSensorDialog.pack();
+        editSensorDialog.setVisible(true);
+    }//GEN-LAST:event_editSensorBtnActionPerformed
+
+    private void removeSensorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeSensorBtnActionPerformed
+        removeSensorDialog.pack();
+        removeSensorDialog.setVisible(true);
+    }//GEN-LAST:event_removeSensorBtnActionPerformed
+
+    private void closeHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeHistoryBtnActionPerformed
+        showFieldHistory.setVisible(false);
+    }//GEN-LAST:event_closeHistoryBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2810,6 +2894,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog addFieldStationDialog;
     private javax.swing.JTextField addFieldType;
     private javax.swing.JButton addSensorBtn;
+    private javax.swing.JDialog addSensorDialog;
     private javax.swing.JButton addToAssociatedBtn;
     private javax.swing.JTable allFarmsTable;
     private javax.swing.JTable associatedFarmsTable;
@@ -2823,6 +2908,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JButton cancelFieldStation;
     private javax.swing.JButton cancelFieldStation1;
+    private javax.swing.JButton closeHistoryBtn;
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
     private javax.swing.JComboBox cmbFieldStations;
@@ -2856,6 +2942,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton editFieldBtn;
     private javax.swing.JDialog editFieldStationDialog;
     private javax.swing.JButton editSensorBtn;
+    private javax.swing.JDialog editSensorDialog;
     private javax.swing.JButton farmCancelBtn;
     private javax.swing.JButton farmCancelBtn1;
     private javax.swing.JDialog farmView;
@@ -2953,6 +3040,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton removeFieldBtn;
     private javax.swing.JButton removeFromAssociatedBtn;
     private javax.swing.JButton removeSensorBtn;
+    private javax.swing.JDialog removeSensorDialog;
     private javax.swing.JDialog searchFailed;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton showCropHistoryBtn;
