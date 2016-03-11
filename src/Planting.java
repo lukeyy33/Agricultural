@@ -29,11 +29,16 @@ public class Planting {
      * @param harvestDate
      * @param yield
      */
-    public Planting(Crop crop, Date plantDate, Date harvestDate, int yield) {
-        this.crop = crop;
-        this.plantDate = plantDate;
-        this.harvestDate = harvestDate;
-        this.yield = yield;
+    public void plant(Crop cropIn, Date plantDateIn) {
+        crop = cropIn;
+        plantDate = plantDateIn;
+        harvestDate = null;
+        yield = 0;
+    }
+
+    public void harvest(Date harvestDateIn, int yieldIn) {
+        harvestDate = harvestDateIn;
+        yield = yieldIn;
     }
 
     public String toString() {
@@ -49,7 +54,8 @@ public class Planting {
     }
 
     /**
-     *Returns Crop Name
+     * Returns Crop Name
+     *
      * @return
      */
     public String getCropName() {
@@ -57,7 +63,8 @@ public class Planting {
     }
 
     /**
-     *Returns Plant Date
+     * Returns Plant Date
+     *
      * @return
      */
     public Date getPlantDate() {
@@ -65,7 +72,8 @@ public class Planting {
     }
 
     /**
-     *Returns Harvest Date
+     * Returns Harvest Date
+     *
      * @return
      */
     public Date getHarvestDate() {
@@ -73,7 +81,8 @@ public class Planting {
     }
 
     /**
-     *Returns Yield
+     * Returns Yield
+     *
      * @return
      */
     public int getYield() {

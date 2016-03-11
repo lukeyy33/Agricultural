@@ -492,8 +492,6 @@ public class GUI extends javax.swing.JFrame {
         cmbFields = new javax.swing.JComboBox();
         fieldLbl = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        menuLbl1 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
         addFieldBtn = new javax.swing.JButton();
         removeFieldBtn = new javax.swing.JButton();
         editFieldBtn = new javax.swing.JButton();
@@ -526,6 +524,23 @@ public class GUI extends javax.swing.JFrame {
         deleteFieldStationBtn = new javax.swing.JButton();
         cmbFieldStations = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
+        updateFieldStationDetails = new javax.swing.JButton();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        cmbSensors = new javax.swing.JComboBox();
+        fieldStationNameLbl = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        xLocationLbl = new javax.swing.JLabel();
+        yLocationLbl = new javax.swing.JLabel();
+        typeLocationLbl = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        cmbCrops = new javax.swing.JComboBox();
+        jLabel48 = new javax.swing.JLabel();
+        plantCropBtn = new javax.swing.JButton();
+        harvestCropBtn = new javax.swing.JButton();
+        addCropBtn = new javax.swing.JButton();
+        removeCropBtn = new javax.swing.JButton();
+        showCropHistoryBtn = new javax.swing.JButton();
         addFarmDialog = new javax.swing.JDialog();
         nameInput = new javax.swing.JTextField();
         nameLblAddFarm = new javax.swing.JLabel();
@@ -644,9 +659,7 @@ public class GUI extends javax.swing.JFrame {
         deleteFieldStationLbl = new javax.swing.JLabel();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         showFarmsBtn = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         menuLbl = new javax.swing.JLabel();
@@ -654,14 +667,12 @@ public class GUI extends javax.swing.JFrame {
         editFarmBtn = new javax.swing.JButton();
         delFarmBtn = new javax.swing.JButton();
         viewFarmersBtn = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
 
         cmbFields.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         fieldLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         fieldLbl.setText("Fields");
-
-        menuLbl1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        menuLbl1.setText("Menu");
 
         addFieldBtn.setText("Add Field");
         addFieldBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -701,20 +712,23 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(farmViewLayout.createSequentialGroup()
                         .addComponent(fieldLbl)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator5)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, farmViewLayout.createSequentialGroup()
+                        .addGroup(farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, farmViewLayout.createSequentialGroup()
+                                .addComponent(cmbFields, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))
                     .addGroup(farmViewLayout.createSequentialGroup()
-                        .addGroup(farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(showFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(farmViewLayout.createSequentialGroup()
-                                .addGroup(farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(menuLbl1)
-                                    .addComponent(addFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbFields, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
-                                .addComponent(showFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(editFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(removeFieldBtn))
-                        .addGap(0, 506, Short.MAX_VALUE))))
+                                .addComponent(addFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(editFieldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(removeFieldBtn)))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
         farmViewLayout.setVerticalGroup(
             farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -727,17 +741,12 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showFieldBtn))
-                .addGap(17, 17, 17)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLbl1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addFieldBtn)
-                .addGap(19, 19, 19)
-                .addComponent(editFieldBtn)
                 .addGap(18, 18, 18)
-                .addComponent(removeFieldBtn)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGroup(farmViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addFieldBtn)
+                    .addComponent(editFieldBtn)
+                    .addComponent(removeFieldBtn))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         farmerNameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -849,14 +858,16 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(showFarmerDetailsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(farmerSearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(farmerIdLbl)
-                            .addComponent(farmerPhoneLbl)
-                            .addGroup(farmerDialogLayout.createSequentialGroup()
-                                .addComponent(addFarmerBtn)
-                                .addGap(27, 27, 27)
-                                .addComponent(editFarmerBtn)
-                                .addGap(30, 30, 30)
-                                .addComponent(deleteFarmerBtn)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(farmerPhoneLbl))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(farmerDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addFarmerBtn)
+                        .addGap(46, 46, 46)
+                        .addComponent(editFarmerBtn)
+                        .addGap(51, 51, 51)
+                        .addComponent(deleteFarmerBtn)
+                        .addGap(80, 80, 80)))
                 .addContainerGap())
         );
         farmerDialogLayout.setVerticalGroup(
@@ -930,6 +941,46 @@ public class GUI extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel24.setText("Field Stations");
 
+        updateFieldStationDetails.setText("Show Details");
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel44.setText("Name: ");
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel45.setText("Sensors: ");
+
+        cmbSensors.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        fieldStationNameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        fieldStationNameLbl.setText("jLabel46");
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel46.setText("Location:");
+
+        xLocationLbl.setText("jLabel47");
+
+        yLocationLbl.setText("jLabel48");
+
+        typeLocationLbl.setText("jLabel49");
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel47.setText("Plantings");
+
+        cmbCrops.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel48.setText("Crops");
+
+        plantCropBtn.setText("Plant Crop");
+
+        harvestCropBtn.setText("Harvest Crop");
+
+        addCropBtn.setText("Add Crop");
+
+        removeCropBtn.setText("Remove Crop");
+
+        showCropHistoryBtn.setText("Show History");
+
         javax.swing.GroupLayout fieldsDialogLayout = new javax.swing.GroupLayout(fieldsDialog.getContentPane());
         fieldsDialog.getContentPane().setLayout(fieldsDialogLayout);
         fieldsDialogLayout.setHorizontalGroup(
@@ -941,55 +992,124 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                         .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFieldName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel22)
+                                .addGap(228, 228, 228)
+                                .addComponent(jLabel47))
+                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                        .addComponent(lblFieldName)
+                                        .addGap(236, 236, 236)
+                                        .addComponent(jLabel48))
+                                    .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(lblFieldCrop)
                                         .addComponent(lblFieldType)))
-                                .addGap(0, 558, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbCrops, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(removeCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                .addGap(39, 39, 39)
+                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(showCropHistoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(plantCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(harvestCropBtn))
                             .addGroup(fieldsDialogLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
+                                .addComponent(jLabel24)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator7)
+                            .addGroup(fieldsDialogLayout.createSequentialGroup()
                                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator7)
+                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                        .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(updateFieldStationDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                                         .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel24)
+                                            .addComponent(jLabel45)
+                                            .addComponent(jLabel46))
+                                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                                .addComponent(addFieldStationBtn)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(xLocationLbl)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnEditFieldstation)
+                                                .addComponent(yLocationLbl)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(deleteFieldStationBtn)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addContainerGap())))
+                                                .addComponent(typeLocationLbl))
+                                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                                .addGap(5, 5, 5)
+                                                .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                        .addComponent(jLabel44)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fieldStationNameLbl))
+                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                        .addComponent(addFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEditFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(deleteFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         fieldsDialogLayout.setVerticalGroup(
             fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fieldsDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel22)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel47))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblFieldName)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFieldName)
+                    .addComponent(cmbCrops, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel48)
+                    .addComponent(plantCropBtn)
+                    .addComponent(harvestCropBtn))
                 .addGap(18, 18, 18)
-                .addComponent(lblFieldType)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFieldType)
+                    .addComponent(addCropBtn)
+                    .addComponent(showCropHistoryBtn))
                 .addGap(18, 18, 18)
-                .addComponent(lblFieldCrop)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFieldCrop)
+                    .addComponent(removeCropBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel24)
                 .addGap(18, 18, 18)
-                .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbFieldStations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateFieldStationDetails))
                 .addGap(18, 18, 18)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(fieldStationNameLbl))
+                .addGap(18, 18, 18)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel45)
+                    .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel46)
+                    .addComponent(xLocationLbl)
+                    .addComponent(yLocationLbl)
+                    .addComponent(typeLocationLbl))
+                .addGap(29, 29, 29)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addFieldStationBtn)
                     .addComponent(btnEditFieldstation)
                     .addComponent(deleteFieldStationBtn))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         nameLblAddFarm.setText("Name");
@@ -1942,7 +2062,7 @@ public class GUI extends javax.swing.JFrame {
         });
 
         menuLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        menuLbl.setText("Menu");
+        menuLbl.setText("Farmers");
 
         addFarmBtn.setText("Add Farm");
         addFarmBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -1979,68 +2099,54 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator8)
+                    .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSave))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(farmsLbl)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addComponent(jSeparator3)
+                            .addComponent(farmsLbl)
+                            .addComponent(menuLbl))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbFarms, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(showFarmsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(menuLbl)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(editFarmBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(delFarmBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addFarmBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(35, 35, 35)
-                                .addComponent(viewFarmersBtn)))
-                        .addGap(0, 389, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)))
+                        .addComponent(viewFarmersBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSave))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbFarms, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(showFarmsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addFarmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(editFarmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(delFarmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addComponent(farmsLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbFarms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showFarmsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addFarmBtn)
+                    .addComponent(editFarmBtn)
+                    .addComponent(delFarmBtn))
                 .addGap(18, 18, 18)
                 .addComponent(menuLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addFarmBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSave)
                     .addComponent(viewFarmersBtn))
-                .addGap(18, 18, 18)
-                .addComponent(editFarmBtn)
-                .addGap(18, 18, 18)
-                .addComponent(delFarmBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(btnSave)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(77, 77, 77)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(269, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -2565,6 +2671,7 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConfirmDelBtn;
+    private javax.swing.JButton addCropBtn;
     private javax.swing.JButton addFarmBtn;
     private javax.swing.JDialog addFarmDialog;
     private javax.swing.JButton addFarmerBtn;
@@ -2595,11 +2702,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JButton cancelFieldStation;
     private javax.swing.JButton cancelFieldStation1;
+    private javax.swing.JComboBox cmbCrops;
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
     private javax.swing.JComboBox cmbFieldStations;
     private javax.swing.JComboBox cmbFields;
     private javax.swing.JComboBox cmbSearch;
+    private javax.swing.JComboBox cmbSensors;
     private javax.swing.JButton confirmAddBtn;
     private javax.swing.JButton confirmAddFarmerBtn;
     private javax.swing.JButton confirmAddFieldstation;
@@ -2645,6 +2754,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner fieldStationId1;
     private javax.swing.JTextField fieldStationName;
     private javax.swing.JTextField fieldStationName1;
+    private javax.swing.JLabel fieldStationNameLbl;
     private javax.swing.JTextField fieldStationType;
     private javax.swing.JTextField fieldStationType1;
     private javax.swing.JSpinner fieldStationXCoord;
@@ -2652,6 +2762,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner fieldStationYCoord;
     private javax.swing.JSpinner fieldStationYCoord1;
     private javax.swing.JDialog fieldsDialog;
+    private javax.swing.JButton harvestCropBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2690,6 +2801,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2698,38 +2814,42 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lblFieldCrop;
     private javax.swing.JLabel lblFieldName;
     private javax.swing.JLabel lblFieldType;
     private javax.swing.JLabel menuLbl;
-    private javax.swing.JLabel menuLbl1;
     private javax.swing.JTextField nameInput;
     private javax.swing.JTextField nameInput1;
     private javax.swing.JLabel nameLblAddFarm;
     private javax.swing.JLabel nameLblAddFarm1;
+    private javax.swing.JButton plantCropBtn;
+    private javax.swing.JButton removeCropBtn;
     private javax.swing.JButton removeFieldBtn;
     private javax.swing.JButton removeFromAssociatedBtn;
     private javax.swing.JDialog searchFailed;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton showCropHistoryBtn;
     private javax.swing.JButton showFarmerDetailsBtn;
     private javax.swing.JButton showFarmsBtn;
     private javax.swing.JButton showFieldBtn;
     private javax.swing.JTextField typeInput;
     private javax.swing.JTextField typeInput1;
+    private javax.swing.JLabel typeLocationLbl;
+    private javax.swing.JButton updateFieldStationDetails;
     private javax.swing.JButton viewFarmersBtn;
     private javax.swing.JSpinner xCoordSpin;
     private javax.swing.JSpinner xCoordSpin1;
     private javax.swing.JLabel xLabelAddFarm;
     private javax.swing.JLabel xLabelAddFarm1;
+    private javax.swing.JLabel xLocationLbl;
     private javax.swing.JSpinner yCoordSpin;
     private javax.swing.JSpinner yCoordSpin1;
+    private javax.swing.JLabel yLocationLbl;
     // End of variables declaration//GEN-END:variables
 
 }
