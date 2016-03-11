@@ -17,21 +17,21 @@ import static org.junit.Assert.*;
  * @author Tom
  */
 public class SetOfFarmsTest {
-    
+
     SetOfFarms instance = new SetOfFarms();
-    
+    Farm instanceFarm = new Farm("Test Farm", new Location(0, 0, "Cow Farm"), 2123);
+
     public SetOfFarmsTest() {
     }
-    
+
     @Before
     public void setUp() {
-        instance.addFarm("Test Farm", new Location(0,0,"Cow Farm"), 2123);
+        instance.addFarmAlreadyInSystem(instanceFarm);
     }
-    
+
     @After
     public void tearDown() {
     }
-
 
     /**
      * Test of addFarm method, of class SetOfFarms.
@@ -40,7 +40,7 @@ public class SetOfFarmsTest {
     public void testAddFarm() {
         System.out.println("addFarm");
         String name = "Add Test";
-        Location location = new Location(22,22,"Taylor Swift");
+        Location location = new Location(22, 22, "Taylor Swift");
         int id = 22;
         instance.addFarm(name, location, id);
         Farm result = instance.getFarmByNumber(22);
@@ -52,14 +52,16 @@ public class SetOfFarmsTest {
      */
     @Test
     public void testGetFarmByName() {
-        System.out.println("getFarmByName");
-        String farmName = "";
-        SetOfFarms instance = new SetOfFarms();
-        Farm expResult = null;
-        Farm result = instance.getFarmByName(farmName);
+
+        Farm expResult = instanceFarm;
+        Farm result = instance.getFarmByName("Test Farm");
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        Farm result1 = instance.getFarmByName("test farm");
+        assertEquals(expResult, result);
+
+        Farm result2 = instance.getFarmByName("TEST FARM");
+        assertEquals(expResult, result);
     }
 
     /**
@@ -67,27 +69,9 @@ public class SetOfFarmsTest {
      */
     @Test
     public void testRemoveFarm() {
-        System.out.println("removeFarm");
-        Farm farm = null;
-        SetOfFarms instance = new SetOfFarms();
-        instance.removeFarm(farm);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFarmByNumber method, of class SetOfFarms.
-     */
-    @Test
-    public void testGetFarmByNumber() {
-        System.out.println("getFarmByNumber");
-        int farmNumber = 0;
-        SetOfFarms instance = new SetOfFarms();
-        Farm expResult = null;
-        Farm result = instance.getFarmByNumber(farmNumber);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(instance.getFarmByNumber(2123));
+        instance.removeFarm(instanceFarm);
+        assertNull(instance.getFarmByNumber(2123));
     }
 
     /**
@@ -95,13 +79,9 @@ public class SetOfFarmsTest {
      */
     @Test
     public void testGetAllFarms() {
-        System.out.println("getAllFarms");
-        SetOfFarms instance = new SetOfFarms();
-        ArrayList<Farm> expResult = null;
+        ArrayList<Farm> expResult = instance.getAllFarms();
         ArrayList<Farm> result = instance.getAllFarms();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
+
 }
