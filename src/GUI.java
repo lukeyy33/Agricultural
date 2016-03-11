@@ -637,6 +637,11 @@ public class GUI extends javax.swing.JFrame {
         farmCancelBtn1 = new javax.swing.JButton();
         jLabel39 = new javax.swing.JLabel();
         deleteFieldStationDialog = new javax.swing.JDialog();
+        deleteFieldStation = new javax.swing.JButton();
+        cancelDeleteFieldStationBtn = new javax.swing.JButton();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        deleteFieldStationLbl = new javax.swing.JLabel();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -1850,15 +1855,65 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
+        deleteFieldStation.setText("Delete");
+        deleteFieldStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteFieldStationActionPerformed(evt);
+            }
+        });
+
+        cancelDeleteFieldStationBtn.setText("Cancel");
+        cancelDeleteFieldStationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelDeleteFieldStationBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel42.setText("Are You Sure You Want To Delete");
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel43.setText("This Decision Is Irreversable");
+
+        deleteFieldStationLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        deleteFieldStationLbl.setText("jLabel44");
+
         javax.swing.GroupLayout deleteFieldStationDialogLayout = new javax.swing.GroupLayout(deleteFieldStationDialog.getContentPane());
         deleteFieldStationDialog.getContentPane().setLayout(deleteFieldStationDialogLayout);
         deleteFieldStationDialogLayout.setHorizontalGroup(
             deleteFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(deleteFieldStationDialogLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(deleteFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deleteFieldStationDialogLayout.createSequentialGroup()
+                        .addComponent(deleteFieldStation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelDeleteFieldStationBtn)
+                        .addGap(90, 90, 90))
+                    .addGroup(deleteFieldStationDialogLayout.createSequentialGroup()
+                        .addGroup(deleteFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(49, Short.MAX_VALUE))))
+            .addGroup(deleteFieldStationDialogLayout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(deleteFieldStationLbl)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         deleteFieldStationDialogLayout.setVerticalGroup(
             deleteFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteFieldStationDialogLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(deleteFieldStationLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(deleteFieldStationDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteFieldStation)
+                    .addComponent(cancelDeleteFieldStationBtn))
+                .addGap(53, 53, 53))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2046,8 +2101,8 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_farmCancelBtnActionPerformed
 
     private void delFarmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delFarmBtnActionPerformed
-        // TODO add your handling code here:
-        delFarmNameLbl.setText(cmbFarms.getSelectedItem().toString());
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        delFarmNameLbl.setText(tmpFarm.getName());
         deleteFarmDialog.pack();
         deleteFarmDialog.setVisible(true);
     }//GEN-LAST:event_delFarmBtnActionPerformed
@@ -2131,8 +2186,9 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void removeFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFieldBtnActionPerformed
-        // TODO add your handling code here:
-        fieldNameLbl.setText(cmbFields.getSelectedItem().toString());
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        fieldNameLbl.setText(tmpField.getName());
         deleteFieldDialog.pack();
         deleteFieldDialog.setVisible(true);
     }//GEN-LAST:event_removeFieldBtnActionPerformed
@@ -2447,15 +2503,29 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelFieldStation1ActionPerformed
 
     private void deleteFieldStationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFieldStationBtnActionPerformed
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        // Second parameter is Integer conversion of a String casted from an Object 
+        FieldStation fieldStation = selectFieldStation(tmpField, Integer.valueOf((String) cmbFieldStations.getSelectedItem()));
+        deleteFieldStationLbl.setText(fieldStation.getName());
+        deleteFieldStationDialog.pack();
+        deleteFieldStationDialog.setVisible(true);
+    }//GEN-LAST:event_deleteFieldStationBtnActionPerformed
+
+    private void deleteFieldStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFieldStationActionPerformed
         // Get the Currently selected Farm, Field and Fieldstation
         Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
         Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
 
         // Second parameter is Integer conversion of a String casted from an Object 
         FieldStation fieldStation = selectFieldStation(tmpField, Integer.valueOf((String) cmbFieldStations.getSelectedItem()));
-        
+
         tmpField.removeFieldStation(fieldStation.getFieldStationNo());
-    }//GEN-LAST:event_deleteFieldStationBtnActionPerformed
+    }//GEN-LAST:event_deleteFieldStationActionPerformed
+
+    private void cancelDeleteFieldStationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelDeleteFieldStationBtnActionPerformed
+        deleteFieldStationDialog.setVisible(false);
+    }//GEN-LAST:event_cancelDeleteFieldStationBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2520,6 +2590,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton cancelAddFarmerBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelDelBtn;
+    private javax.swing.JButton cancelDeleteFieldStationBtn;
     private javax.swing.JButton cancelFarmerDelete;
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JButton cancelFieldStation;
@@ -2545,8 +2616,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog deleteFarmerDialog;
     private javax.swing.JLabel deleteFarmerName;
     private javax.swing.JDialog deleteFieldDialog;
+    private javax.swing.JButton deleteFieldStation;
     private javax.swing.JButton deleteFieldStationBtn;
     private javax.swing.JDialog deleteFieldStationDialog;
+    private javax.swing.JLabel deleteFieldStationLbl;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton editFarmBtn;
     private javax.swing.JDialog editFarmDialog;
@@ -2615,6 +2688,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
