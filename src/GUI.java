@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,7 +57,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void loadFarmers() {
         try {
-            ObjectInputStream farmersIn = new ObjectInputStream(new FileInputStream("tmp\\farmers.ser"));
+            ObjectInputStream farmersIn = new ObjectInputStream(new FileInputStream("tmp/farmers.ser"));
             while (true) {
                 try {
                     SetOfFarmers farmers = (SetOfFarmers) farmersIn.readObject();
@@ -78,7 +79,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void loadFarms() {
         try {
-            ObjectInputStream farmsIn = new ObjectInputStream(new FileInputStream("tmp\\farms.ser"));
+            ObjectInputStream farmsIn = new ObjectInputStream(new FileInputStream("tmp/farms.ser"));
             while (true) {
                 try {
                     SetOfFarms farms = (SetOfFarms) farmsIn.readObject();
@@ -104,7 +105,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void save() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("tmp\\farmers.ser");
+            FileOutputStream fileOut = new FileOutputStream("tmp/farmers.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(theFarmers);
             out.close();
@@ -113,7 +114,7 @@ public class GUI extends javax.swing.JFrame {
             i.printStackTrace();
         }
         try {
-            FileOutputStream fileOut1 = new FileOutputStream("tmp\\farms.ser");
+            FileOutputStream fileOut1 = new FileOutputStream("tmp/farms.ser");
             ObjectOutputStream out1 = new ObjectOutputStream(fileOut1);
             out1.writeObject(theFarms);
             out1.close();
@@ -403,6 +404,13 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    public void populateCmbSensors(FieldStation fieldStation) {
+        cmbSensors.removeAllItems();
+        for (int i = 0; i < fieldStation.getAllSensors().length; i++) {
+            cmbSensors.addItem(Integer.toString(fieldStation.getAllSensors()[i].getSerialNo()));
+        }
+    }
+
     /**
      * Creates the Farmer Table with farmer ID
      *
@@ -534,13 +542,13 @@ public class GUI extends javax.swing.JFrame {
         yLocationLbl = new javax.swing.JLabel();
         typeLocationLbl = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        cmbCrops = new javax.swing.JComboBox();
-        jLabel48 = new javax.swing.JLabel();
         plantCropBtn = new javax.swing.JButton();
         harvestCropBtn = new javax.swing.JButton();
-        addCropBtn = new javax.swing.JButton();
-        removeCropBtn = new javax.swing.JButton();
         showCropHistoryBtn = new javax.swing.JButton();
+        showSensorDeatailsBtn = new javax.swing.JButton();
+        addSensorBtn = new javax.swing.JButton();
+        editSensorBtn = new javax.swing.JButton();
+        removeSensorBtn = new javax.swing.JButton();
         addFarmDialog = new javax.swing.JDialog();
         nameInput = new javax.swing.JTextField();
         nameLblAddFarm = new javax.swing.JLabel();
@@ -657,6 +665,9 @@ public class GUI extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         deleteFieldStationLbl = new javax.swing.JLabel();
+        showFieldHistory = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        fieldHistoryTable = new javax.swing.JTable();
         cmbFarms = new javax.swing.JComboBox();
         farmsLbl = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -942,6 +953,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel24.setText("Field Stations");
 
         updateFieldStationDetails.setText("Show Details");
+        updateFieldStationDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateFieldStationDetailsActionPerformed(evt);
+            }
+        });
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel44.setText("Name: ");
@@ -952,34 +968,48 @@ public class GUI extends javax.swing.JFrame {
         cmbSensors.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         fieldStationNameLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fieldStationNameLbl.setText("jLabel46");
+        fieldStationNameLbl.setText("Click Show Details");
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel46.setText("Location:");
 
-        xLocationLbl.setText("jLabel47");
+        xLocationLbl.setText("x: ");
 
-        yLocationLbl.setText("jLabel48");
+        yLocationLbl.setText("y: ");
 
-        typeLocationLbl.setText("jLabel49");
+        typeLocationLbl.setText("Type:");
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel47.setText("Plantings");
 
-        cmbCrops.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel48.setText("Crops");
-
         plantCropBtn.setText("Plant Crop");
+        plantCropBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plantCropBtnActionPerformed(evt);
+            }
+        });
 
         harvestCropBtn.setText("Harvest Crop");
-
-        addCropBtn.setText("Add Crop");
-
-        removeCropBtn.setText("Remove Crop");
+        harvestCropBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                harvestCropBtnActionPerformed(evt);
+            }
+        });
 
         showCropHistoryBtn.setText("Show History");
+        showCropHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showCropHistoryBtnActionPerformed(evt);
+            }
+        });
+
+        showSensorDeatailsBtn.setText("Show Details");
+
+        addSensorBtn.setText("Add Sensor");
+
+        editSensorBtn.setText("Edit Sensor");
+
+        removeSensorBtn.setText("Remove Sensor");
 
         javax.swing.GroupLayout fieldsDialogLayout = new javax.swing.GroupLayout(fieldsDialog.getContentPane());
         fieldsDialog.getContentPane().setLayout(fieldsDialogLayout);
@@ -989,36 +1019,6 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator6)
-                    .addGroup(fieldsDialogLayout.createSequentialGroup()
-                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addGap(228, 228, 228)
-                                .addComponent(jLabel47))
-                            .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                        .addComponent(lblFieldName)
-                                        .addGap(236, 236, 236)
-                                        .addComponent(jLabel48))
-                                    .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblFieldCrop)
-                                        .addComponent(lblFieldType)))
-                                .addGap(18, 18, 18)
-                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbCrops, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(removeCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                                .addGap(39, 39, 39)
-                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(showCropHistoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                    .addComponent(plantCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(harvestCropBtn))
-                            .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel24)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1043,45 +1043,74 @@ public class GUI extends javax.swing.JFrame {
                                                 .addComponent(typeLocationLbl))
                                             .addGroup(fieldsDialogLayout.createSequentialGroup()
                                                 .addGap(5, 5, 5)
-                                                .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(showSensorDeatailsBtn))))
                                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                                         .addComponent(jLabel44)
                                         .addGap(18, 18, 18)
                                         .addComponent(fieldStationNameLbl))
                                     .addGroup(fieldsDialogLayout.createSequentialGroup()
-                                        .addComponent(addFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(addSensorBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(addFieldStationBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                        .addGap(32, 32, 32)
+                                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnEditFieldstation, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                            .addComponent(editSensorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnEditFieldstation, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(deleteFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(removeSensorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(228, 228, 228)
+                                .addComponent(jLabel47))
+                            .addComponent(lblFieldName)
+                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                        .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                                .addComponent(lblFieldType)
+                                                .addGap(360, 360, 360))
+                                            .addGroup(fieldsDialogLayout.createSequentialGroup()
+                                                .addComponent(lblFieldCrop)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(plantCropBtn)
+                                                .addGap(18, 18, 18)))
+                                        .addComponent(harvestCropBtn)
                                         .addGap(18, 18, 18)
-                                        .addComponent(deleteFieldStationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(showCropHistoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel24))))
+                        .addGap(0, 106, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         fieldsDialogLayout.setVerticalGroup(
             fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fieldsDialogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22)
-                    .addComponent(jLabel47))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFieldName)
-                    .addComponent(cmbCrops, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel48)
-                    .addComponent(plantCropBtn)
-                    .addComponent(harvestCropBtn))
+                .addComponent(lblFieldName)
                 .addGap(18, 18, 18)
-                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFieldType)
-                    .addComponent(addCropBtn)
-                    .addComponent(showCropHistoryBtn))
-                .addGap(18, 18, 18)
-                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFieldCrop)
-                    .addComponent(removeCropBtn))
+                .addComponent(lblFieldType)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(harvestCropBtn)
+                        .addComponent(showCropHistoryBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblFieldCrop)
+                        .addComponent(plantCropBtn)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel24)
                 .addGap(18, 18, 18)
@@ -1097,8 +1126,9 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel45)
-                    .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(cmbSensors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showSensorDeatailsBtn))
+                .addGap(14, 14, 14)
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46)
                     .addComponent(xLocationLbl)
@@ -1109,7 +1139,12 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(addFieldStationBtn)
                     .addComponent(btnEditFieldstation)
                     .addComponent(deleteFieldStationBtn))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addSensorBtn)
+                    .addComponent(editSensorBtn)
+                    .addComponent(removeSensorBtn))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         nameLblAddFarm.setText("Name");
@@ -2036,6 +2071,33 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(53, 53, 53))
         );
 
+        fieldHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Crop", "Date Planted", "Date Harvested", "Yield"
+            }
+        ));
+        jScrollPane4.setViewportView(fieldHistoryTable);
+
+        javax.swing.GroupLayout showFieldHistoryLayout = new javax.swing.GroupLayout(showFieldHistory.getContentPane());
+        showFieldHistory.getContentPane().setLayout(showFieldHistoryLayout);
+        showFieldHistoryLayout.setHorizontalGroup(
+            showFieldHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(showFieldHistoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        showFieldHistoryLayout.setVerticalGroup(
+            showFieldHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, showFieldHistoryLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cmbFarms.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -2119,7 +2181,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(editFarmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(delFarmBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)))
+                        .addComponent(delFarmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -2448,6 +2510,7 @@ public class GUI extends javax.swing.JFrame {
         lblFieldName.setText("Name: " + tmp.getName());
         lblFieldType.setText("Type: " + tmp.getType());
         lblFieldCrop.setText("Crop: " + tmp.getCrop().getName());
+        cmbSensors.removeAllItems();
         populateCmbFieldStations(tmp);
         showFieldView();
     }//GEN-LAST:event_showFieldBtnActionPerformed
@@ -2633,6 +2696,64 @@ public class GUI extends javax.swing.JFrame {
         deleteFieldStationDialog.setVisible(false);
     }//GEN-LAST:event_cancelDeleteFieldStationBtnActionPerformed
 
+    private void plantCropBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plantCropBtnActionPerformed
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        if (tmpField.setCurrentPlanting(new Date())) {
+            JOptionPane.showMessageDialog(fieldsDialog, "Your Crop Was Planted!");
+        } else {
+            JOptionPane.showMessageDialog(fieldsDialog, "There Is Already A Crop Planted In This Field");
+        }
+
+    }//GEN-LAST:event_plantCropBtnActionPerformed
+
+    private void harvestCropBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_harvestCropBtnActionPerformed
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        if (tmpField.getCurrentPlanting() != null) {
+            String yield = JOptionPane.showInputDialog("Enter the yield of the harvest");
+            if (tmpField.harvestCurrentPlanting(new Date(), Integer.parseInt(yield))) {
+                JOptionPane.showMessageDialog(fieldsDialog, "Your Crop Was Harvested!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(fieldsDialog, "There Is No Crop Planted In This Field");
+        }
+
+
+    }//GEN-LAST:event_harvestCropBtnActionPerformed
+
+    private void showCropHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showCropHistoryBtnActionPerformed
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        Planting[] plantings = tmpField.getPlantings();
+        Object[] data = new Object[4];
+        DefaultTableModel model = (DefaultTableModel) fieldHistoryTable.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < plantings.length; i++) {
+            data[0] = plantings[i].getCropName();
+            data[1] = plantings[i].getPlantDate();
+            data[2] = plantings[i].getHarvestDate();
+            data[3] = plantings[i].getYield();
+            model.addRow(data);
+        }
+
+        showFieldHistory.pack();
+        showFieldHistory.setVisible(true);
+    }//GEN-LAST:event_showCropHistoryBtnActionPerformed
+
+    private void updateFieldStationDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFieldStationDetailsActionPerformed
+        // Get the Currently selected Farm, Field and Fieldstation
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        // Second parameter is Integer conversion of a String casted from an Object 
+        FieldStation fieldStation = selectFieldStation(tmpField, Integer.valueOf((String) cmbFieldStations.getSelectedItem()));
+        fieldStationNameLbl.setText(fieldStation.getName());
+        xLocationLbl.setText(Float.toString(fieldStation.getLocation().getXCoord()));
+        yLocationLbl.setText(Float.toString(fieldStation.getLocation().getYCoord()));
+        typeLocationLbl.setText(fieldStation.getLocation().getType());
+        populateCmbSensors(fieldStation);
+    }//GEN-LAST:event_updateFieldStationDetailsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2671,7 +2792,6 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConfirmDelBtn;
-    private javax.swing.JButton addCropBtn;
     private javax.swing.JButton addFarmBtn;
     private javax.swing.JDialog addFarmDialog;
     private javax.swing.JButton addFarmerBtn;
@@ -2689,6 +2809,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton addFieldStationBtn;
     private javax.swing.JDialog addFieldStationDialog;
     private javax.swing.JTextField addFieldType;
+    private javax.swing.JButton addSensorBtn;
     private javax.swing.JButton addToAssociatedBtn;
     private javax.swing.JTable allFarmsTable;
     private javax.swing.JTable associatedFarmsTable;
@@ -2702,7 +2823,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton cancelFieldDelete;
     private javax.swing.JButton cancelFieldStation;
     private javax.swing.JButton cancelFieldStation1;
-    private javax.swing.JComboBox cmbCrops;
     private javax.swing.JComboBox<String> cmbFarmers;
     private javax.swing.JComboBox cmbFarms;
     private javax.swing.JComboBox cmbFieldStations;
@@ -2735,6 +2855,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton editFarmerBtn;
     private javax.swing.JButton editFieldBtn;
     private javax.swing.JDialog editFieldStationDialog;
+    private javax.swing.JButton editSensorBtn;
     private javax.swing.JButton farmCancelBtn;
     private javax.swing.JButton farmCancelBtn1;
     private javax.swing.JDialog farmView;
@@ -2746,6 +2867,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton farmerSearchBtn;
     private javax.swing.JTable farmerTable;
     private javax.swing.JLabel farmsLbl;
+    private javax.swing.JTable fieldHistoryTable;
     private javax.swing.JSpinner fieldIdSpin;
     private javax.swing.JSpinner fieldIdSpin1;
     private javax.swing.JLabel fieldLbl;
@@ -2805,7 +2927,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2814,6 +2935,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
@@ -2828,15 +2950,17 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel nameLblAddFarm;
     private javax.swing.JLabel nameLblAddFarm1;
     private javax.swing.JButton plantCropBtn;
-    private javax.swing.JButton removeCropBtn;
     private javax.swing.JButton removeFieldBtn;
     private javax.swing.JButton removeFromAssociatedBtn;
+    private javax.swing.JButton removeSensorBtn;
     private javax.swing.JDialog searchFailed;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton showCropHistoryBtn;
     private javax.swing.JButton showFarmerDetailsBtn;
     private javax.swing.JButton showFarmsBtn;
     private javax.swing.JButton showFieldBtn;
+    private javax.swing.JDialog showFieldHistory;
+    private javax.swing.JButton showSensorDeatailsBtn;
     private javax.swing.JTextField typeInput;
     private javax.swing.JTextField typeInput1;
     private javax.swing.JLabel typeLocationLbl;

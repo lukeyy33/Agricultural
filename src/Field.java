@@ -18,6 +18,7 @@ public class Field implements Serializable {
     private String type;
     // assuming 1 field only has 1 crop in it
     private Crop crop;
+    private Planting currentPlanting;
     // list of plantings, i.e. history
     private Planting[] plantings;
 
@@ -41,10 +42,13 @@ public class Field implements Serializable {
         this.fieldNo = fieldNo;
         this.crop = new Crop(cropName, cropArea);
         this.fieldStations = new FieldStation[0];
+        this.plantings = new Planting[0];
     }
 
     /**
-     *Returns fieldStation by name by iterating through the array looking for a matching name
+     * Returns fieldStation by name by iterating through the array looking for a
+     * matching name
+     *
      * @param fieldStationName
      * @return
      */
@@ -59,7 +63,9 @@ public class Field implements Serializable {
     }
 
     /**
-     *Returns fieldStation by number by iterating through the array looking for a matching number
+     * Returns fieldStation by number by iterating through the array looking for
+     * a matching number
+     *
      * @param fieldStationNo
      * @return
      */
@@ -73,7 +79,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Adds a field station with a Location and Name
+     * Adds a field station with a Location and Name
+     *
      * @param currentLocation
      * @param name
      */
@@ -87,13 +94,15 @@ public class Field implements Serializable {
     }
 
     /**
-     *Removes a field station by using a for loop to iterate through the array to find the field station and remove it
+     * Removes a field station by using a for loop to iterate through the array
+     * to find the field station and remove it
+     *
      * @param fieldStation
      */
     public void removeFieldStation(int fieldStation) {
         for (int i = 0; i < fieldStations.length; i++) {
             if (fieldStations[i].getFieldStationNo() == fieldStation) {
-                for (int j = i; j < fieldStations.length-1; j++) {
+                for (int j = i; j < fieldStations.length - 1; j++) {
                     fieldStations[j] = fieldStations[j + 1];
                 }
             }
@@ -106,7 +115,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Updates the field Info for Name, Type, fieldNo, cropName and cropArea
+     * Updates the field Info for Name, Type, fieldNo, cropName and cropArea
+     *
      * @param name
      * @param type
      * @param fieldNo
@@ -121,9 +131,9 @@ public class Field implements Serializable {
     }
 
     // calculates and returns the area of the field using its attributes
-
     /**
-     *Returns the Area
+     * Returns the Area
+     *
      * @return
      */
     public float getArea() {
@@ -131,7 +141,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Return all fieldStations
+     * Return all fieldStations
+     *
      * @return
      */
     public FieldStation[] getAllFieldStations() {
@@ -139,7 +150,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Returns Name
+     * Returns Name
+     *
      * @return
      */
     public String getName() {
@@ -147,7 +159,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Returns Type
+     * Returns Type
+     *
      * @return
      */
     public String getType() {
@@ -155,7 +168,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Returns Crop
+     * Returns Crop
+     *
      * @return
      */
     public Crop getCrop() {
@@ -163,7 +177,8 @@ public class Field implements Serializable {
     }
 
     /**
-     *Return Plantings
+     * Return Plantings
+     *
      * @return
      */
     public Planting[] getPlantings() {
@@ -171,27 +186,42 @@ public class Field implements Serializable {
     }
 
     /**
-     *Set Plantings
-     * @param plantings
-     */
-    public void setPlantings(Planting[] plantings) {
-        this.plantings = plantings;
-    }
-
-    /**
-     *Return Latest Planting
-     * @return
-     */
-    public String getLatestPlanting() {
-        return this.plantings[plantings.length - 1].toString();
-    }
-
-    /**
-     *Returns Field Number
+     * Returns Field Number
+     *
      * @return
      */
     public int getFieldNumber() {
         return this.fieldNo;
     }
 
+    public boolean setCurrentPlanting(Date date) {
+        if (currentPlanting == null) {
+            currentPlanting = new Planting();
+            currentPlanting.plant(crop, date);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean harvestCurrentPlanting(Date date, int yield) {
+        if (currentPlanting != null) {
+            currentPlanting.harvest(date, yield);
+            Planting[] tmp = new Planting[plantings.length + 1];
+            
+            for(int i = 0; i <plantings.length;i++){
+                tmp[i]=plantings[i];
+            }
+            tmp[plantings.length] = currentPlanting;
+            plantings = tmp;
+            currentPlanting = null;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public Planting getCurrentPlanting(){
+        return currentPlanting;
+    }
 }

@@ -40,15 +40,15 @@ public class Planting {
         harvestDate = harvestDateIn;
         yield = yieldIn;
     }
-
+    @Override
     public String toString() {
         // TODO implement here
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
-        String summary = getCropName() + " Harvested: " + "\n"
-                + df.format(getHarvestDate()) + " Planted: " + "\n"
-                + df.format(getPlantDate()) + " Yield: " + "\n"
-                + getYield() + " kg";
+        String summary = crop.getName() + " Harvested: " + "\n"
+                + df.format(harvestDate) + " Planted: " + "\n"
+                + df.format(plantDate) + " Yield: " + "\n"
+                + yield + " kg";
 
         return summary;
     }
