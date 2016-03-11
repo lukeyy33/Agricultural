@@ -69,12 +69,19 @@ public class FieldStation implements Serializable {
 
     /**
      * Adds a sensor with SensorType, interval and Active
-     * @param sensorType
-     * @param interval
-     * @param active
+     * @param location
+     * @param intervalIn
+     * @param serialNumber
+     * @param pFieldStation
      */
-    public void addSensor(int sensorType, int interval, boolean active) {
+    public void addSensor(Location location, int intervalIn, int serialNumber, FieldStation pFieldStation) {
         // TODO implement here
+        Sensor tmp[] = new Sensor[sensors.length + 1];
+        for (int i = 0; i < sensors.length; i++) {
+            tmp[i] = sensors[i];
+        }
+        tmp[sensors.length] = new Sensor(currentLocation, intervalIn, serialNumber, this);
+        sensors = tmp;
     }
     
 
@@ -146,7 +153,7 @@ public class FieldStation implements Serializable {
      */
     public Sensor[] getAllSensors() {
         // TODO implement here
-        return null;
+        return sensors;
     }
 
     /**

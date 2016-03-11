@@ -359,6 +359,7 @@ public class GUI extends javax.swing.JFrame {
      * @param Sensor
      */
     public void showSensorPopup() {
+        
         addSensorDialog.pack();
         addSensorDialog.setVisible(true);
     }
@@ -419,7 +420,7 @@ public class GUI extends javax.swing.JFrame {
     public void populateCmbSensors(FieldStation fieldStation) {
         cmbSensors.removeAllItems();
         if (fieldStation.getAllSensors().length == 0) {
-
+                JOptionPane.showMessageDialog(fieldsDialog,"No Sensor Data");
         } else {
             for (int i = 0; i < fieldStation.getAllSensors().length; i++) {
                 cmbSensors.addItem(Integer.toString(fieldStation.getAllSensors()[i].getSerialNo()));
@@ -525,7 +526,7 @@ public class GUI extends javax.swing.JFrame {
         farmerDialog = new javax.swing.JDialog();
         farmerNameLbl = new javax.swing.JLabel();
         farmerEmailLbl = new javax.swing.JLabel();
-        cmbFarmers = new javax.swing.JComboBox<String>();
+        cmbFarmers = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         farmerIdLbl = new javax.swing.JLabel();
         showFarmerDetailsBtn = new javax.swing.JButton();
@@ -691,6 +692,19 @@ public class GUI extends javax.swing.JFrame {
         fieldHistoryTable = new javax.swing.JTable();
         closeHistoryBtn = new javax.swing.JButton();
         addSensorDialog = new javax.swing.JDialog();
+        sensorDialogLocationX = new javax.swing.JLabel();
+        sensorDialogSerialNumberLbl = new javax.swing.JLabel();
+        sensorDialogSerialNumber = new javax.swing.JTextField();
+        sensorDialogIntervalLbl = new javax.swing.JLabel();
+        sensorDialogInterval = new javax.swing.JTextField();
+        sensorDialogAddBtn = new javax.swing.JButton();
+        sensorDialogCancelBtn = new javax.swing.JButton();
+        sensorDialogLocationY = new javax.swing.JLabel();
+        sensorDialogLocationXSpinner = new javax.swing.JSpinner();
+        sensorDialogLocationYSpinner = new javax.swing.JSpinner();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        sensorDialogLocationType = new javax.swing.JTextField();
         editSensorDialog = new javax.swing.JDialog();
         removeSensorDialog = new javax.swing.JDialog();
         cmbFarms = new javax.swing.JComboBox();
@@ -768,7 +782,7 @@ public class GUI extends javax.swing.JFrame {
         farmerEmailLbl.setText("Farmer Email:");
 
         cmbFarmers.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFarmers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Select a Farmer:");
@@ -923,7 +937,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(deleteFarmerBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(homeBtn1)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblFieldType.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1158,9 +1172,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(plantCropBtn)
                         .addComponent(harvestCropBtn))
-                    .addGroup(fieldsDialogLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(lblFieldName)))
+                    .addComponent(lblFieldName))
                 .addGroup(fieldsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fieldsDialogLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -1248,48 +1260,44 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jLabel35))
                     .addGroup(addFarmDialogLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(nameLblAddFarm)
-                        .addGap(34, 34, 34)
-                        .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addFarmDialogLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(xLabelAddFarm)
-                        .addGap(20, 20, 20)
-                        .addComponent(xCoordSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addFarmDialogLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addComponent(jLabel3)
                         .addGap(21, 21, 21)
                         .addComponent(yCoordSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addFarmDialogLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel4)
-                        .addGap(40, 40, 40)
-                        .addComponent(typeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addFarmDialogLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5)
-                        .addGap(21, 21, 21)
-                        .addComponent(fieldIdSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addFarmDialogLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addComponent(createFarmBtn)
                         .addGap(21, 21, 21)
-                        .addComponent(farmCancelBtn)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(farmCancelBtn))
+                    .addGroup(addFarmDialogLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(21, 21, 21)
+                        .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(typeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldIdSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addFarmDialogLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(xLabelAddFarm)
+                            .addComponent(nameLblAddFarm))
+                        .addGap(20, 20, 20)
+                        .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(xCoordSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         addFarmDialogLayout.setVerticalGroup(
             addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addFarmDialogLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel35)
-                .addGap(13, 13, 13)
-                .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addFarmDialogLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(nameLblAddFarm))
+                .addGap(15, 15, 15)
+                .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLblAddFarm)
                     .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(10, 10, 10)
                 .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addFarmDialogLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -1301,13 +1309,11 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jLabel3))
                     .addComponent(yCoordSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addFarmDialogLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel4))
+                .addGap(14, 14, 14)
+                .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
                     .addComponent(typeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(10, 10, 10)
                 .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addFarmDialogLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -1317,7 +1323,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(addFarmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(createFarmBtn)
                     .addComponent(farmCancelBtn))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2173,15 +2179,107 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
+        sensorDialogLocationX.setText("Location X");
+
+        sensorDialogSerialNumberLbl.setText("Serial Number");
+
+        sensorDialogIntervalLbl.setText("Interval");
+
+        sensorDialogAddBtn.setText("Add");
+        sensorDialogAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sensorDialogAddBtnActionPerformed(evt);
+            }
+        });
+
+        sensorDialogCancelBtn.setText("Cancel");
+        sensorDialogCancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sensorDialogCancelBtnActionPerformed(evt);
+            }
+        });
+
+        sensorDialogLocationY.setText("Location Y");
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel51.setText("Add a Sensor");
+
+        jLabel52.setText("Location Type");
+
+        sensorDialogLocationType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sensorDialogLocationTypeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addSensorDialogLayout = new javax.swing.GroupLayout(addSensorDialog.getContentPane());
         addSensorDialog.getContentPane().setLayout(addSensorDialogLayout);
         addSensorDialogLayout.setHorizontalGroup(
             addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(addSensorDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addSensorDialogLayout.createSequentialGroup()
+                        .addComponent(sensorDialogCancelBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(sensorDialogAddBtn))
+                    .addGroup(addSensorDialogLayout.createSequentialGroup()
+                        .addComponent(sensorDialogSerialNumberLbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(sensorDialogSerialNumber))
+                    .addGroup(addSensorDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel52)
+                        .addGap(18, 18, 18)
+                        .addComponent(sensorDialogLocationType))
+                    .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addSensorDialogLayout.createSequentialGroup()
+                            .addComponent(sensorDialogIntervalLbl)
+                            .addGap(46, 46, 46)
+                            .addComponent(sensorDialogInterval))
+                        .addGroup(addSensorDialogLayout.createSequentialGroup()
+                            .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(addSensorDialogLayout.createSequentialGroup()
+                                    .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(sensorDialogLocationX)
+                                        .addComponent(sensorDialogLocationY))
+                                    .addGap(35, 35, 35)
+                                    .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(sensorDialogLocationYSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                        .addComponent(sensorDialogLocationXSpinner)))
+                                .addComponent(jLabel51))
+                            .addGap(0, 0, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         addSensorDialogLayout.setVerticalGroup(
             addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(addSensorDialogLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorDialogLocationX)
+                    .addComponent(sensorDialogLocationXSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorDialogLocationY)
+                    .addComponent(sensorDialogLocationYSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(sensorDialogLocationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorDialogSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sensorDialogSerialNumberLbl))
+                .addGap(18, 18, 18)
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorDialogInterval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sensorDialogIntervalLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(addSensorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sensorDialogAddBtn)
+                    .addComponent(sensorDialogCancelBtn))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout editSensorDialogLayout = new javax.swing.GroupLayout(editSensorDialog.getContentPane());
@@ -2912,6 +3010,33 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showSensorDeatailsBtnActionPerformed
 
+    private void sensorDialogAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDialogAddBtnActionPerformed
+        // TODO add your handling code here:
+        int xspinner = (int) sensorDialogLocationXSpinner.getValue();
+        int yspinner = (int) sensorDialogLocationYSpinner.getValue();
+        int serialNo = Integer.parseInt(sensorDialogSerialNumber.getText());
+        int interval = Integer.parseInt(sensorDialogInterval.getText());
+        String locType = sensorDialogLocationType.getText();
+        
+        Farm tmpFarm = selectFarm((Integer) cmbFarms.getSelectedItem());
+        Field tmpField = selectField(tmpFarm, (Integer) cmbFields.getSelectedItem());
+        FieldStation tmpFS =  selectFieldStation(tmpField,(Integer) cmbFieldStations.getSelectedItem());
+        tmpFS.addSensor(new Location(xspinner, yspinner, locType), interval, serialNo, tmpFS);
+    }//GEN-LAST:event_sensorDialogAddBtnActionPerformed
+
+    private void sensorDialogCancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDialogCancelBtnActionPerformed
+        // TODO add your handling code here:
+        sensorDialogLocationXSpinner.setValue(0);
+        sensorDialogLocationYSpinner.setValue(0);
+        sensorDialogSerialNumber.setText("");
+        sensorDialogInterval.setText("");
+        addSensorDialog.setVisible(false);
+    }//GEN-LAST:event_sensorDialogCancelBtnActionPerformed
+
+    private void sensorDialogLocationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sensorDialogLocationTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sensorDialogLocationTypeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3096,6 +3221,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -3122,6 +3249,17 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JDialog removeSensorDialog;
     private javax.swing.JDialog searchFailed;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton sensorDialogAddBtn;
+    private javax.swing.JButton sensorDialogCancelBtn;
+    private javax.swing.JTextField sensorDialogInterval;
+    private javax.swing.JLabel sensorDialogIntervalLbl;
+    private javax.swing.JTextField sensorDialogLocationType;
+    private javax.swing.JLabel sensorDialogLocationX;
+    private javax.swing.JSpinner sensorDialogLocationXSpinner;
+    private javax.swing.JLabel sensorDialogLocationY;
+    private javax.swing.JSpinner sensorDialogLocationYSpinner;
+    private javax.swing.JTextField sensorDialogSerialNumber;
+    private javax.swing.JLabel sensorDialogSerialNumberLbl;
     private javax.swing.JButton showCropHistoryBtn;
     private javax.swing.JButton showFarmerDetailsBtn;
     private javax.swing.JButton showFarmsBtn;

@@ -22,10 +22,17 @@ public class Sensor implements Serializable{
     private int serialNo;
     //Alternative to deleting a sensor? Might want to turn it off temporarily? 
     private boolean active;
-    private FieldStation parentfieldStation;
+    private FieldStation parentFieldStation;
 
     public Sensor() {
         
+    }
+    public Sensor(Location location, int intervalIn, int serialNumber, FieldStation pFieldStation ) {
+        currentLocation = location;
+        interval = intervalIn;
+        serialNo = serialNumber;
+        parentFieldStation = pFieldStation;
+        active = false;
     }
 
     public Location getCurrentLocation() {
@@ -68,7 +75,7 @@ public class Sensor implements Serializable{
     }
 
     public FieldStation getParentFieldStation() {
-        return parentfieldStation;
+        return parentFieldStation;
     }
 
     public int getSerialNo() {
